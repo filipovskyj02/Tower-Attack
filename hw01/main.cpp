@@ -2,13 +2,7 @@
 #include <fstream>
 #include <vector>
 
-
-
-
-
 using namespace std;
-
-
 
 int twoPow (int pow){
     int n = 1;
@@ -27,24 +21,27 @@ struct CTree {
     };
     Cnode * head = nullptr;
 
-
-
-    int readChunks(int & index,vector<int>& array){
-        int bitsTotal = 0;
+    int readChunks(int & index,vector<int>& array,int & CharactersTotal ){
         if (array.at(index) == 1){
+            CharactersTotal = 4096;
             index++;
-            bitsTotal += 4096;
+            printf("+4096\n");
+            return 1;
+
         }
-        index += 1;
-         bitsTotal += read8or12(index,array,12);
-        printf("bits total: %d\n", bitsTotal);
-        return bitsTotal;
+        else if (array.at(index) == 0){
+            index++;
+            printf("+smaller\n");
+            CharactersTotal = read8or12(index,array,12);
+            return 0;
+        }
+
 
     }
 
     int readLetter (int & index,vector<int>& array, Cnode * position){
-
-        if (position->m_Val != '0') {
+        if(position == nullptr)return 0;
+        if (position->m_Val != 150) {
             int Letter = position->m_Val;
             return Letter;
         }
@@ -68,7 +65,6 @@ struct CTree {
             printf("\n");
             for (int i = 0; i < bitsTotal; i++) {
                 c = readLetter(index, array, head);
-
                 printf("%c", c);
 
             }
@@ -81,13 +77,20 @@ struct CTree {
 
 
     void readInput (vector<int>& array){
-        int bitsTotal;
-        int i = 0;
-        createTree(i,array, head);
-        printf("skoncil sem na indexu :%d na cisle >%d<\n", i, array.at(i));
-        bitsTotal = readChunks(i, array);
-        decode(i,array,bitsTotal);
+        int size = array.size();
+        int index = 0;
+        int CharacterTotal = 0;
+        createTree(index,array, head);
 
+        while (readChunks(index, array,CharacterTotal)==1){
+            decode(index,array,CharacterTotal);
+
+        }
+        if (index < size - 1){
+            decode(index,array,CharacterTotal);
+
+
+        }
 
     }
 
@@ -96,10 +99,9 @@ struct CTree {
         bits--;
         for (int pow = bits; pow >= 0; pow--){
             if (array.at(index) == 1){
-                if (bits == 11) { printf("precetl sem 1\n");}
+
                 total += twoPow(pow);
             }
-            if (bits == 11 && array.at(index)== 0) { printf("precetl sem 0\n");}
             index++;
 
         }
@@ -107,7 +109,6 @@ struct CTree {
     }
 
     void createTree (int & index,vector<int>& array, Cnode * current){
-        //Creates root and saves it
         if (current == nullptr){
             auto * newHead = new Cnode;
             current = newHead;
@@ -115,7 +116,7 @@ struct CTree {
 
         }
         if (array.at(index) == 0){
-            current->m_Val = '0';
+            current->m_Val = 150;
             index++;
             current->m_Left = new Cnode;
             current->m_Right = new Cnode;
@@ -134,80 +135,6 @@ struct CTree {
 
     }
 
-    void print(Cnode * head){
-        if (!head->m_Right and !head->m_Left)return;
-
-        else {
-            printf("Hodnota : %d",head->m_Val);
-            print(head->m_Left);
-            print(head->m_Right);
-        }
-    }
-    int _print_t(Cnode *tree, int is_left, int offset, int depth, char s[20][255])
-    {
-        char b[20];
-        int width = 5;
-
-        if (!tree) return 0;
-
-        sprintf(b, "(%03c)", tree->m_Val);
-
-        int left  = _print_t(tree->m_Left,  1, offset,                depth + 1, s);
-        int right = _print_t(tree->m_Right, 0, offset + left + width, depth + 1, s);
-
-#ifdef COMPACT
-        for (int i = 0; i < width; i++)
-        s[depth][offset + left + i] = b[i];
-
-    if (depth && is_left) {
-
-        for (int i = 0; i < width + right; i++)
-            s[depth - 1][offset + left + width/2 + i] = '-';
-
-        s[depth - 1][offset + left + width/2] = '.';
-
-    } else if (depth && !is_left) {
-
-        for (int i = 0; i < left + width; i++)
-            s[depth - 1][offset - width/2 + i] = '-';
-
-        s[depth - 1][offset + left + width/2] = '.';
-    }
-#else
-        for (int i = 0; i < width; i++)
-            s[2 * depth][offset + left + i] = b[i];
-
-        if (depth && is_left) {
-
-            for (int i = 0; i < width + right; i++)
-                s[2 * depth - 1][offset + left + width/2 + i] = '-';
-
-            s[2 * depth - 1][offset + left + width/2] = '+';
-            s[2 * depth - 1][offset + left + width + right + width/2] = '+';
-
-        } else if (depth && !is_left) {
-
-            for (int i = 0; i < left + width; i++)
-                s[2 * depth - 1][offset - width/2 + i] = '-';
-
-            s[2 * depth - 1][offset + left + width/2] = '+';
-            s[2 * depth - 1][offset - width/2 - 1] = '+';
-        }
-#endif
-
-        return left + width + right;
-    }
-
-    void print_t(Cnode *tree) {
-        char s[20][255];
-        for (int i = 0; i < 20; i++)
-            sprintf(s[i], "%80s", " ");
-
-        _print_t(tree, 0, 0, 0, s);
-
-        for (int i = 0; i < 20; i++)
-            printf("%s\n", s[i]);
-    }
 
 };
 
