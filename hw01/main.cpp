@@ -15,23 +15,32 @@ int twoPow (int pow){
 struct CTree {
     struct Cnode {
         int m_Val;
-        Cnode * m_Left;
-        Cnode * m_Right;
+        Cnode * m_Left = nullptr;
+        Cnode * m_Right = nullptr;
 
     };
     Cnode * head = nullptr;
 
+
+    void deleteTree(Cnode * position){
+        if (position == nullptr) return;
+
+        deleteTree(position->m_Left);
+        deleteTree(position->m_Right);
+        delete position;
+
+    }
     int readChunks(int & index,vector<int>& array,int & CharactersTotal ){
         if (array.at(index) == 1){
             CharactersTotal = 4096;
             index++;
-            printf("+4096\n");
+
             return 1;
 
         }
         else if (array.at(index) == 0){
             index++;
-            printf("+smaller\n");
+
             CharactersTotal = read8or12(index,array,12);
             return 0;
         }
@@ -47,12 +56,12 @@ struct CTree {
         }
 
          if (array.at(index)==0) {
-             //printf("Going left\n");
+
             index++;
             readLetter(index,array,position->m_Left);
             }
          else if (array.at(index)==1) {
-             //printf("Going right\n");
+
             index++;
             readLetter(index,array,position->m_Right);
         }
@@ -62,17 +71,11 @@ struct CTree {
     void decode (int & index,vector<int>& array,int bitsTotal){
 
             int c;
-            printf("\n");
+
             for (int i = 0; i < bitsTotal; i++) {
                 c = readLetter(index, array, head);
                 printf("%c", c);
-
             }
-        printf("\n");
-
-
-
-
     }
 
 
@@ -126,10 +129,10 @@ struct CTree {
         }
         else if (array.at(index) == 1){
 
-            printf("jednicka reached index : %d\n", index);
+
             index++;
             current->m_Val = read8or12(index,array,8);
-            //index +=9;
+
 
         }
 
@@ -141,7 +144,7 @@ struct CTree {
 
 
 int main() {
-    ifstream in ("test1.huf", ios::in | ios::binary);
+    ifstream in ("test3.huf", ios::in | ios::binary);
 
     char c;
     vector<int> array;
@@ -151,26 +154,12 @@ int main() {
             array.push_back(((c >> i) & 1));
     }
 
-   /* while(in.get(c)) {
-        if (c != '0' and c != '1' and c != ' ') {
-            //cout << "Error reading" << "c: << "  << ">>" << c << endl;
-        } else {
-            if (c == '0' or c == '1') {
-                int m = c - '0';
-                array.push_back(m);
-            }
-        }
-    }
-    */
-    /*for (auto i: array)
-        std::cout << i << ' ';*/
 
-    cout << "\n"<<"velikost:" << array.size() << endl;
 
     CTree a;
-    //make tree
     a.readInput(array);
-    //a.print_t(a.head);
+    a.deleteTree(a.head);
+
 
 
 
