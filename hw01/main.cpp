@@ -68,29 +68,33 @@ struct CTree {
 
 
     }
-    void decode (int & index,vector<int>& array,int bitsTotal){
+    void decode (int & index,vector<int>& array,int bitsTotal,ofstream & output){
+
+
+
 
             int c;
 
             for (int i = 0; i < bitsTotal; i++) {
                 c = readLetter(index, array, head);
-                printf("%c", c);
+
+                output << static_cast<char>(c);
             }
     }
 
 
-    void readInput (vector<int>& array){
+    void readInput (vector<int>& array, ofstream & file){
         int size = array.size();
         int index = 0;
         int CharacterTotal = 0;
         createTree(index,array, head);
 
         while (readChunks(index, array,CharacterTotal)==1){
-            decode(index,array,CharacterTotal);
+            decode(index,array,CharacterTotal,file);
 
         }
         if (index < size - 1){
-            decode(index,array,CharacterTotal);
+            decode(index,array,CharacterTotal,file);
 
 
         }
@@ -144,7 +148,9 @@ struct CTree {
 
 
 int main() {
-    ifstream in ("test3.huf", ios::in | ios::binary);
+    ifstream in ("test5.huf", ios::in | ios::binary);
+    ofstream myfile;
+    myfile.open ("output5.txt");
 
     char c;
     vector<int> array;
@@ -157,7 +163,7 @@ int main() {
 
 
     CTree a;
-    a.readInput(array);
+    a.readInput(array,myfile);
     a.deleteTree(a.head);
 
 
