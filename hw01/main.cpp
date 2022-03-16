@@ -1,8 +1,25 @@
+#ifndef __PROGTEST__
+#include <cstring>
+#include <cstdlib>
+#include <cstdio>
+#include <cctype>
+#include <climits>
+#include <cassert>
+#include <cstdint>
 #include <iostream>
+#include <iomanip>
 #include <fstream>
+#include <sstream>
+#include <map>
 #include <vector>
-
+#include <algorithm>
+#include <set>
+#include <queue>
+#include <memory>
+#include <functional>
+#include <stdexcept>
 using namespace std;
+#endif /* __PROGTEST__ */
 
 int twoPow (int pow){
     int n = 1;
@@ -30,7 +47,7 @@ struct CTree {
         delete position;
 
     }
-    int readChunks(int & index,vector<int>& array,int & CharactersTotal ){
+    int readChunks(int & index,vector<bool>& array,int & CharactersTotal ){
         if (array.at(index) == 1){
             CharactersTotal = 4096;
             index++;
@@ -45,63 +62,79 @@ struct CTree {
             return 0;
         }
 
-
+        return -1;
     }
 
-    int readLetter (int & index,vector<int>& array, Cnode * position){
-        if(position == nullptr)return 0;
-        if (position->m_Val != 150) {
-            int Letter = position->m_Val;
-            return Letter;
-        }
+    int readLetter (int & index,vector<bool>& array, Cnode * position, int & streamSize){
 
-         if (array.at(index)==0) {
 
-            index++;
-            readLetter(index,array,position->m_Left);
+        if(position == nullptr)return -1;
+
+        while (position->m_Val == 150){
+            if (array.at(index) == 0){
+                index++;
+                position = position->m_Left;
             }
-         else if (array.at(index)==1) {
+            else{
+                index++;
+                position = position->m_Right;
 
-            index++;
-            readLetter(index,array,position->m_Right);
-        }
-
-
-    }
-    void decode (int & index,vector<int>& array,int bitsTotal,ofstream & output){
-
-
-
-
-            int c;
-
-            for (int i = 0; i < bitsTotal; i++) {
-                c = readLetter(index, array, head);
-
-                output << static_cast<char>(c);
             }
+
+        }
+        return position->m_Val;
+
+
+
+
+
+
+    }
+    bool decode (int & index,vector<bool>& array,int bitsTotal,ofstream & output){
+        int streamSize = array.size();
+        int c;
+
+        for (int i = 0; i < bitsTotal; i++) {
+            if (index == streamSize) return false;
+            c = readLetter(index, array, head,streamSize);
+            if (c == -1) return false;
+
+            output << static_cast<char>(c);
+            if (output.fail()) return false;
+        }
+        return true;
     }
 
 
-    void readInput (vector<int>& array, ofstream & file){
+    bool readInput (vector<bool>& array, ofstream & file){
         int size = array.size();
         int index = 0;
         int CharacterTotal = 0;
-        createTree(index,array, head);
+        int fail = 0;
+
+        createTree(index,array, head,fail,size);
+
+        if (fail > 0 )return false;
 
         while (readChunks(index, array,CharacterTotal)==1){
-            decode(index,array,CharacterTotal,file);
+            if (decode(index,array,CharacterTotal,file)== false) {
+                return false;
+            }
 
         }
         if (index < size - 1){
-            decode(index,array,CharacterTotal,file);
+            if (decode(index,array,CharacterTotal,file)== false) {
+
+                return false;
+            }
 
 
         }
+        return true;
 
     }
 
-    int read8or12 (int & index,vector<int>& array, int bits){
+    int read8or12 (int & index,vector<bool>& array, int bits){
         int total = 0;
         bits--;
         for (int pow = bits; pow >= 0; pow--){
@@ -115,20 +148,21 @@ struct CTree {
         return total;
     }
 
-    void createTree (int & index,vector<int>& array, Cnode * current){
+    void createTree (int & index,vector<bool>& array, Cnode * current, int & fail, int & size){
         if (current == nullptr){
             auto * newHead = new Cnode;
             current = newHead;
             head = newHead;
 
         }
+        if (index +1 >= size) {fail++;return;}
         if (array.at(index) == 0){
             current->m_Val = 150;
             index++;
             current->m_Left = new Cnode;
             current->m_Right = new Cnode;
-            createTree(index,array,current->m_Left);
-            createTree(index,array,current->m_Right);
+            createTree(index,array,current->m_Left,fail,size);
+            createTree(index,array,current->m_Right,fail,size);
 
         }
         else if (array.at(index) == 1){
@@ -145,32 +179,94 @@ struct CTree {
 
 };
 
-
-
-int main() {
-    ifstream in ("test5.huf", ios::in | ios::binary);
+bool decompressFile ( const char * inFileName, const char * outFileName )
+{
+    ifstream in (inFileName, ios::in | ios::binary);
     ofstream myfile;
-    myfile.open ("output5.txt");
-
+    myfile.open (outFileName);
+    if (!in.good()) return false;
     char c;
-    vector<int> array;
+    vector<bool> array;
     while (in.get(c))
     {
         for (int i = 7; i >= 0; i--)
             array.push_back(((c >> i) & 1));
     }
 
-
-
     CTree a;
-    a.readInput(array,myfile);
+    if (a.readInput(array,myfile)== false) {
+        a.deleteTree(a.head);
+        return false;
+    }
+
     a.deleteTree(a.head);
-
-
-
-
-
-
-
-
+    return true;
 }
+
+bool compressFile ( const char * inFileName, const char * outFileName )
+{
+    // keep this dummy implementation (no bonus) or implement the compression (bonus)
+    return false;
+}
+#ifndef __PROGTEST__
+bool identicalFiles ( const char * fileName1, const char * fileName2 )
+{
+    // todo
+    return false;
+}
+
+int main ( void )
+{
+    assert ( decompressFile ( "tests/test0.huf", "tempfile" ) );
+    //assert ( identicalFiles ( "tests/test0.orig", "tempfile" ) );
+
+    assert ( decompressFile ( "tests/test1.huf", "tempfile" ) );
+   // assert ( identicalFiles ( "tests/test1.orig", "tempfile" ) );
+
+    assert ( decompressFile ( "tests/test2.huf", "tempfile" ) );
+   // assert ( identicalFiles ( "tests/test2.orig", "tempfile" ) );
+
+    assert ( decompressFile ( "tests/test3.huf", "tempfile" ) );
+    //assert ( identicalFiles ( "tests/test3.orig", "tempfile" ) );
+
+    assert ( decompressFile ( "tests/test4.huf", "tempfile" ) );
+    //assert ( identicalFiles ( "tests/test4.orig", "tempfile" ) );
+
+    assert ( ! decompressFile ( "tests/test5.huf", "tempfile" ) );
+
+/*
+
+    assert ( decompressFile ( "tests/extra0.huf", "tempfile" ) );
+    assert ( identicalFiles ( "tests/extra0.orig", "tempfile" ) );
+
+    assert ( decompressFile ( "tests/extra1.huf", "tempfile" ) );
+    assert ( identicalFiles ( "tests/extra1.orig", "tempfile" ) );
+
+    assert ( decompressFile ( "tests/extra2.huf", "tempfile" ) );
+    assert ( identicalFiles ( "tests/extra2.orig", "tempfile" ) );
+
+    assert ( decompressFile ( "tests/extra3.huf", "tempfile" ) );
+    assert ( identicalFiles ( "tests/extra3.orig", "tempfile" ) );
+
+    assert ( decompressFile ( "tests/extra4.huf", "tempfile" ) );
+    assert ( identicalFiles ( "tests/extra4.orig", "tempfile" ) );
+
+    assert ( decompressFile ( "tests/extra5.huf", "tempfile" ) );
+    assert ( identicalFiles ( "tests/extra5.orig", "tempfile" ) );
+
+    assert ( decompressFile ( "tests/extra6.huf", "tempfile" ) );
+    assert ( identicalFiles ( "tests/extra6.orig", "tempfile" ) );
+
+    assert ( decompressFile ( "tests/extra7.huf", "tempfile" ) );
+    assert ( identicalFiles ( "tests/extra7.orig", "tempfile" ) );
+
+    assert ( decompressFile ( "tests/extra8.huf", "tempfile" ) );
+    assert ( identicalFiles ( "tests/extra8.orig", "tempfile" ) );
+
+    assert ( decompressFile ( "tests/extra9.huf", "tempfile" ) );
+    assert ( identicalFiles ( "tests/extra9.orig", "tempfile" ) );
+
+*/
+    return 0;
+}
+#endif /* __PROGTEST__ */
