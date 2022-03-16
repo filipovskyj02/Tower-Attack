@@ -152,6 +152,52 @@ struct CTree {
         return total;
     }
 
+
+    string readUTF (int & index,vector<bool>& array, int & error){
+        string edgeCase;
+        int a1 = 0xF4;
+        int a2 = 0x90;
+        int a3 = 0x80;
+        int a4 = 0x80;
+        edgeCase.push_back(a1);
+        edgeCase.push_back(a2);
+        edgeCase.push_back(a3);
+        edgeCase.push_back(a4);
+
+
+
+
+        string Letter;
+        int bytesTotal = 0;
+        while (array.at(index) == 1){
+            bytesTotal++;
+            index++;
+        }
+        if ((bytesTotal > 4) or (bytesTotal <= 1 )) {error++; return "";}
+
+        index -= bytesTotal;
+        char c1 = read8or12(index, array, 8);
+        Letter.push_back(c1);
+
+        for (int i = 1; i < bytesTotal;i++){
+            if ((array.at(index) == 1) and (array.at(index+1) == 0 )){
+                char c2 = read8or12(index, array, 8);
+                Letter.push_back(c2);
+
+            }
+            else {error++; return "";}
+
+        }
+        if (Letter.compare(edgeCase)==0) {error++; return "";}
+        return Letter;
+
+
+
+
+
+
+    }
+
     void createTree (int & index,vector<bool>& array, Cnode * current, int & fail, int & size){
         if (current == nullptr){
             auto * newHead = new Cnode;
@@ -171,10 +217,18 @@ struct CTree {
         }
         else if (array.at(index) == 1){
 
-
+            int error = 0;
             index++;
-            char c = read8or12(index,array,8);
-            current->UTF8.push_back(c);
+            if (array.at(index)==1) {
+
+                current->UTF8.append(readUTF(index,array,error));
+                if (error > 0) {fail++;return;}
+            }
+
+            else {
+                char c = read8or12(index, array, 8);
+                current->UTF8.push_back(c);
+            }
 
 
         }
@@ -222,6 +276,7 @@ bool identicalFiles ( const char * fileName1, const char * fileName2 )
 
 int main ( void )
 {
+
     assert ( decompressFile ( "tests/test0.huf", "tempfile" ) );
     //assert ( identicalFiles ( "tests/test0.orig", "tempfile" ) );
 
@@ -237,39 +292,39 @@ int main ( void )
     assert ( decompressFile ( "tests/test4.huf", "tempfile" ) );
     //assert ( identicalFiles ( "tests/test4.orig", "tempfile" ) );
 
-    //assert ( ! decompressFile ( "tests/test5.huf", "tempfile" ) );
+    assert ( ! decompressFile ( "tests/test5.huf", "tempfile" ) );
+
 
 /*
-
     assert ( decompressFile ( "tests/extra0.huf", "tempfile" ) );
-    assert ( identicalFiles ( "tests/extra0.orig", "tempfile" ) );
+   // assert ( identicalFiles ( "tests/extra0.orig", "tempfile" ) );
 
     assert ( decompressFile ( "tests/extra1.huf", "tempfile" ) );
-    assert ( identicalFiles ( "tests/extra1.orig", "tempfile" ) );
+   // assert ( identicalFiles ( "tests/extra1.orig", "tempfile" ) );
 
     assert ( decompressFile ( "tests/extra2.huf", "tempfile" ) );
-    assert ( identicalFiles ( "tests/extra2.orig", "tempfile" ) );
+   // assert ( identicalFiles ( "tests/extra2.orig", "tempfile" ) );
 
     assert ( decompressFile ( "tests/extra3.huf", "tempfile" ) );
-    assert ( identicalFiles ( "tests/extra3.orig", "tempfile" ) );
+  //  assert ( identicalFiles ( "tests/extra3.orig", "tempfile" ) );
 
     assert ( decompressFile ( "tests/extra4.huf", "tempfile" ) );
-    assert ( identicalFiles ( "tests/extra4.orig", "tempfile" ) );
+  //  assert ( identicalFiles ( "tests/extra4.orig", "tempfile" ) );
 
     assert ( decompressFile ( "tests/extra5.huf", "tempfile" ) );
-    assert ( identicalFiles ( "tests/extra5.orig", "tempfile" ) );
+   // assert ( identicalFiles ( "tests/extra5.orig", "tempfile" ) );
 
     assert ( decompressFile ( "tests/extra6.huf", "tempfile" ) );
-    assert ( identicalFiles ( "tests/extra6.orig", "tempfile" ) );
+   // assert ( identicalFiles ( "tests/extra6.orig", "tempfile" ) );
 
     assert ( decompressFile ( "tests/extra7.huf", "tempfile" ) );
-    assert ( identicalFiles ( "tests/extra7.orig", "tempfile" ) );
+    //assert ( identicalFiles ( "tests/extra7.orig", "tempfile" ) );
 
     assert ( decompressFile ( "tests/extra8.huf", "tempfile" ) );
-    assert ( identicalFiles ( "tests/extra8.orig", "tempfile" ) );
+   // assert ( identicalFiles ( "tests/extra8.orig", "tempfile" ) );
 
     assert ( decompressFile ( "tests/extra9.huf", "tempfile" ) );
-    assert ( identicalFiles ( "tests/extra9.orig", "tempfile" ) );
+    //assert ( identicalFiles ( "tests/extra9.orig", "tempfile" ) );
 
 */
     return 0;
