@@ -31,7 +31,8 @@ int twoPow (int pow){
 }
 struct CTree {
     struct Cnode {
-        int m_Val;
+        string UTF8;
+        char m_Val;
         Cnode * m_Left = nullptr;
         Cnode * m_Right = nullptr;
 
@@ -65,12 +66,15 @@ struct CTree {
         return -1;
     }
 
-    int readLetter (int & index,vector<bool>& array, Cnode * position, int & streamSize){
+    string readLetter (int & index,vector<bool>& array, Cnode * position, int & streamSize){
 
 
-        if(position == nullptr)return -1;
+        if(position == nullptr){
+            streamSize = -1;
+            return "";
+        }
 
-        while (position->m_Val == 150){
+        while (position->UTF8.compare("150"s)==0){
             if (array.at(index) == 0){
                 index++;
                 position = position->m_Left;
@@ -82,7 +86,7 @@ struct CTree {
             }
 
         }
-        return position->m_Val;
+        return position->UTF8;
 
 
 
@@ -92,14 +96,14 @@ struct CTree {
     }
     bool decode (int & index,vector<bool>& array,int bitsTotal,ofstream & output){
         int streamSize = array.size();
-        int c;
+        string c;
 
         for (int i = 0; i < bitsTotal; i++) {
             if (index == streamSize) return false;
             c = readLetter(index, array, head,streamSize);
-            if (c == -1) return false;
+            if (streamSize == -1) return false;
 
-            output << static_cast<char>(c);
+            output << c;
             if (output.fail()) return false;
         }
         return true;
@@ -157,7 +161,7 @@ struct CTree {
         }
         if (index +1 >= size) {fail++;return;}
         if (array.at(index) == 0){
-            current->m_Val = 150;
+            current->UTF8 = "150"s;
             index++;
             current->m_Left = new Cnode;
             current->m_Right = new Cnode;
@@ -169,7 +173,8 @@ struct CTree {
 
 
             index++;
-            current->m_Val = read8or12(index,array,8);
+            char c = read8or12(index,array,8);
+            current->UTF8.push_back(c);
 
 
         }
@@ -232,7 +237,7 @@ int main ( void )
     assert ( decompressFile ( "tests/test4.huf", "tempfile" ) );
     //assert ( identicalFiles ( "tests/test4.orig", "tempfile" ) );
 
-    assert ( ! decompressFile ( "tests/test5.huf", "tempfile" ) );
+    //assert ( ! decompressFile ( "tests/test5.huf", "tempfile" ) );
 
 /*
 
