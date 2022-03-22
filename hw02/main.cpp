@@ -1,4 +1,4 @@
-//#ifndef __PROGTEST__
+#ifndef __PROGTEST__
 #include <cstring>
 #include <cstdlib>
 #include <cstdio>
@@ -13,7 +13,7 @@
 #include <algorithm>
 #include <memory>
 using namespace std;
-//#endif /* __PROGTEST__ */
+#endif /* __PROGTEST__ */
 
 class CVATRegister
 {
@@ -30,7 +30,9 @@ class CVATRegister
 public:
     vector<Company*> pointerVecId;
     vector<Company*> pointerVecNameAddr;
+    CVATRegister(void){
 
+    }
 
     ~CVATRegister(void){
 
@@ -44,12 +46,6 @@ public:
 
     vector<unsigned int>transactions;
     unsigned int pos = 0;
-
-    void printsize (void ) {
-        printf("Id size = %d\n Name size = %d\n", pointerVecId.size(),pointerVecNameAddr.size());
-
-
-    };
 
 
 
@@ -72,12 +68,6 @@ public:
 
 
 
-    }
-    void lol (void){
-
-
-        cout << "Name : " << pointerVecId[1]->c_Name << " Address: " << pointerVecId[1]->c_Address << " ID: " << pointerVecId[1]->c_ID << " Balance :" << pointerVecId[1]->c_Balance << endl;
-        //cout << "Name : " << pointerVecNameAddr[i]->c_Name << " Address: " << pointerVecNameAddr[i]->c_Address << " ID: " << pointerVecNameAddr[i]->c_ID << " Balance: " << pointerVecNameAddr[i]->c_Balance<<endl;
     }
 
 
@@ -128,16 +118,7 @@ public:
 
 
 
-
-
-
     }
-    void add (void ){
-        pos++;
-    }
-
-
-
 
 
     bool          newCompany     ( const string    & name,
@@ -198,23 +179,39 @@ public:
 
         bool          cancelCompany  ( const string    & name,
                                    const string    & addr ){
-            auto pos = findIndex(name,addr);
-            if (pos == pointerVecNameAddr.end()) return false;
-            string ID = (*pos)->c_ID;
-            pointerVecNameAddr.erase(pos);
 
-            auto pos1 = findIndex(ID);
-            pointerVecId.erase(pos1);
+            string NAME = name;
+            string ADDR = addr;
 
-            delete (*pos1);
+            transform(NAME.begin(), NAME.end(), NAME.begin(),::toupper);
+            transform(ADDR.begin(), ADDR.end(), ADDR.begin(),::toupper);
+
+            unsigned int i = 0;
+            for (; i < pointerVecNameAddr.size(); i++) {
+                if ((pointerVecNameAddr[i]->c_NAME == NAME)and (pointerVecNameAddr[i]->c_ADDRESS == ADDR)) break;
+            }
+
+            if (i == pointerVecNameAddr.size()) return false;
+
+            auto taxID = (*pointerVecNameAddr.begin()+i)->c_ID;
+            pointerVecNameAddr.erase(pointerVecNameAddr.begin()+i);
+            i = 0;
+            Company * tmp = nullptr;
+            for (; i < pointerVecId.size(); i++) {
+                tmp = pointerVecId[i];
+                if (pointerVecId[i]->c_ID == taxID) break;
+            }
+            pointerVecId.erase(pointerVecId.begin()+i);
+            if (tmp)
+                delete tmp;
             return true;
 
 
 
     }
     bool          cancelCompany  ( const string    & taxID ){
-        if (pointerVecId.size() < 15){
-            int i = 0;
+
+           unsigned int i = 0;
             for (; i < pointerVecId.size(); i++) {
                 if (pointerVecId[i]->c_ID == taxID) break;
             }
@@ -223,33 +220,20 @@ public:
 
             pointerVecId.erase(pointerVecId.begin()+i);
             i = 0;
-
+            Company * tmp = nullptr;
             for (; i < pointerVecNameAddr.size(); i++) {
+                 tmp = pointerVecNameAddr[i];
                 if (pointerVecNameAddr[i]->c_ID == taxID) break;
             }
             pointerVecNameAddr.erase(pointerVecNameAddr.begin()+i);
-
-
-        }
-        else {
-
-
-            auto pos = findIndex(taxID);
-            if (pos == pointerVecId.end()) return false;
-            string name, addres;
-            name = (*pos)->c_Name;
-            addres = (*pos)->c_Address;
-
-            pointerVecId.erase(pos);
-
-            auto pos1 = findIndex(name, addres);
-            pointerVecNameAddr.erase(pos1);
-
-            delete (*pos1);
+            if (tmp)
+                delete tmp;
             return true;
 
+
         }
-    }
+
+
     bool          invoice        ( const string    & taxID,
                                    unsigned int      amount ){
         auto pos = findIndex(taxID);
@@ -305,18 +289,15 @@ public:
             return true;
 
 
-
-
-
-
     }
     bool          nextCompany    ( string          & name,
-                                   string          & addr ) {
-        add();
-        if (pos >= pointerVecNameAddr.size()) return false;
-
-        name = pointerVecNameAddr[pos]->c_Name;
-        addr = pointerVecNameAddr[pos]->c_Address;
+                                   string          & addr ) const {
+        auto pos = findIndex(name,addr);
+        if (pos == pointerVecNameAddr.end()) return false;
+        pos++;
+        if (pos == pointerVecNameAddr.end()) return false;
+        name = (*pos)->c_Name;
+        addr = (*pos)->c_Address;
         return true;
 
 
@@ -325,7 +306,7 @@ public:
    unsigned int  medianInvoice  ( void ) const{
        if (transactions.empty()) return 0;
     vector<unsigned int> trCopy;
-        for (auto i = 0; i < transactions.size(); i++){
+        for (unsigned int i = 0; i < transactions.size(); i++){
             trCopy.push_back(transactions.at(i));
 
         }
@@ -347,105 +328,85 @@ public:
 
 
 
-//#ifndef __PROGTEST__
+#ifndef __PROGTEST__
 int               main           ( void )
 {
-  string name, addr;
-  unsigned int sumIncome;
+    string name, addr;
+    unsigned int sumIncome;
 
-    //cout << ("666/666" < "123456") << endl;
-  CVATRegister b1;
-
+    CVATRegister b1;
+    assert ( b1 . newCompany ( "ACME", "Thakurova", "666/666" ) );
+    assert ( b1 . newCompany ( "ACME", "Kolejni", "666/666/666" ) );
     assert ( b1 . newCompany ( "Dummy", "Thakurova", "123456" ) );
-  assert ( b1 . newCompany ( "ACME", "Thakurova", "666/666" ) );
-  assert ( b1 . newCompany ( "ACME", "Kolejni", "666/666/666" ) );
+    assert ( b1 . invoice ( "666/666", 2000 ) );
+    assert ( b1 . medianInvoice () == 2000 );
+    assert ( b1 . invoice ( "666/666/666", 3000 ) );
+    assert ( b1 . medianInvoice () == 3000 );
+    assert ( b1 . invoice ( "123456", 4000 ) );
+    assert ( b1 . medianInvoice () == 3000 );
+    assert ( b1 . invoice ( "aCmE", "Kolejni", 5000 ) );
+    assert ( b1 . medianInvoice () == 4000 );
+    assert ( b1 . audit ( "ACME", "Kolejni", sumIncome ) && sumIncome == 8000 );
+    assert ( b1 . audit ( "123456", sumIncome ) && sumIncome == 4000 );
+    assert ( b1 . firstCompany ( name, addr ) && name == "ACME" && addr == "Kolejni" );
+    assert ( b1 . nextCompany ( name, addr ) && name == "ACME" && addr == "Thakurova" );
+    assert ( b1 . nextCompany ( name, addr ) && name == "Dummy" && addr == "Thakurova" );
+    assert ( ! b1 . nextCompany ( name, addr ) );
+    assert ( b1 . cancelCompany ( "ACME", "KoLeJnI" ) );
+    assert ( b1 . medianInvoice () == 4000 );
+    assert ( b1 . cancelCompany ( "666/666" ) );
+    assert ( b1 . medianInvoice () == 4000 );
+    assert ( b1 . invoice ( "123456", 100 ) );
+    assert ( b1 . medianInvoice () == 3000 );
+    assert ( b1 . invoice ( "123456", 300 ) );
+    assert ( b1 . medianInvoice () == 3000 );
+    assert ( b1 . invoice ( "123456", 200 ) );
+    assert ( b1 . medianInvoice () == 2000 );
+    assert ( b1 . invoice ( "123456", 230 ) );
+    assert ( b1 . medianInvoice () == 2000 );
+    assert ( b1 . invoice ( "123456", 830 ) );
+    assert ( b1 . medianInvoice () == 830 );
+    assert ( b1 . invoice ( "123456", 1830 ) );
+    assert ( b1 . medianInvoice () == 1830 );
+    assert ( b1 . invoice ( "123456", 2830 ) );
+    assert ( b1 . medianInvoice () == 1830 );
+    assert ( b1 . invoice ( "123456", 2830 ) );
+    assert ( b1 . medianInvoice () == 2000 );
+    assert ( b1 . invoice ( "123456", 3200 ) );
+    assert ( b1 . medianInvoice () == 2000 );
+    assert ( b1 . firstCompany ( name, addr ) && name == "Dummy" && addr == "Thakurova" );
+    assert ( ! b1 . nextCompany ( name, addr ) );
+    assert ( b1 . cancelCompany ( "123456" ) );
+    assert ( ! b1 . firstCompany ( name, addr ) );
 
+    CVATRegister b2;
+    assert ( b2 . newCompany ( "ACME", "Kolejni", "abcdef" ) );
+    assert ( b2 . newCompany ( "Dummy", "Kolejni", "123456" ) );
+    assert ( ! b2 . newCompany ( "AcMe", "kOlEjNi", "1234" ) );
+    assert ( b2 . newCompany ( "Dummy", "Thakurova", "ABCDEF" ) );
+    assert ( b2 . medianInvoice () == 0 );
+    assert ( b2 . invoice ( "ABCDEF", 1000 ) );
+    assert ( b2 . medianInvoice () == 1000 );
+    assert ( b2 . invoice ( "abcdef", 2000 ) );
+    assert ( b2 . medianInvoice () == 2000 );
+    assert ( b2 . invoice ( "aCMe", "kOlEjNi", 3000 ) );
+    assert ( b2 . medianInvoice () == 2000 );
+    assert ( ! b2 . invoice ( "1234567", 100 ) );
+    assert ( ! b2 . invoice ( "ACE", "Kolejni", 100 ) );
+    assert ( ! b2 . invoice ( "ACME", "Thakurova", 100 ) );
+    assert ( ! b2 . audit ( "1234567", sumIncome ) );
+    assert ( ! b2 . audit ( "ACE", "Kolejni", sumIncome ) );
+    assert ( ! b2 . audit ( "ACME", "Thakurova", sumIncome ) );
+    assert ( ! b2 . cancelCompany ( "1234567" ) );
+    assert ( ! b2 . cancelCompany ( "ACE", "Kolejni" ) );
+    assert ( ! b2 . cancelCompany ( "ACME", "Thakurova" ) );
+    assert ( b2 . cancelCompany ( "abcdef" ) );
+    assert ( b2 . medianInvoice () == 2000 );
+    assert ( ! b2 . cancelCompany ( "abcdef" ) );
+    assert ( b2 . newCompany ( "ACME", "Kolejni", "abcdef" ) );
+    assert ( b2 . cancelCompany ( "ACME", "Kolejni" ) );
+    assert ( ! b2 . cancelCompany ( "ACME", "Kolejni" ) );
 
-
-
-  assert ( b1 . invoice ( "666/666", 2000 ) );
-  assert ( b1 . medianInvoice () == 2000 );
-  assert ( b1 . invoice ( "666/666/666", 3000 ) );
-  assert ( b1 . medianInvoice () == 3000 );
-
-  assert ( b1 . invoice ( "123456", 4000 ) );
-  assert ( b1 . medianInvoice () == 3000 );
-  assert ( b1 . invoice ( "aCmE", "Kolejni", 5000 ) );
-  assert ( b1 . medianInvoice () == 4000 );
-  assert ( b1 . audit ( "ACME", "Kolejni", sumIncome ) && sumIncome == 8000 );
-  assert ( b1 . audit ( "123456", sumIncome ) && sumIncome == 4000 );
-
-  assert ( b1 . firstCompany ( name, addr ) && name == "ACME" && addr == "Kolejni" );
-  assert ( b1 . nextCompany ( name, addr ) && name == "ACME" && addr == "Thakurova" );
-  assert ( b1 . nextCompany ( name, addr ) && name == "Dummy" && addr == "Thakurova" );
-  assert ( ! b1 . nextCompany ( name, addr ) );
-  b1.print();
-  b1.printsize();
-  assert ( b1 . cancelCompany ( "ACME", "KoLeJnI" ) );
-  assert ( b1 . medianInvoice () == 4000 );
-    b1.print();
-    b1.printsize();
-  assert ( b1 . cancelCompany ( "666/666" ) );
-    b1.printsize();
-
-  b1.print();
-  assert ( b1 . medianInvoice () == 4000 );
-  assert ( b1 . invoice ( "123456", 100 ) );
-  assert ( b1 . medianInvoice () == 3000 );
-    b1.print();
-  assert ( b1 . invoice ( "123456", 300 ) );
-  assert ( b1 . medianInvoice () == 3000 );
-  assert ( b1 . invoice ( "123456", 200 ) );
-  assert ( b1 . medianInvoice () == 2000 );
-  assert ( b1 . invoice ( "123456", 230 ) );
-  assert ( b1 . medianInvoice () == 2000 );
-  assert ( b1 . invoice ( "123456", 830 ) );
-  assert ( b1 . medianInvoice () == 830 );
-  assert ( b1 . invoice ( "123456", 1830 ) );
-  assert ( b1 . medianInvoice () == 1830 );
-  assert ( b1 . invoice ( "123456", 2830 ) );
-  assert ( b1 . medianInvoice () == 1830 );
-  assert ( b1 . invoice ( "123456", 2830 ) );
-  assert ( b1 . medianInvoice () == 2000 );
-  assert ( b1 . invoice ( "123456", 3200 ) );
-  assert ( b1 . medianInvoice () == 2000 );
- assert ( b1 . firstCompany ( name, addr ) && name == "Dummy" && addr == "Thakurova" );
-  assert ( ! b1 . nextCompany ( name, addr ) );
-  assert ( b1 . cancelCompany ( "123456" ) );
-  assert ( ! b1 . firstCompany ( name, addr ) );
-
-
-    printf("\n");
-  CVATRegister b2;
-  assert ( b2 . newCompany ( "ACME", "Kolejni", "abcdef" ) );
-  assert ( b2 . newCompany ( "Dummy", "Kolejni", "123456" ) );
-  assert ( ! b2 . newCompany ( "AcMe", "kOlEjNi", "1234" ) );
-  assert ( b2 . newCompany ( "Dummy", "Thakurova", "ABCDEF" ) );
-  b2.print();
-
-  assert ( b2 . medianInvoice () == 0 );
-  assert ( b2 . invoice ( "ABCDEF", 1000 ) );
-  assert ( b2 . medianInvoice () == 1000 );
-  assert ( b2 . invoice ( "abcdef", 2000 ) );
-  assert ( b2 . medianInvoice () == 2000 );
-  assert ( b2 . invoice ( "aCMe", "kOlEjNi", 3000 ) );
-  assert ( b2 . medianInvoice () == 2000 );
-  assert ( ! b2 . invoice ( "1234567", 100 ) );
-  assert ( ! b2 . invoice ( "ACE", "Kolejni", 100 ) );
-  assert ( ! b2 . invoice ( "ACME", "Thakurova", 100 ) );
-  assert ( ! b2 . audit ( "1234567", sumIncome ) );
-  assert ( ! b2 . audit ( "ACE", "Kolejni", sumIncome ) );
-  assert ( ! b2 . audit ( "ACME", "Thakurova", sumIncome ) );
-  assert ( ! b2 . cancelCompany ( "1234567" ) );
-  assert ( ! b2 . cancelCompany ( "ACE", "Kolejni" ) );
-  assert ( ! b2 . cancelCompany ( "ACME", "Thakurova" ) );
-  assert ( b2 . cancelCompany ( "abcdef" ) );
-  assert ( b2 . medianInvoice () == 2000 );
-  assert ( ! b2 . cancelCompany ( "abcdef" ) );
-  assert ( b2 . newCompany ( "ACME", "Kolejni", "abcdef" ) );
-  assert ( b2 . cancelCompany ( "ACME", "Kolejni" ) );
-  assert ( ! b2 . cancelCompany ( "ACME", "Kolejni" ) );
-
-  return EXIT_SUCCESS;
+    return EXIT_SUCCESS;
 }
-//#endif /* __PROGTEST__ */
+#endif /* __PROGTEST__ */
