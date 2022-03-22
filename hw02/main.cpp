@@ -30,28 +30,56 @@ class CVATRegister
 public:
     vector<Company*> pointerVecId;
     vector<Company*> pointerVecNameAddr;
+
+
+    ~CVATRegister(void){
+
+    for  (auto it = begin(pointerVecId); it != end(pointerVecId); it++){
+        delete (*it);
+        }
+
+
+    }
+
+
     vector<unsigned int>transactions;
     unsigned int pos = 0;
 
-    void print (){
-        for (int i = 0; i < pointerVecId.size(); i++){
+    void printsize (void ) {
+        printf("Id size = %d\n Name size = %d\n", pointerVecId.size(),pointerVecNameAddr.size());
 
-            cout << "Name : " << pointerVecId[i]->c_Name << " Address: " << pointerVecId[i]->c_Address << " ID: " << pointerVecId[i]->c_ID << "Balance :" << pointerVecId[i]->c_Balance << endl;
+
+    };
+
+
+
+    void print (){
+        for (long unsigned int i = 0; i < pointerVecId.size(); i++){
+
+            cout << "Name : " << pointerVecId[i]->c_Name << " Address: " << pointerVecId[i]->c_Address << " ID: " << pointerVecId[i]->c_ID << " Balance :" << pointerVecId[i]->c_Balance << endl;
 
 
         }
         printf("------------------------------------------------------------------------\n");
-        for (int i = 0; i < pointerVecNameAddr.size(); i++){
+        for (long unsigned int i = 0; i < pointerVecNameAddr.size(); i++){
 
             cout << "Name : " << pointerVecNameAddr[i]->c_Name << " Address: " << pointerVecNameAddr[i]->c_Address << " ID: " << pointerVecNameAddr[i]->c_ID << " Balance: " << pointerVecNameAddr[i]->c_Balance<<endl;
 
 
         }
+        printf("***************************************************************************\n");
 
 
 
 
     }
+    void lol (void){
+
+
+        cout << "Name : " << pointerVecId[1]->c_Name << " Address: " << pointerVecId[1]->c_Address << " ID: " << pointerVecId[1]->c_ID << " Balance :" << pointerVecId[1]->c_Balance << endl;
+        //cout << "Name : " << pointerVecNameAddr[i]->c_Name << " Address: " << pointerVecNameAddr[i]->c_Address << " ID: " << pointerVecNameAddr[i]->c_ID << " Balance: " << pointerVecNameAddr[i]->c_Balance<<endl;
+    }
+
 
 
     bool  static cmpID(const Company * a,const string & b) {
@@ -172,9 +200,10 @@ public:
                                    const string    & addr ){
             auto pos = findIndex(name,addr);
             if (pos == pointerVecNameAddr.end()) return false;
+            string ID = (*pos)->c_ID;
             pointerVecNameAddr.erase(pos);
 
-            auto pos1 = findIndex((*pos)->c_ID);
+            auto pos1 = findIndex(ID);
             pointerVecId.erase(pos1);
 
             delete (*pos1);
@@ -184,18 +213,42 @@ public:
 
     }
     bool          cancelCompany  ( const string    & taxID ){
-        auto pos = findIndex(taxID);
-        if (pos == pointerVecId.end()) return false;
+        if (pointerVecId.size() < 15){
+            int i = 0;
+            for (; i < pointerVecId.size(); i++) {
+                if (pointerVecId[i]->c_ID == taxID) break;
+            }
 
-        pointerVecId.erase(pos);
+            if (i == pointerVecId.size()) return false;
 
-        auto pos1 = findIndex((*pos)->c_Name, (*pos)->c_Address);
-        pointerVecNameAddr.erase(pos1);
+            pointerVecId.erase(pointerVecId.begin()+i);
+            i = 0;
 
-        delete (*pos1);
-        return true;
+            for (; i < pointerVecNameAddr.size(); i++) {
+                if (pointerVecNameAddr[i]->c_ID == taxID) break;
+            }
+            pointerVecNameAddr.erase(pointerVecNameAddr.begin()+i);
 
 
+        }
+        else {
+
+
+            auto pos = findIndex(taxID);
+            if (pos == pointerVecId.end()) return false;
+            string name, addres;
+            name = (*pos)->c_Name;
+            addres = (*pos)->c_Address;
+
+            pointerVecId.erase(pos);
+
+            auto pos1 = findIndex(name, addres);
+            pointerVecNameAddr.erase(pos1);
+
+            delete (*pos1);
+            return true;
+
+        }
     }
     bool          invoice        ( const string    & taxID,
                                    unsigned int      amount ){
@@ -299,7 +352,7 @@ int               main           ( void )
 {
   string name, addr;
   unsigned int sumIncome;
-  /*
+
     //cout << ("666/666" < "123456") << endl;
   CVATRegister b1;
 
@@ -327,20 +380,25 @@ int               main           ( void )
   assert ( b1 . nextCompany ( name, addr ) && name == "Dummy" && addr == "Thakurova" );
   assert ( ! b1 . nextCompany ( name, addr ) );
   b1.print();
+  b1.printsize();
   assert ( b1 . cancelCompany ( "ACME", "KoLeJnI" ) );
   assert ( b1 . medianInvoice () == 4000 );
-
+    b1.print();
+    b1.printsize();
   assert ( b1 . cancelCompany ( "666/666" ) );
+    b1.printsize();
+
+  b1.print();
   assert ( b1 . medianInvoice () == 4000 );
   assert ( b1 . invoice ( "123456", 100 ) );
   assert ( b1 . medianInvoice () == 3000 );
-
+    b1.print();
   assert ( b1 . invoice ( "123456", 300 ) );
   assert ( b1 . medianInvoice () == 3000 );
   assert ( b1 . invoice ( "123456", 200 ) );
   assert ( b1 . medianInvoice () == 2000 );
   assert ( b1 . invoice ( "123456", 230 ) );
-  assert ( b1 . medianInvoice () == 2000 );/*
+  assert ( b1 . medianInvoice () == 2000 );
   assert ( b1 . invoice ( "123456", 830 ) );
   assert ( b1 . medianInvoice () == 830 );
   assert ( b1 . invoice ( "123456", 1830 ) );
@@ -351,12 +409,12 @@ int               main           ( void )
   assert ( b1 . medianInvoice () == 2000 );
   assert ( b1 . invoice ( "123456", 3200 ) );
   assert ( b1 . medianInvoice () == 2000 );
- // assert ( b1 . firstCompany ( name, addr ) && name == "Dummy" && addr == "Thakurova" );
+ assert ( b1 . firstCompany ( name, addr ) && name == "Dummy" && addr == "Thakurova" );
   assert ( ! b1 . nextCompany ( name, addr ) );
   assert ( b1 . cancelCompany ( "123456" ) );
-  //assert ( ! b1 . firstCompany ( name, addr ) );
+  assert ( ! b1 . firstCompany ( name, addr ) );
 
-*/
+
     printf("\n");
   CVATRegister b2;
   assert ( b2 . newCompany ( "ACME", "Kolejni", "abcdef" ) );
