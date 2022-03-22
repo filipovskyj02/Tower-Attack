@@ -110,11 +110,21 @@ public:
         if (pos == pointerVecNameAddr.end())return pointerVecNameAddr.end();
         if ((*pos)->c_NAME != NAME) return pointerVecNameAddr.end();
 
-        auto pos1 = lower_bound(pos,pointerVecNameAddr.end(), ADDR, cmpAdr);
-        if (pos1 == pointerVecNameAddr.end())return pointerVecNameAddr.end();
-        if ((*pos1)->c_NAME != NAME or (*pos1)->c_ADDRESS != ADDR) return pointerVecNameAddr.end();
+            auto end = pos;
+            while ((*end)->c_NAME == NAME){
+                end++;
+                if (end == pointerVecNameAddr.end()) return pointerVecNameAddr.end();
+            }
+            auto tmp = pos;
+            pos = lower_bound(tmp,end,ADDR,cmpAdr);
+        if (pos == pointerVecNameAddr.end()) return pointerVecNameAddr.end();
+            if ((*pos)->c_ADDRESS != ADDR) return pointerVecNameAddr.end();
 
-        return pos1;
+        return pos;
+
+
+
+
 
 
 
@@ -132,8 +142,8 @@ public:
         transform(ADDR.begin(), ADDR.end(), ADDR.begin(),::toupper);
 
 
-        auto posID = pointerVecId.begin();
-        auto posName = pointerVecNameAddr.begin();
+        auto posID = pointerVecId.end();
+        auto posName = pointerVecNameAddr.end();
         if (!pointerVecId.empty()) {
             posID = lower_bound(pointerVecId.begin(), pointerVecId.end(), taxID, cmpID);
             if (posID != pointerVecId.end()) {
@@ -325,7 +335,6 @@ public:
 
 
 };
-
 
 
 #ifndef __PROGTEST__
