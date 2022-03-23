@@ -5,8 +5,8 @@
 #include <cctype>
 #include <cmath>
 #include <cassert>
-#include <iostream> 
-#include <iomanip> 
+#include <iostream>
+#include <iomanip>
 #include <string>
 #include <vector>
 #include <list>
@@ -22,12 +22,12 @@ class CVATRegister
         string c_Name;
         string c_Address;
         string c_ID;
-        string c_NAME;
-        string c_ADDRESS;
+        string c_NameAddress;
         unsigned int c_Balance = 0;
 
     };
 public:
+    bool mezniflag = false;
     vector<Company*> pointerVecId;
     vector<Company*> pointerVecNameAddr;
     CVATRegister(void){
@@ -36,8 +36,8 @@ public:
 
     ~CVATRegister(void){
 
-    for  (auto it = begin(pointerVecId); it != end(pointerVecId); it++){
-        delete (*it);
+        for  (auto it = begin(pointerVecId); it != end(pointerVecId); it++){
+            delete (*it);
         }
 
 
@@ -79,14 +79,9 @@ public:
 
     bool  static cmpName(const Company * a,const string & b) {
 
-        return a->c_NAME < b ? true : false;
+        return a->c_NameAddress < b ? true : false;
     }
 
-
-    bool  static cmpAdr(const Company * a,const string & b) {
-
-        return a->c_ADDRESS < b ? true : false;
-    }
     auto findIndex (const string    & taxID)const{
         auto pos = lower_bound(pointerVecId.begin(),pointerVecId.end(), taxID, cmpID);
         if (pos == pointerVecId.end()) return pointerVecId.end();
@@ -102,23 +97,31 @@ public:
                     const string    & addr)const{
         string NAME = name;
         string ADDR = addr;
+        string both;
 
         transform(NAME.begin(), NAME.end(), NAME.begin(),::toupper);
         transform(ADDR.begin(), ADDR.end(), ADDR.begin(),::toupper);
 
-        auto pos = lower_bound(pointerVecNameAddr.begin(),pointerVecNameAddr.end(), NAME, cmpName);
-        if (pos == pointerVecNameAddr.end())return pointerVecNameAddr.end();
-        if ((*pos)->c_NAME != NAME) return pointerVecNameAddr.end();
+        both.append(NAME);
+        both.append(ADDR);
 
-            auto end = pos;
-            while ((*end)->c_NAME == NAME){
-                end++;
-                if (end == pointerVecNameAddr.end()) return pointerVecNameAddr.end();
-            }
-            auto tmp = pos;
-            pos = lower_bound(tmp,end,ADDR,cmpAdr);
+        auto pos = lower_bound(pointerVecNameAddr.begin(),pointerVecNameAddr.end(), both, cmpName);
         if (pos == pointerVecNameAddr.end()) return pointerVecNameAddr.end();
-            if ((*pos)->c_ADDRESS != ADDR) return pointerVecNameAddr.end();
+        if ((*pos)->c_NameAddress != both) return pointerVecNameAddr.end();
+
+        if (mezniflag == true){
+            while ((*pos)->c_NameAddress == both){
+                if ((*pos)->c_Name.length() == name.length()) break;
+                pos++;
+
+
+            }
+
+
+
+
+        }
+
 
         return pos;
 
@@ -137,111 +140,85 @@ public:
 
         string NAME = name;
         string ADDR = addr;
+        string both;
 
         transform(NAME.begin(), NAME.end(), NAME.begin(),::toupper);
         transform(ADDR.begin(), ADDR.end(), ADDR.begin(),::toupper);
+        both.append(NAME);
+        both.append(ADDR);
 
 
-        auto posID = pointerVecId.end();
-        auto posName = pointerVecNameAddr.end();
-        if (!pointerVecId.empty()) {
+        auto posID = pointerVecId.begin();
+        auto posName = pointerVecNameAddr.begin();
+        if (!pointerVecId.empty() and !pointerVecNameAddr.empty()) {
             posID = lower_bound(pointerVecId.begin(), pointerVecId.end(), taxID, cmpID);
             if (posID != pointerVecId.end()) {
                 if ((*posID)->c_ID == taxID) return false;
             }
+            posName = lower_bound(pointerVecNameAddr.begin(),pointerVecNameAddr.end(),both,cmpName);
+            if(posName != pointerVecNameAddr.end()){
+                if ((*posName)->c_NameAddress == both) {
+                    if (((*posName)->c_Name.size()) == name.size()) return false;
+                    mezniflag = true;
 
-            posName = lower_bound(pointerVecNameAddr.begin(),pointerVecNameAddr.end(),NAME,cmpName);
-            if (posName != pointerVecNameAddr.end()){
-            if ((*posName)->c_NAME == NAME){
-                auto end = posName;
-                while ((*end)->c_NAME == NAME){
-                    end++;
-                    if (end == pointerVecNameAddr.end()) break;
                 }
-                auto tmp = posName;
-                posName = lower_bound(tmp,end,ADDR,cmpAdr);
-                if (posName != pointerVecNameAddr.end()) {
-                    if ((*posName)->c_ADDRESS == ADDR) return false;
-                }
-
             }
 
-            }
+
 
         }
-            Company * addNew = new Company;
-            addNew->c_ID.append(taxID);
-            addNew->c_Name.append(name);
-            addNew->c_Address.append(addr);
-            addNew->c_NAME.append(NAME);
-            addNew->c_ADDRESS.append(ADDR);
-            pointerVecId.insert(posID, addNew);
-            pointerVecNameAddr.insert(posName, addNew);
-
-
+        Company * addNew = new Company;
+        addNew->c_ID.append(taxID);
+        addNew->c_Name.append(name);
+        addNew->c_Address.append(addr);
+        addNew->c_NameAddress.append(both);
+        pointerVecId.insert(posID, addNew);
+        pointerVecNameAddr.insert(posName, addNew);
 
         return true;
-        }
+    }
 
 
 
 
 
-        bool          cancelCompany  ( const string    & name,
+    bool          cancelCompany  ( const string    & name,
                                    const string    & addr ){
+        Company * comp;
+        auto pos = findIndex(name,addr);
+        if (pos == pointerVecNameAddr.end()) return false;
 
-            string NAME = name;
-            string ADDR = addr;
+        string ID = (*pos)->c_ID;
+        comp = (*pos);
 
-            transform(NAME.begin(), NAME.end(), NAME.begin(),::toupper);
-            transform(ADDR.begin(), ADDR.end(), ADDR.begin(),::toupper);
+        auto pos1 = findIndex(ID);
 
-            unsigned int i = 0;
-            for (; i < pointerVecNameAddr.size(); i++) {
-                if ((pointerVecNameAddr[i]->c_NAME == NAME)and (pointerVecNameAddr[i]->c_ADDRESS == ADDR)) break;
-            }
+        pointerVecNameAddr.erase(pos);
+        pointerVecId.erase(pos1);
 
-            if (i == pointerVecNameAddr.size()) return false;
-
-            auto taxID = (*pointerVecNameAddr.begin()+i)->c_ID;
-            pointerVecNameAddr.erase(pointerVecNameAddr.begin()+i);
-            i = 0;
-            Company * tmp = nullptr;
-            for (; i < pointerVecId.size(); i++) {
-                tmp = pointerVecId[i];
-                if (pointerVecId[i]->c_ID == taxID) break;
-            }
-            pointerVecId.erase(pointerVecId.begin()+i);
-            if (tmp)
-                delete tmp;
-            return true;
-
+        if (comp != nullptr) delete comp;
+        return true;
 
 
     }
     bool          cancelCompany  ( const string    & taxID ){
+        Company * comp;
+        auto pos = findIndex(taxID);
+        if (pos == pointerVecId.end()) return false;
+        string name = (*pos)->c_Name;
+        string address = (*pos)->c_Address;
+        comp = (*pos);
 
-           unsigned int i = 0;
-            for (; i < pointerVecId.size(); i++) {
-                if (pointerVecId[i]->c_ID == taxID) break;
-            }
+        auto pos1 = findIndex(name,address);
 
-            if (i == pointerVecId.size()) return false;
+        pointerVecId.erase(pos);
+        pointerVecNameAddr.erase(pos1);
 
-            pointerVecId.erase(pointerVecId.begin()+i);
-            i = 0;
-            Company * tmp = nullptr;
-            for (; i < pointerVecNameAddr.size(); i++) {
-                 tmp = pointerVecNameAddr[i];
-                if (pointerVecNameAddr[i]->c_ID == taxID) break;
-            }
-            pointerVecNameAddr.erase(pointerVecNameAddr.begin()+i);
-            if (tmp)
-                delete tmp;
-            return true;
+        if (comp != nullptr) delete comp;
+        return true;
 
 
-        }
+    }
 
 
     bool          invoice        ( const string    & taxID,
@@ -250,7 +227,9 @@ public:
         if (pos == pointerVecId.end()) return false;
 
         (*pos)->c_Balance += amount;
-        transactions.push_back(amount);
+
+        auto posTr = lower_bound(transactions.begin(),transactions.end(),amount);
+        transactions.insert(posTr,amount);
         return true;
 
     }
@@ -258,10 +237,12 @@ public:
     bool          invoice        ( const string    & name,
                                    const string    & addr,
                                    unsigned int      amount ){
-       auto pos = findIndex(name,addr);
+        auto pos = findIndex(name,addr);
         if (pos == pointerVecNameAddr.end()) return false;
         (*pos)->c_Balance += amount;
-        transactions.push_back(amount);
+
+        auto posTr = lower_bound(transactions.begin(),transactions.end(),amount);
+        transactions.insert(posTr,amount);
         return true;
 
 
@@ -293,10 +274,10 @@ public:
     bool          firstCompany   ( string          & name,
                                    string          & addr ) const{
         if (pointerVecNameAddr.empty()) return false;
-            name = pointerVecNameAddr[0]->c_Name;
-            addr = pointerVecNameAddr[0]->c_Address;
+        name = pointerVecNameAddr[0]->c_Name;
+        addr = pointerVecNameAddr[0]->c_Address;
 
-            return true;
+        return true;
 
 
     }
@@ -313,23 +294,17 @@ public:
 
 
     }
-   unsigned int  medianInvoice  ( void ) const{
-       if (transactions.empty()) return 0;
-    vector<unsigned int> trCopy;
-        for (unsigned int i = 0; i < transactions.size(); i++){
-            trCopy.push_back(transactions.at(i));
+    unsigned int  medianInvoice  ( void ) const{
+        if (transactions.empty()) return 0;
+        if (transactions.size()==1) return transactions.at(0);
 
-        }
-    sort(trCopy.begin(),trCopy.end());
-    int pos = trCopy.size()/2;
-
-
-        return trCopy.at(pos);
+        unsigned int pos = transactions.size();
+        return transactions.at(pos/2);
 
 
     }
 
-  private:
+private:
 
 
 
@@ -343,7 +318,70 @@ int               main           ( void )
     string name, addr;
     unsigned int sumIncome;
 
-    CVATRegister b1;
+    CVATRegister b1,b0,b8;
+    assert ( b0 . newCompany ( "c", "cccccccccccccccccccccccccccccccc", "1" ) );
+    assert ( b0 . newCompany ( "cc", "ccccccccccccccccccccccccccccccc", "12" ) );
+    assert ( b0 . newCompany ( "ccc", "cccccccccccccccccccccccccccccc", "13" ) );
+    assert ( b0 . newCompany ( "cccc", "ccccccccccccccccccccccccccccc", "135" ) );
+    assert(b0.invoice("c", "cccccccccccccccccccccccccccccccc",3500));
+    assert ( b0 . audit ( "1", sumIncome ) && sumIncome == 3500 );
+    assert(b0.invoice("cc", "ccccccccccccccccccccccccccccccc",35000));
+    assert(b0.invoice("cc", "ccccccccccccccccccccccccccccccc",35000));
+    assert(b0.invoice("cc", "ccccccccccccccccccccccccccccccc",35000));
+    assert(b0.invoice("cc", "ccccccccccccccccccccccccccccccc",35000));
+    assert ( b0 . audit ( "12", sumIncome ) && sumIncome == 140000 );
+    assert(b0.invoice("ccc", "cccccccccccccccccccccccccccccc",35));
+    assert(b0.invoice("ccc", "cccccccccccccccccccccccccccccc",35));
+    assert(b0.invoice("ccc", "cccccccccccccccccccccccccccccc",35000));
+    assert(b0.invoice("ccc", "cccccccccccccccccccccccccccccc",35000));
+    assert ( b0 . audit ("ccc", "cccccccccccccccccccccccccccccc", sumIncome ) && sumIncome == 70070 );
+    assert(!b0.cancelCompany("cc","ccccccccccccccc"));
+    assert(b0.cancelCompany("c", "cccccccccccccccccccccccccccccccc"));
+    assert ( b0 .cancelCompany( "cc", "ccccccccccccccccccccccccccccccc" ) );
+    assert ( b0 .cancelCompany( "ccc", "cccccccccccccccccccccccccccccc" ) );
+    assert ( b0 .cancelCompany( "cccc", "ccccccccccccccccccccccccccccc" ) );
+    assert ( !b0 . audit ( "1", sumIncome ) );
+    assert(!b0.invoice("cc", "ccccccccccccccccccccccccccccccc",35000));
+
+
+
+
+
+    assert ( b8 . medianInvoice () == 0 );
+    assert ( !b8 . invoice ( "666/666", 2000 ) );
+    assert ( !b8 . firstCompany ( name, addr ) );
+    assert ( !b8 . nextCompany( name, addr ) );
+    assert ( !b8 . cancelCompany ( "666/666" ) );
+    assert ( b8 . medianInvoice () == 0 );
+    assert ( !b8 . nextCompany( name, addr ) );
+    assert ( b8 . newCompany ( "", "", "666" ) );
+    assert ( !b8 . invoice ( "666/666", 2000 ) );
+    assert ( b8 . invoice ( "666", 2000 ) );
+    assert ( b8 . medianInvoice () == 2000 );
+    assert ( b8 . invoice ( "", "", 2000 ) );
+    assert ( b8 . medianInvoice () == 2000 );
+    assert ( b8 . invoice ( "", "", 2000 ) );
+    assert ( b8 . invoice ( "", "", 2000 ) );
+    assert ( b8 . invoice ( "", "", 2000 ) );
+    assert ( b8 . invoice ( "", "", 2000 ) );
+    assert ( b8 . invoice ( "", "", 2000 ) );
+    assert ( !b8 . invoice ( " ", "", 2000 ) );
+    assert ( b8 . invoice ( "", "", 2000 ) );
+    assert ( b8 . invoice ( "", "", 2000 ) );
+    assert ( b8 . invoice ( "", "", 2000 ) );
+    assert ( b8 . invoice ( "", "", 2000 ) );
+    assert ( b8 . invoice ( "", "", 2000 ) );
+    assert ( b8 . invoice ( "", "", 2000 ) );
+    assert ( b8 . medianInvoice () == 2000 );
+    name = "";
+    addr = "";
+    assert(!b8.nextCompany(name,addr));
+    assert(b8.firstCompany(name,addr));
+    assert ( b8 . medianInvoice () == 2000 );
+
+
+
+
     assert ( b1 . newCompany ( "ACME", "Thakurova", "666/666" ) );
     assert ( b1 . newCompany ( "ACME", "Kolejni", "666/666/666" ) );
     assert ( b1 . newCompany ( "Dummy", "Thakurova", "123456" ) );
@@ -360,7 +398,7 @@ int               main           ( void )
     assert ( b1 . firstCompany ( name, addr ) && name == "ACME" && addr == "Kolejni" );
     assert ( b1 . nextCompany ( name, addr ) && name == "ACME" && addr == "Thakurova" );
     assert ( b1 . nextCompany ( name, addr ) && name == "Dummy" && addr == "Thakurova" );
-    assert ( ! b1 . nextCompany ( name, addr ) );
+     assert ( ! b1 . nextCompany ( name, addr ) );
     assert ( b1 . cancelCompany ( "ACME", "KoLeJnI" ) );
     assert ( b1 . medianInvoice () == 4000 );
     assert ( b1 . cancelCompany ( "666/666" ) );
@@ -387,6 +425,7 @@ int               main           ( void )
     assert ( ! b1 . nextCompany ( name, addr ) );
     assert ( b1 . cancelCompany ( "123456" ) );
     assert ( ! b1 . firstCompany ( name, addr ) );
+
 
     CVATRegister b2;
     assert ( b2 . newCompany ( "ACME", "Kolejni", "abcdef" ) );
@@ -415,6 +454,7 @@ int               main           ( void )
     assert ( b2 . newCompany ( "ACME", "Kolejni", "abcdef" ) );
     assert ( b2 . cancelCompany ( "ACME", "Kolejni" ) );
     assert ( ! b2 . cancelCompany ( "ACME", "Kolejni" ) );
+
 
     return EXIT_SUCCESS;
 }
