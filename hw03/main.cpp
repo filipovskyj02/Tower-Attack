@@ -1,5 +1,6 @@
 #ifndef __PROGTEST__
 #include <cstdio>
+#include "vector"
 #include <cstdlib>
 #include <ctime>
 #include <cassert>
@@ -32,12 +33,39 @@ ios_base & ( * date_format ( const char * fmt ) ) ( ios_base & x )
 //=================================================================================================
 class CDate
 {
-    tm * Time = new struct tm;
+    tm * Time = nullptr;
     time_t secs = 0;
 
 public:
+   static bool isLeap (int & y){
+        if (y % 400 == 0) return true;
+        if (y % 100 == 0) return false;
+        if (y % 4 == 0) return true;
+        return false;
+        }
+
+
+
+
+    static bool isCorrect (int & y, int & m, int & d){
+        if (y < 2000 or y > 2030) return false;
+        if (m < 1 or m > 12) return false;
+        if (d < 1 or d > 31) return false;
+        int arr[12] = { 31,28,31,30,31,30,31,31,30,31,30,31 };
+        if (isLeap(y)) arr[1] = 29;
+
+        if (d > arr[m-1]) return false;
+
+        return true;
+
+
+    }
+
 
     CDate(int y, int m, int d){
+        if (!isCorrect(y,m,d)) throw InvalidDateException();
+        Time = new struct tm;
+
         *this->Time = {0};
 
         this->Time->tm_year = y - 1900;
@@ -46,10 +74,20 @@ public:
         this->secs = mktime(this->Time);
 
 
-    }
-    ~CDate(void ){
 
+
+    }
+    CDate(const CDate &p1) {Time = p1.Time; secs = p1.secs; }
+    ~CDate(void ){
+        
         this->secs = 0;
+
+    }
+    CDate& operator=(const CDate& t)
+    {
+        this->Time = t.Time;
+        this->secs = t.secs;
+        return *this;
 
     }
    CDate operator+ (int n){
@@ -76,9 +114,9 @@ public:
 
     }
     CDate operator ++(int a ){
-        this->secs += 86400;
-        this->Time = localtime(&this->secs);
-        return *this;
+        CDate temp(this->Time->tm_year+1900, this->Time->tm_mon+1,this->Time->tm_mday);
+        ++(*this);
+        return temp;
 
     }
 
@@ -86,6 +124,12 @@ public:
         this->secs -= 86400;
         this->Time = localtime(&this->secs);
         return *this;
+
+    }
+    CDate operator --(int a ){
+        CDate temp(this->Time->tm_year+1900, this->Time->tm_mon+1,this->Time->tm_mday);
+        --(*this);
+        return temp;
 
     }
     bool operator ==(CDate& b){
@@ -129,13 +173,25 @@ public:
       //cout << stream.str() << '\n';
         return stream;
     }
+    friend bool operator >> (istringstream &stream,CDate& c) {
+        int year= 0;
+        int month = 0;
+        int day = 0;
+        char dash1 = '-';
+        char dash2 = '-';
+        stream >> year >> dash1 >> month >> dash2 >> day;
+
+        if ((!isCorrect(year,month,day)) or dash1 != '-' or dash2 != '-'){ stream.setstate(ios::failbit); return false;}
+        c.Time->tm_year = year - 1900;
+        c.Time->tm_mon = month -1;
+        c.Time->tm_mday = day;
+        c.secs = mktime(c.Time);
 
 
-    CDate operator >> (CDate& c) {
-        scanf("%d-%d-%d",&c.Time->tm_year,&c.Time->tm_mon,&c.Time->tm_mday);
-        this->secs = mktime(this->Time);
-        return *this;
+        return true;
     }
+
+
 
 };
 
@@ -143,75 +199,11 @@ public:
 int main ( void )
 {
     ostringstream oss;
-  istringstream iss;
+    istringstream iss;
 
-  CDate a ( 2000, 1, 2 );
-  CDate b ( 2010, 2, 3 );
-  CDate c ( 2004, 2, 10 );
-  oss . str ("");
-  oss << a;
-  assert ( oss . str () == "2000-01-02" );
-  oss . str ("");
-  oss << b;
-  assert ( oss . str () == "2010-02-03" );
-  oss . str ("");
-  oss << c;
-  assert ( oss . str () == "2004-02-10" );
-  a = a + 1500;
-  oss . str ("");
-  oss << a;
-  assert ( oss . str () == "2004-02-10" );
-  b = b - 2000;
-  oss . str ("");
-  oss << b;
-  assert ( oss . str () == "2004-08-13" );
-  assert ( b - a == 185 );
-  assert ( ( b == a ) == false );
-  assert ( ( b != a ) == true );
-  assert ( ( b <= a ) == false );
-  assert ( ( b < a ) == false );
-  assert ( ( b >= a ) == true );
-  assert ( ( b > a ) == true );
-  assert ( ( c == a ) == true );
-  assert ( ( c != a ) == false );
-  assert ( ( c <= a ) == true );
-  assert ( ( c < a ) == false );
-  assert ( ( c >= a ) == true );
-  assert ( ( c > a ) == false );
-
-  a = ++c;
-  oss . str ( "" );
-  oss << a << " " << c;
-  cout << ">" << oss.str() << "<" << endl;
-  assert ( oss . str () == "2004-02-11 2004-02-11" );
-
-  a = --c;
-  oss . str ( "" );
-  oss << a << " " << c;
-  cout << ">" << oss.str() << "<" << endl;
-  assert ( oss . str () == "2004-02-10 2004-02-10" );
-  /*
-  a = c++;
-  oss . str ( "" );
-  oss << a << " " << c;
-  assert ( oss . str () == "2004-02-10 2004-02-11" );
-
-  a = c--;
-  oss . str ( "" );
-  oss << a << " " << c;
-  assert ( oss . str () == "2004-02-11 2004-02-10" );
-  iss . clear ();
-  iss . str ( "2015-09-03" );
-  assert ( ( iss >> a ) );
-  oss . str ("");
-  oss << a;
-  assert ( oss . str () == "2015-09-03" );
-  a = a + 70;
-  oss . str ("");
-  oss << a;
-  assert ( oss . str () == "2015-11-12" );
-
-
+    CDate a ( 2000, 1, 2 );
+    CDate b ( 2010, 2, 3 );
+    CDate c ( 2004, 2, 10 );
     oss . str ("");
     oss << a;
     assert ( oss . str () == "2000-01-02" );
@@ -269,7 +261,6 @@ int main ( void )
     oss << a;
     assert ( oss . str () == "2015-11-12" );
 
-
     CDate d ( 2000, 1, 1 );
     try
     {
@@ -303,7 +294,7 @@ int main ( void )
     oss . str ("");
     oss << d;
     assert ( oss . str () == "2000-02-29" );
-
+/*
     //-----------------------------------------------------------------------------
     // bonus test examples
     //-----------------------------------------------------------------------------
