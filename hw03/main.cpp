@@ -33,7 +33,7 @@ ios_base & ( * date_format ( const char * fmt ) ) ( ios_base & x )
 //=================================================================================================
 class CDate
 {
-    tm * Time = nullptr;
+    struct tm Time;
     time_t secs = 0;
 
 public:
@@ -64,14 +64,14 @@ public:
 
     CDate(int y, int m, int d){
         if (!isCorrect(y,m,d)) throw InvalidDateException();
-        Time = new struct tm;
 
-        *this->Time = {0};
 
-        this->Time->tm_year = y - 1900;
-        this->Time->tm_mon = m -1;
-        this->Time->tm_mday = d;
-        this->secs = mktime(this->Time);
+        this->Time = {0};
+
+        this->Time.tm_year = y - 1900;
+        this->Time.tm_mon = m -1;
+        this->Time.tm_mday = d;
+        this->secs = mktime(&this->Time);
 
 
 
@@ -79,7 +79,7 @@ public:
     }
     CDate(const CDate &p1) {Time = p1.Time; secs = p1.secs; }
     ~CDate(void ){
-        
+
         this->secs = 0;
 
     }
@@ -92,13 +92,13 @@ public:
     }
    CDate operator+ (int n){
     this->secs += (86400 * n);
-    this->Time = localtime(&this->secs);
+    this->Time = *(localtime(&this->secs));
 
        return *this;
     }
     CDate operator - (int n){
         this->secs -= (86400* n);
-        this->Time = localtime(&this->secs);
+        this->Time = *(localtime(&this->secs));
         return *this;
     }
     int operator - (CDate &b){
@@ -109,12 +109,12 @@ public:
     }
     CDate operator ++(void ){
         this->secs += 86400;
-        this->Time = localtime(&this->secs);
+        this->Time = *(localtime(&this->secs));
         return *this;
 
     }
     CDate operator ++(int a ){
-        CDate temp(this->Time->tm_year+1900, this->Time->tm_mon+1,this->Time->tm_mday);
+        CDate temp(this->Time.tm_year+1900, this->Time.tm_mon+1,this->Time.tm_mday);
         ++(*this);
         return temp;
 
@@ -122,12 +122,12 @@ public:
 
     CDate operator --(void ){
         this->secs -= 86400;
-        this->Time = localtime(&this->secs);
+        this->Time = *(localtime(&this->secs));
         return *this;
 
     }
     CDate operator --(int a ){
-        CDate temp(this->Time->tm_year+1900, this->Time->tm_mon+1,this->Time->tm_mday);
+        CDate temp(this->Time.tm_year+1900, this->Time.tm_mon+1,this->Time.tm_mday);
         --(*this);
         return temp;
 
@@ -164,12 +164,12 @@ public:
     }
 
     friend std::ostream& operator << (std::ostream& out, const CDate& c) {
-        out << c.Time->tm_year + 1900 << "-" << std::setfill ('0') << std::setw (2) << c.Time->tm_mon + 1 << "-" << std::setfill ('0') << std::setw (2)<< c.Time->tm_mday ;
+        out << c.Time.tm_year + 1900 << "-" << std::setfill ('0') << std::setw (2) << c.Time.tm_mon + 1 << "-" << std::setfill ('0') << std::setw (2)<< c.Time.tm_mday ;
         return out;
     }
    friend ostringstream & operator << (ostringstream &stream,const CDate& c) {
 
-      stream << c.Time->tm_year + 1900 << "-" << std::setfill ('0') << std::setw (2) << c.Time->tm_mon + 1 << "-" << std::setfill ('0') << std::setw (2)<< c.Time->tm_mday;
+      stream << c.Time.tm_year + 1900 << "-" << std::setfill ('0') << std::setw (2) << c.Time.tm_mon + 1 << "-" << std::setfill ('0') << std::setw (2)<< c.Time.tm_mday;
       //cout << stream.str() << '\n';
         return stream;
     }
@@ -182,10 +182,10 @@ public:
         stream >> year >> dash1 >> month >> dash2 >> day;
 
         if ((!isCorrect(year,month,day)) or dash1 != '-' or dash2 != '-'){ stream.setstate(ios::failbit); return false;}
-        c.Time->tm_year = year - 1900;
-        c.Time->tm_mon = month -1;
-        c.Time->tm_mday = day;
-        c.secs = mktime(c.Time);
+        c.Time.tm_year = year - 1900;
+        c.Time.tm_mon = month -1;
+        c.Time.tm_mday = day;
+        c.secs = mktime(&c.Time);
 
 
         return true;
