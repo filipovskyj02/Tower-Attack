@@ -11,18 +11,6 @@
 using namespace std;
 #endif /* __PROGTEST__ */
 
-int increment(int a, int b)
-{
-    a = 5;
-
-    // POSTFIX
-    b = a++;
-    printf("%d", b);
-
-    // PREFIX
-    int c = ++b;
-    printf("\n%d\n", c);
-}
 
 //=================================================================================================
 // a dummy exception class, keep this implementation
@@ -132,16 +120,13 @@ public:
     }
 
     friend std::ostream& operator << (std::ostream& out, const CDate& c) {
-        out << c.Time->tm_year + 1900 << "-" << std::setfill ('0') << std::setw (2) << c.Time->tm_mon + 1 << "-" << std::setfill ('0') << std::setw (2)<< c.Time->tm_mday << endl;
+        out << c.Time->tm_year + 1900 << "-" << std::setfill ('0') << std::setw (2) << c.Time->tm_mon + 1 << "-" << std::setfill ('0') << std::setw (2)<< c.Time->tm_mday ;
         return out;
     }
    friend ostringstream & operator << (ostringstream &stream,const CDate& c) {
-        string str;
-        char tmp[80];
-       strftime (tmp,80,"%Y-%m-%d",c.Time);
-       cout << tmp<<'\n';
-       str.append(tmp);
-        stream.str(str);
+
+      stream << c.Time->tm_year + 1900 << "-" << std::setfill ('0') << std::setw (2) << c.Time->tm_mon + 1 << "-" << std::setfill ('0') << std::setw (2)<< c.Time->tm_mday;
+      //cout << stream.str() << '\n';
         return stream;
     }
 
@@ -157,8 +142,6 @@ public:
 #ifndef __PROGTEST__
 int main ( void )
 {
-    int x, y;
-    increment(x, y);
     ostringstream oss;
   istringstream iss;
 
@@ -199,10 +182,13 @@ int main ( void )
   a = ++c;
   oss . str ( "" );
   oss << a << " " << c;
+  cout << ">" << oss.str() << "<" << endl;
   assert ( oss . str () == "2004-02-11 2004-02-11" );
+
   a = --c;
   oss . str ( "" );
   oss << a << " " << c;
+  cout << ">" << oss.str() << "<" << endl;
   assert ( oss . str () == "2004-02-10 2004-02-10" );
   /*
   a = c++;
