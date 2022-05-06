@@ -32,3 +32,19 @@ Ukázky:
     http://www.newgrounds.com/portal/view/576124
 
 ## Upřesnění zadání
+Prvotní představa o funkčnosti hry je hodně abstraktně znázorněna v přiloženém png souboru. Po začátku nové hry a specifikace herní mapy nepřátelské AI 
+strategicky rozmístí věže a jde se do boje. Pro hráče bude k dispozici několik různých typů útočníků, které bude moct vysílat vchodem do boje kdykoliv si je 
+bude moct dovolit. Peníze na útočníky lze získat úspěšným zničením věží, také samozřejmě hráč nějaké do začátku dostane. Vítězství hráč dosáhne pokud dostane 
+dostatečný počet bojovníků za nepřátelské hranice, ať už zničením všech věží, nebo ustáním veškerého poškození. 
+
+Polymorfismus se přirozeně nabízí na realizaci políčka mapy, které může být obsazeno buď zdí, vzduchem, *věží nebo *útočníkem. Pomůže nám od zbytečného větvení
+pomocí if/switch statementů a hodit se také bude v případě budoucího rozšiřování o jiné typy políček jako např. voda, nášlapná mina..
+Pro různé typy věží a bojovníků se polymorfismus bude využívat z obdobných důvodů. 
+
+Pár typů plánovaných věží pro ukázku:
+Vež laserová, které bude udělovat nízké, avšak konzistetní poškození bez nutnosti přebíjení.
+Vež s těžkým projektilem, která bude přesným opakem věži laserové.
+Věž, která obětovává poškození i konzistenci za velký dosah.
+
+Pár typů plánovaných útočníků pro ukázku:
+Jezdec na zvířeti, 
