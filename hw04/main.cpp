@@ -167,7 +167,7 @@ public:
     }
     bool                     undoVersion                   ( void ){
 
-
+        CFile * tmp = this;
         if (this->prev == nullptr) return false;
         *this = *prev;
         return true;

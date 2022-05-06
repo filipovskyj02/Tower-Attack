@@ -405,7 +405,7 @@ int               main           ( void )
     assert ( b1 . firstCompany ( name, addr ) && name == "ACME" && addr == "Kolejni" );
     assert ( b1 . nextCompany ( name, addr ) && name == "ACME" && addr == "Thakurova" );
     assert ( b1 . nextCompany ( name, addr ) && name == "Dummy" && addr == "Thakurova" );
-     assert ( ! b1 . nextCompany ( name, addr ) );
+    assert ( ! b1 . nextCompany ( name, addr ) );
     assert ( b1 . cancelCompany ( "ACME", "KoLeJnI" ) );
     assert ( b1 . medianInvoice () == 4000 );
     assert ( b1 . cancelCompany ( "666/666" ) );
@@ -464,5 +464,6 @@ int               main           ( void )
 
 
     return EXIT_SUCCESS;
+
 }
 #endif /* __PROGTEST__ */
