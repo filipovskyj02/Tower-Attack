@@ -1,10 +1,13 @@
+#pragma once
 #include "CMap.hpp"
 class CCell
 {
-private:
-    /* data */
+
 public:
-    CCell(/* args */);
-    ~CCell();
+    int m_X;
+    int m_Y;
+    char CharacterToShow;
+    int color;
+    
 };
 

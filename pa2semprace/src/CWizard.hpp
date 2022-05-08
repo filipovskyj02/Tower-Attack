@@ -1,3 +1,4 @@
+#pragma once
 #include "CAttacker.hpp"
 class CWizard : CAttacker
 {
@@ -6,4 +7,5 @@ private:
 public:
     CWizard(/* args */);
     ~CWizard();
+
 };

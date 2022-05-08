@@ -1,3 +1,4 @@
+#pragma once
 #include "CTower.hpp"
 class CCannonTurret : public CTower
 {

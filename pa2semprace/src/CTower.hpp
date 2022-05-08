@@ -1,17 +1,16 @@
+#pragma once
 #include "CCell.hpp"
 class CTower : public CCell
 {
-private:
-    /* data */
 public:
-    CTower(/* args */);
-    ~CTower();
+    int damage;
+    int health;
+    int reloadTime;
+    int range;
+    
+    virtual void trade()=0;
+
+
 };
 
-CTower::CTower(/* args */)
-{
-}
 
-CTower::~CTower()
-{
-}

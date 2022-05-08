@@ -1,11 +1,16 @@
+#pragma once
 #include "CGame.hpp"
 class CMap
 {
-private:
-    /* data */
 public:
-    CMap(/* args */);
-    ~CMap();
+    std::vector<CCell *> Field;
+    void draw();
+    //goes through the whole vector and finds which ranges intersect
+    void intersect();
+
+
+
+
 };
 
 

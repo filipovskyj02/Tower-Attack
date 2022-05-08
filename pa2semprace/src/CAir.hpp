@@ -1,3 +1,4 @@
+#pragma once
 #include "CCell.hpp"
 class CAir : public CCell
 {

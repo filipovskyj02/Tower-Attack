@@ -1,10 +1,19 @@
+#pragma once
 #include "CCell.hpp"
-class CAttacker
+class CAttacker : public CCell
 {
-private:
-    /* data */
 public:
-    CAttacker(/* args */);
-    ~CAttacker();
+
+    int damage;
+    int health;
+    int speed;
+    int range;
+
+    
+    virtual void Move() = 0;
+    virtual void trade() = 0;
+    
+
+
 };
 

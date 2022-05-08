@@ -12,6 +12,21 @@ Váš engine:
     umožňuje ukládat a načítat rozehrané hry
 
 Engine může fungovat jako real-time hra, či tahová hra.
+Jak může vypadat mapa?
+
+" "prázdné místa pro pohyb útočníku a stavbu věží, I označuje věže, # označuje zeď, @ a % jsou různé druhy útočníků, <= jsou vstupy/výstupy z mapy.
+
+ 
+#################################################
+#                        #       @@  #   @@  @@<=3
+#         #              #    %I  @  ###        #
+#         #              #    %#  @    #    I   #
+<=%%%     #              I    %#       #@  @@  <=1
+#         #              I    %#       @@   I   #
+#                        I    %#                #
+#                 %%%       %%%#    @          <=2
+#################################################                      
+
                   
 Cesta kudy se budou útočníci ubírat bude vždy nejkratší možná vzhledem ke zdím a věžím. Můžete navíc implementovat více strategií procházení, kde každý útočník bude mít svoji strategii. Například slabší marvenci se mohou snažit vyhýbat věžím, naopak odolnější zase mohou být pomalejší a vždy musí udělat alespoň X kroků rovně.
 
@@ -32,19 +47,16 @@ Ukázky:
     http://www.newgrounds.com/portal/view/576124
 
 ## Upřesnění zadání
-Prvotní představa o funkčnosti hry je hodně abstraktně znázorněna v přiloženém png souboru. Po začátku nové hry a specifikace herní mapy nepřátelské AI 
+Představa o fungování hry je znázorněna v png souboru Funcionality a hiearchie tříd v souboru ClassDiagram. 
+Po začátku nové hry a specifikace herní mapy nepřátelské AI 
 strategicky rozmístí věže a jde se do boje. Pro hráče bude k dispozici několik různých typů útočníků, které bude moct vysílat vchodem do boje kdykoliv si je 
 bude moct dovolit. Peníze na útočníky lze získat úspěšným zničením věží, také samozřejmě hráč nějaké do začátku dostane. Vítězství hráč dosáhne pokud dostane 
 dostatečný počet bojovníků za nepřátelské hranice, ať už zničením všech věží, nebo ustáním veškerého poškození. 
 
-Polymorfismus se přirozeně nabízí na realizaci políčka mapy, které může být obsazeno buď zdí, vzduchem, *věží nebo *útočníkem. Pomůže nám od zbytečného větvení
-pomocí if/switch statementů a hodit se také bude v případě budoucího rozšiřování o jiné typy políček jako např. voda, nášlapná mina..
-Pro různé typy věží a bojovníků se polymorfismus bude využívat z obdobných důvodů. 
+Polymorfismus se přirozeně nabízí na realizaci věží a útočníků. Pomůže nám od zbytečného větvení
+pomocí if/switch statementů a hodit se také bude v případě budoucího rozšiřování o jiné typy utočníku a věží.
+Každý utočník bude mít metodu na interakci se věží a také na pohyb, jelikož každý útočník bude mít jiný způsob postupu po mapě,
+někteří se budou snažit proplížit se kolem věží s co nejmenším konfliktem, někteří zase budou na věže útočit.
 
-Pár typů plánovaných věží pro ukázku:
-Vež laserová, které bude udělovat nízké, avšak konzistetní poškození bez nutnosti přebíjení.
-Vež s těžkým projektilem, která bude přesným opakem věži laserové.
-Věž, která obětovává poškození i konzistenci za velký dosah.
+Mapa bude v konzoli znázorněna obddobně jako v ukázce pomocí ASCII znaků, avšak s různými barvami pro přehlednost.
 
-Pár typů plánovaných útočníků pro ukázku:
-Jezdec na zvířeti, 

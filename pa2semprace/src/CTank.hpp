@@ -1,3 +1,4 @@
+#pragma once
 #include "CAttacker.hpp"
 class CTank : public CAttacker
 {
