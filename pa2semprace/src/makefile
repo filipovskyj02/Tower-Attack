@@ -1,5 +1,5 @@
-output: main.o CMenu.o CGame.o
-	g++ -Wall -pedantic -g main.o CMenu.o CGame.o -lncurses
+output: main.o CMenu.o CGame.o CMap.o
+	g++ -Wall -pedantic -g main.o CMenu.o CGame.o CMap.o -lncurses
 
 main.o: main.cpp
 	g++ -Wall -pedantic -g -c main.cpp -lncurses
@@ -9,6 +9,9 @@ CMenu.o: CMenu.cpp CMenu.hpp
 
 CGame.o: CGame.cpp CGame.hpp
 	g++ -Wall -pedantic -g -c CGame.cpp CGame.hpp -lncurses
+
+CMap.o: CMap.cpp CMap.hpp
+	g++ -Wall -pedantic -g -c CMap.cpp CMap.hpp -lncurses	
 
 clean: 
 	rm *.o *.out

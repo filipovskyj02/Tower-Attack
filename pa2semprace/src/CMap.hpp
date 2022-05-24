@@ -1,13 +1,20 @@
 #pragma once
-#include "CGame.hpp"
+
+#include "vector"
+#include "ncurses.h"
+#include "iostream"
+
+
 class CMap
 {
+    int sizeX;
+    int sizeY;
+    WINDOW * mapWin;
+    std::vector<char> map;
 public:
-    std::vector<CCell *> Field;
-    void draw();
-    //goes through the whole vector and finds which ranges intersect
-    void intersect();
-
+    CMap();
+    CMap(int y, int x, WINDOW * win);
+ 
 
 
 

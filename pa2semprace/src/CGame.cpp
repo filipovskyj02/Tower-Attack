@@ -1,6 +1,7 @@
 #include "CGame.hpp"
 
 CGame::CGame (int collum_height, int row_width){
+    
     isOver = false;
     playerMoney = 20000;
     this->collum_height = collum_height;
@@ -17,6 +18,8 @@ CGame::CGame (int collum_height, int row_width){
    //wbkgd(Menu, COLOR_PAIR(1));
     box(mapBoundary,0,0);
     box(Menu,0,0);
+    
+    this->gameMap = CMap(collum_height,row_width,mapBoundary);
     
     wrefresh(Menu);
     wrefresh(InfoBar);
