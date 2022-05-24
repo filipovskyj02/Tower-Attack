@@ -1,17 +1,31 @@
 #pragma once
 #include "vector"
+#include "ncurses.h"
+#include "iostream"
+#define WIDTH_MULTI 2.5
+#define MENU_ITEM_DISTANCE 2
+#define SCREEN_POS 2.5
+#define MENU_HEIGHT 5
+#define INFO_HEIGHT 5
+
+
+
+
 class CGame
 {
-public:
-    
-    CMap gameMap;
+    int row_width;
+    int collum_height;
+    bool isOver;
+    //CMap Map;
     int playerMoney;
+    int ScreenX;
+    int ScreenY;
+public:
+    CGame(int collum_height, int row_width);
+    void InfoRefresh(WINDOW * InfoBar);
+   
     
-    bool LoadGame();
-    void newGame();
-    void initalize();
-    void gameLoop();
-    void buyAttackers();
+    
     
 
 

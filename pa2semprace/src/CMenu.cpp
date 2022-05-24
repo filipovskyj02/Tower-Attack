@@ -49,7 +49,7 @@ CMenu::CMenu(int p_width,int p_height){
     if (selected == 1) help(boardWin);
     else if (selected == 0) continueToGame = true;
     
-    getch();
+    
     endwin();
 
 
