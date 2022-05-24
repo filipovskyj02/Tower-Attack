@@ -1,22 +1,23 @@
 #pragma once
-#include <iostream>
-#include <string>
-#include "CGame.hpp"
+#include "ncurses.h"
+#include "string"
+#include "vector"
+#include "iostream"
+#define WIDTH_MULTI 2.5
+#define MENU_ITEM_DISTANCE 2
+#define SCREEN_POS 2.5
+
 class CMenu
 {
+    
 private:
+    int maxW,maxH;
+    bool continueToGame;
     
 public:
-    bool continueToGame;
-    std::string userInput;
-
-    CMenu(/* args */);
-    ~CMenu();
-    
-    void help();
-    void start();
-
+    CMenu(int p_width,int p_height);
+    void help (WINDOW * MenuWin);
+    bool contin();
     
 };
-
 
