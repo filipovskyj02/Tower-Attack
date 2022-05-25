@@ -4,6 +4,9 @@
 #include "ncurses.h"
 #include "iostream"
 #include <fstream>
+#include "CCell.hpp"
+#include "memory"
+
 
 
 class CMap
@@ -11,7 +14,7 @@ class CMap
     int sizeX;
     int sizeY;
     WINDOW * mapWin;
-    std::vector<char> mapVec;
+    std::vector<std::unique_ptr<CCell>> mapVec;
     int redrawCnt;
 public:
     CMap();

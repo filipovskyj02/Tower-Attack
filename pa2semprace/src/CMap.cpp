@@ -24,8 +24,8 @@ void CMap::redraw (WINDOW * mapWin){
       
     
     for (unsigned int y = 0; y < mapVec.size(); y++)
-    waddch(mapWin,mapVec[y]);
     
+     mapVec[y].get()->draw(mapWin);
     
     wrefresh(mapWin);
     
@@ -41,6 +41,6 @@ void CMap::loadMap(){
     while (fin >> std::noskipws >> element)
     {
         
-        mapVec.push_back(element);
+        mapVec.push_back(std::make_unique<CCell>(element));
     }
 }
