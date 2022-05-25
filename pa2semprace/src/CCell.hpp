@@ -1,10 +1,16 @@
+#pragma once
 #include "ncurses.h"
+
+//#include "CWall.hpp"
+
 
 class CCell{
     public:
     char C;
     CCell(char C);
+    CCell();
+    
      
-    void draw(WINDOW * map);
+    virtual void draw(WINDOW * map) = 0;
 
 };

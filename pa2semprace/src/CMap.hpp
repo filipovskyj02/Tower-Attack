@@ -6,6 +6,11 @@
 #include <fstream>
 #include "CCell.hpp"
 #include "memory"
+#include "CAir.hpp"
+#include "CWall.hpp"
+#include "CNewLine.hpp"
+#include "CEnterance.hpp"
+#include "CExit.hpp"
 
 
 

@@ -38,13 +38,14 @@ CGame::CGame (int collum_height, int row_width){
    
     int choice = 0;
     unsigned int selected = 0;
+    this->gameMap.loadMap();
 
    
 
     while (true) {
        
         this->gameMap.redraw(mapBoundary);
-        this->gameMap.loadMap();
+        
         wtimeout(Menu,2000);
         for (unsigned int i = 0; i < eneme.size(); i++){
             

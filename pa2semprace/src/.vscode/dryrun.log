@@ -1,5 +1,8 @@
 make --dry-run --keep-going --print-directory
 make: Entering directory '/home/kuba/filipj25/pa2semprace/src'
-g++ -Wall -pedantic -g main.o CMenu.o CGame.o CMap.o CCell.o -lncurses
+g++ -Wall -pedantic -g -c CMap.cpp CMap.hpp -lncurses	
+ 
+g++ -Wall -pedantic -g -c CExit.cpp CExit.hpp -lncurses
+g++ -Wall -pedantic -g main.o CMenu.o CGame.o CMap.o CCell.o CAir.o CWall.o CNewLine.o CEnterance.o CExit.o -lncurses
 make: Leaving directory '/home/kuba/filipj25/pa2semprace/src'
  
