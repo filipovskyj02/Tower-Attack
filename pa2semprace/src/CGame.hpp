@@ -23,6 +23,7 @@ class CGame
 public:
     CGame(int collum_height, int row_width);
     void InfoRefresh(WINDOW * InfoBar);
+    void redraw(WINDOW * mapWin);
    
     
     

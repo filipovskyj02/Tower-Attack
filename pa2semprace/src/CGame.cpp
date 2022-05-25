@@ -1,7 +1,9 @@
 #include "CGame.hpp"
 
 CGame::CGame (int collum_height, int row_width){
+    curs_set(0);
     
+
     isOver = false;
     playerMoney = 20000;
     this->collum_height = collum_height;
@@ -26,6 +28,7 @@ CGame::CGame (int collum_height, int row_width){
     
     wrefresh(mapBoundary);
     keypad(Menu,true);
+    nodelay(Menu, true);
    
     InfoRefresh(InfoBar);
 
@@ -39,7 +42,10 @@ CGame::CGame (int collum_height, int row_width){
    
 
     while (true) {
-        
+       
+        this->gameMap.redraw(mapBoundary);
+        this->gameMap.loadMap();
+        wtimeout(Menu,2000);
         for (unsigned int i = 0; i < eneme.size(); i++){
             
             int halfLen = eneme[i].length()/2;
@@ -60,6 +66,7 @@ CGame::CGame (int collum_height, int row_width){
             InfoRefresh(InfoBar);
 
         }
+        else if (choice == KEY_UP) ;
     }
         
 
@@ -81,3 +88,4 @@ void CGame::InfoRefresh(WINDOW * InfoBar){
     wprintw(InfoBar,std::to_string(playerMoney).c_str());
     wrefresh(InfoBar);
 }
+
