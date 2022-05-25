@@ -22,7 +22,7 @@ void CMap::redraw (WINDOW * mapWin){
     wclear(mapWin);
     box(mapWin,0,0);
       
-    mapVec.push_back ('x');
+    
     for (unsigned int y = 0; y < mapVec.size(); y++)
     waddch(mapWin,mapVec[y]);
     
