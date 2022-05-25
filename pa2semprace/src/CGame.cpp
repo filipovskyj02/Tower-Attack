@@ -12,9 +12,9 @@ CGame::CGame (int collum_height, int row_width){
     clear();
     initscr();
     refresh();
-    WINDOW * mapBoundary = newwin(this->collum_height,this->row_width,ScreenY/SCREEN_POS,ScreenY/SCREEN_POS);
-    WINDOW * Menu = newwin(MENU_HEIGHT,this->row_width,(ScreenY/SCREEN_POS)+this->collum_height,ScreenY/SCREEN_POS);
-    WINDOW * InfoBar = newwin(INFO_HEIGHT,this->row_width,(ScreenY/SCREEN_POS)-INFO_HEIGHT,ScreenY/SCREEN_POS);
+    WINDOW * mapBoundary = newwin(this->collum_height,this->row_width,(ScreenY/2)-this->collum_height/2,(ScreenX/2)-this->row_width/2);
+    WINDOW * Menu = newwin(MENU_HEIGHT,this->row_width,(ScreenY/2)+this->collum_height/2,(ScreenX/2)-this->row_width/2);
+    WINDOW * InfoBar = newwin(INFO_HEIGHT,this->row_width,(ScreenY/2)-this->collum_height/2-INFO_HEIGHT,(ScreenX/2)-this->row_width/2);
     start_color();
     //init_pair(1,COLOR_BLUE, COLOR_RED);
    //wbkgd(Menu, COLOR_PAIR(1));

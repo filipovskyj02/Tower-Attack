@@ -13,7 +13,7 @@ CMenu::CMenu(int p_width,int p_height){
     
     getmaxyx(stdscr,WinMaxY,WinMaxX);
 
-    WINDOW * boardWin = newwin(maxH,maxW,WinMaxY/SCREEN_POS,WinMaxX/SCREEN_POS);
+    WINDOW * boardWin = newwin(maxH,maxW,(WinMaxY/2)-maxH/2,(WinMaxX/2)-maxW/2);
     box(boardWin,0,0);
     refresh();
     wrefresh(boardWin);

@@ -8,7 +8,7 @@ make: *** No rule to make target 'all'.  Stop.
 # This is free software: you are free to change and redistribute it.
 # There is NO WARRANTY, to the extent permitted by law.
 
-# Make data base, printed on Wed May 25 22:04:38 2022
+# Make data base, printed on Wed May 25 22:46:41 2022
 
 # Variables
 
@@ -293,9 +293,9 @@ KDE_SESSION_UID = 1000
 
 # Directories
 
-# . (device 66310, inode 4201052): 44 files, no impossibilities.
+# . (device 66310, inode 4201052): 46 files, no impossibilities.
 
-# 44 files, no impossibilities in 1 directories.
+# 46 files, no impossibilities in 1 directories.
 
 # Implicit Rules
 
@@ -371,8 +371,7 @@ CNewLine.hpp:
 # Not a target:
 makefile:
 #  Implicit rule search has been done.
-#  Last modified 2022-05-25 22:04:19.918033758
- 
+#  Last modified 2022-05-25 22:34:41.018021492
 #  File has been updated.
 #  Successfully updated.
 
@@ -429,6 +428,7 @@ CNewLine.o: CNewLine.cpp CNewLine.hpp
 CWall.o: CWall.cpp CWall.hpp
 #  Implicit rule search has not been done.
 #  Modification time never checked.
+ 
 #  File has not been updated.
 #  recipe to execute (from 'makefile', line 23):
 	g++ -Wall -pedantic -g -c CWall.cpp CWall.hpp -lncurses	
@@ -450,7 +450,7 @@ clean:
 #  Modification time never checked.
 #  File has not been updated.
 #  recipe to execute (from 'makefile', line 34):
-	rm *.o *.out
+	rm *.o *.out *.hpp.gch
 
 # Not a target:
 CEnterance.cpp:
@@ -530,12 +530,12 @@ CMenu.o: CMenu.cpp CMenu.hpp
 
 # No general ('VPATH' variable) search path.
 
-# strcache buffers: 1 (0) / strings = 52 / storage = 524 B / avg = 10 B
-# current buf: size = 8162 B / used = 524 B / count = 52 / avg = 10 B
+# strcache buffers: 1 (0) / strings = 53 / storage = 538 B / avg = 10 B
+# current buf: size = 8162 B / used = 538 B / count = 53 / avg = 10 B
 
-# strcache performance: lookups = 106 / hit rate = 50%
+# strcache performance: lookups = 108 / hit rate = 50%
 # hash-table stats:
-# Load=52/8192=1%, Rehash=0, Collisions=1/106=1%
-# Finished Make data base on Wed May 25 22:04:38 2022
+# Load=53/8192=1%, Rehash=0, Collisions=1/108=1%
+# Finished Make data base on Wed May 25 22:46:41 2022
 
  

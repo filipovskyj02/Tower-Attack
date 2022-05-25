@@ -36,7 +36,7 @@ void CMap::redraw (WINDOW * mapWin){
 
 }
 void CMap::loadMap(){
-      std::ifstream fin("map.txt");
+      std::ifstream fin("map1.txt");
     
     char element;
     while (fin >> std::noskipws >> element)
