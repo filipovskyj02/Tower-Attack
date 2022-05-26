@@ -11,7 +11,12 @@ CHogRider::CHogRider(int x,int y) : CAttacker('h') {
 }
 
 void CHogRider::draw(WINDOW * map){
+    start_color();
+    init_pair(4, COLOR_BLACK, COLOR_GREEN);
+    wattron(map,COLOR_PAIR(4));
     waddch(map,'h');
+    wattroff(map,COLOR_PAIR(4));
+    
     
     
  }
@@ -20,4 +25,5 @@ void CHogRider::draw(WINDOW * map){
  }
  void CHogRider::move(){
      this->x++;
+    
  }

@@ -5,7 +5,7 @@ int main () {
 
 CMenu test(30,30);
 
-if (test.contin() == 1)CGame Gem(30,30) ;
+if (test.contin() == 1)CGame Gem(20,21) ;
 else printf("Konec");
 return 0;
 }

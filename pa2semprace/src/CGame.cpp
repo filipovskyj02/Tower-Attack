@@ -41,13 +41,18 @@ CGame::CGame (int collum_height, int row_width){
     unsigned int selected = 0;
     this->gameMap.loadMap();
 
-   
+     std::chrono::time_point<std::chrono::system_clock> t = std::chrono::system_clock::now();
+
 
     while (true) {
        
+         t += std::chrono::milliseconds(80);
+        std::this_thread::sleep_until(t);
+
+        
         this->gameMap.redraw(mapBoundary);
         
-        wtimeout(Menu,2000);
+        
         for (unsigned int i = 0; i < eneme.size(); i++){
             
             int halfLen = eneme[i].length()/2;
@@ -61,6 +66,8 @@ CGame::CGame (int collum_height, int row_width){
         }
         
         choice = wgetch(Menu);
+        
+        
         if (choice == KEY_RIGHT) selected = (selected + 1) % eneme.size();
         else if (choice == KEY_LEFT) selected == 0 ? selected = eneme.size()-1 : selected--;
         else if (choice == 10){
@@ -71,6 +78,7 @@ CGame::CGame (int collum_height, int row_width){
         }
         else if (choice == KEY_UP) {this->gameMap.enteranceUp();this->gameMap.redraw(mapBoundary);}
         else if (choice == KEY_DOWN) {this->gameMap.enteranceDown();this->gameMap.redraw(mapBoundary);}
+        
     }
         
 

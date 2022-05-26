@@ -83,8 +83,7 @@ void CMap::loadMap(){
     this->enteranceCnt = EnteranceCords.size();
 }
 void CMap::buy (int index){
-    std::pair<int,int> currCords;
-    if (!EnteranceCords.empty())
+   
 
     DynamicVec.push_back(std::make_unique<CHogRider>(EnteranceCords[this->enteranceSel]%this->sizeX,EnteranceCords[this->enteranceSel] / this->sizeX));
 
