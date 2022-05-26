@@ -1,5 +1,6 @@
 #pragma once
 #include "ncurses.h"
+#include "vector"
 
 //#include "CWall.hpp"
 
@@ -13,6 +14,9 @@ class CAttacker{
     int y;
     int damage;
     int runSpeed;
+    std::vector<int> path;
+    int pathIndex;
+    
     
      
     virtual void draw(WINDOW * map) = 0;

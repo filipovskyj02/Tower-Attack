@@ -7,6 +7,7 @@ CHogRider::CHogRider(int x,int y) : CAttacker('h') {
     this->y = y;
     this->runSpeed = 1;
     this->damage = 100;
+    this->pathIndex = 1;
    
 }
 
@@ -24,6 +25,12 @@ void CHogRider::draw(WINDOW * map){
      return this -> runSpeed;
  }
  void CHogRider::move(){
-     this->x++;
-    
+       
+     if (this->path.at(pathIndex)== 1)
+        y--;
+    else 
+        x++;
+    pathIndex++;    
+      
+     
  }

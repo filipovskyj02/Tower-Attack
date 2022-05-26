@@ -24,6 +24,7 @@ class CMap
     std::vector<std::unique_ptr<CCell>> mapVec;
     std::vector<std::unique_ptr<CAttacker>> DynamicVec;
     std::vector<unsigned int> EnteranceCords;
+    std::vector<unsigned int> ExitCords;
     int enteranceSel;
     int enteranceCnt;
 
@@ -35,6 +36,7 @@ public:
     void buy(int index);
     void enteranceUp();
     void enteranceDown();
+    virtual void calculatePath( CAttacker * a);
  
 
 };

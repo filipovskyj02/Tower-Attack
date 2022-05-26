@@ -1,5 +1,17 @@
-make --dry-run --keep-going --print-directory
+make --dry-run --always-make --keep-going --print-directory
 make: Entering directory '/home/kuba/filipj25/pa2semprace/src'
+g++ -Wall -pedantic -g -c main.cpp -lncurses
+g++ -Wall -pedantic -g -c CMenu.cpp CMenu.hpp -lncurses
+g++ -Wall -pedantic -g -c CGame.cpp CGame.hpp -lncurses
+g++ -Wall -pedantic -g -c CMap.cpp CMap.hpp -lncurses	
+g++ -Wall -pedantic -g -c CCell.cpp CCell.hpp -lncurses	
+g++ -Wall -pedantic -g -c CAir.cpp CAir.hpp -lncurses		
+g++ -Wall -pedantic -g -c CWall.cpp CWall.hpp -lncurses	
+g++ -Wall -pedantic -g -c CNewLine.cpp CNewLine.hpp -lncurses	
+g++ -Wall -pedantic -g -c CEnterance.cpp CEnterance.hpp -lncurses
+g++ -Wall -pedantic -g -c CExit.cpp CExit.hpp -lncurses
+g++ -Wall -pedantic -g -c CAttacker.cpp CAttacker.hpp -lncurses
+g++ -Wall -pedantic -g -c CHogRider.cpp CHogRider.hpp -lncurses	
 g++ -Wall -pedantic -g main.o CMenu.o CGame.o CMap.o CCell.o CAir.o CWall.o CNewLine.o CEnterance.o CExit.o CAttacker.o CHogRider.o -lncurses
 make: Leaving directory '/home/kuba/filipj25/pa2semprace/src'
  

@@ -46,6 +46,10 @@ void CMap::redraw (WINDOW * mapWin){
     }
     for (unsigned int i = 0; i < DynamicVec.size(); i++){
             DynamicVec[i].get()->move();
+            if (DynamicVec[i].get()->pathIndex > 99) {
+                DynamicVec[i].reset();
+                DynamicVec.erase(DynamicVec.begin()+i);
+                }
             
         }
     
@@ -56,7 +60,7 @@ void CMap::redraw (WINDOW * mapWin){
 
 }
 void CMap::loadMap(){
-      std::ifstream fin("map1.txt");
+      std::ifstream fin("map2.txt");
     
     char element;
     int width = 1;
@@ -77,6 +81,7 @@ void CMap::loadMap(){
                 lineCtr++;
             if (mapVec.back().get()->C == ' ') mapVec.back()=(std::make_unique<CExit>());
             mapVec.push_back(std::make_unique<CNewLine>(element));
+            ExitCords.push_back(width);
             }
             width++;
     }
@@ -86,6 +91,9 @@ void CMap::buy (int index){
    
 
     DynamicVec.push_back(std::make_unique<CHogRider>(EnteranceCords[this->enteranceSel]%this->sizeX,EnteranceCords[this->enteranceSel] / this->sizeX));
+    calculatePath(DynamicVec.back().get());
+    
+    
 
 }
 void CMap::enteranceDown(){
@@ -102,3 +110,19 @@ void CMap::enteranceUp(){
     
 
 }
+void CMap::calculatePath( CAttacker * a){
+    
+    int startX = a->x;
+    int startY = a->y;
+    int cnt = 0;
+
+    while (startX != sizeX and cnt < 100){
+    
+
+        if (mapVec.at((startY*sizeX) + startX ).get()->C == ' ' or mapVec.at((startY*sizeX) + startX ).get()->C == 'e') {a->path.push_back(0); startX++;}
+        else {a->path.push_back(1); if (startY > 0) startY--;}
+        cnt++;
+    }
+}
+
+

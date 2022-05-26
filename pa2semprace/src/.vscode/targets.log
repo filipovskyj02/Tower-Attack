@@ -8,7 +8,7 @@ make: *** No rule to make target 'all'.  Stop.
 # This is free software: you are free to change and redistribute it.
 # There is NO WARRANTY, to the extent permitted by law.
 
-# Make data base, printed on Thu May 26 03:33:34 2022
+# Make data base, printed on Thu May 26 16:24:08 2022
 
 # Variables
 
@@ -193,7 +193,7 @@ SNAP_USER_DATA = /home/kuba/snap/code/97
 # environment
 SHLVL = 1
 # environment
-VSCODE_IPC_HOOK_EXTHOST = /run/user/1000/vscode-ipc-97555c66-9d22-4a14-8565-3ee27c323328.sock
+VSCODE_IPC_HOOK_EXTHOST = /run/user/1000/vscode-ipc-4df372b5-5578-49e8-b59d-9009675245fe.sock
 # environment
 XDG_SESSION_ID = 3
 # environment
@@ -233,7 +233,7 @@ MFLAGS = -pqrR
 # automatic
 *D = $(patsubst %/,%,$(dir $*))
 # environment
-SHELL_SESSION_ID = 1d711d5f1b364761846f1ed3a17010c7
+SHELL_SESSION_ID = 25b0c15e60fa44fc9796afda85093067
 # automatic
 +D = $(patsubst %/,%,$(dir $+))
 # environment
@@ -267,7 +267,7 @@ SNAP_REEXEC =
 # environment
 CHROME_DESKTOP = code-url-handler.desktop
 # environment
-KONSOLE_DBUS_SERVICE = :1.14127
+KONSOLE_DBUS_SERVICE = :1.22366
 # default
 .INCLUDE_DIRS = /usr/include /usr/local/include /usr/include
 # environment
@@ -281,7 +281,7 @@ LANG = C
 # environment
 TERM = xterm-256color
 # environment
-VSCODE_PID = 206465
+VSCODE_PID = 260603
 # environment
 KDE_SESSION_UID = 1000
 # variable set hash-table stats:
@@ -293,9 +293,9 @@ KDE_SESSION_UID = 1000
 
 # Directories
 
-# . (device 66310, inode 4201052): 54 files, no impossibilities.
+# . (device 66310, inode 4201052): 55 files, no impossibilities.
 
-# 54 files, no impossibilities in 1 directories.
+# 55 files, no impossibilities in 1 directories.
 
 # Implicit Rules
 
@@ -304,12 +304,12 @@ KDE_SESSION_UID = 1000
 # Files
 
 # Not a target:
- 
 CHogRider.hpp:
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
 
+ 
 CGame.o: CGame.cpp CGame.hpp
 #  Implicit rule search has not been done.
 #  Modification time never checked.
@@ -536,7 +536,6 @@ output: main.o CMenu.o CGame.o CMap.o CCell.o CAir.o CWall.o CNewLine.o CEnteran
 	g++ -Wall -pedantic -g main.o CMenu.o CGame.o CMap.o CCell.o CAir.o CWall.o CNewLine.o CEnterance.o CExit.o CAttacker.o CHogRider.o -lncurses
 
 # Not a target:
- 
 CAir.hpp:
 #  Implicit rule search has not been done.
 #  Modification time never checked.
@@ -569,12 +568,12 @@ CMenu.o: CMenu.cpp CMenu.hpp
 
 # No general ('VPATH' variable) search path.
 
-# strcache buffers: 1 (0) / strings = 61 / storage = 654 B / avg = 10 B
-# current buf: size = 8162 B / used = 654 B / count = 61 / avg = 10 B
+# strcache buffers: 1 (0) / strings = 62 / storage = 663 B / avg = 10 B
+# current buf: size = 8162 B / used = 663 B / count = 62 / avg = 10 B
 
-# strcache performance: lookups = 126 / hit rate = 51%
+# strcache performance: lookups = 127 / hit rate = 51%
 # hash-table stats:
-# Load=61/8192=1%, Rehash=0, Collisions=1/126=1%
-# Finished Make data base on Thu May 26 03:33:34 2022
+# Load=62/8192=1%, Rehash=0, Collisions=1/127=1%
+# Finished Make data base on Thu May 26 16:24:08 2022
 
  
