@@ -36,6 +36,7 @@ CGame::CGame (int collum_height, int row_width){
     std::vector<std::string> cost = {"100","500","300","10"};
     int spaceForOne = this->row_width/eneme.size();
    
+    int enteranceChoice = 0;
     int choice = 0;
     unsigned int selected = 0;
     this->gameMap.loadMap();
@@ -68,7 +69,8 @@ CGame::CGame (int collum_height, int row_width){
             InfoRefresh(InfoBar);
 
         }
-        else if (choice == KEY_UP) ;
+        else if (choice == KEY_UP) {this->gameMap.enteranceUp();this->gameMap.redraw(mapBoundary);}
+        else if (choice == KEY_DOWN) {this->gameMap.enteranceDown();this->gameMap.redraw(mapBoundary);}
     }
         
 

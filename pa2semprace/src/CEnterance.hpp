@@ -6,6 +6,7 @@
 class CEnterance : public CCell
 {
     public:
+    bool selected;
     CEnterance();
     virtual void draw(WINDOW * map);
 };

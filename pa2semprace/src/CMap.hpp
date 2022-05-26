@@ -23,13 +23,18 @@ class CMap
     WINDOW * mapWin;
     std::vector<std::unique_ptr<CCell>> mapVec;
     std::vector<std::unique_ptr<CAttacker>> DynamicVec;
-    int redrawCnt;
+    std::vector<unsigned int> EnteranceCords;
+    int enteranceSel;
+    int enteranceCnt;
+
 public:
     CMap();
     CMap(int y, int x, WINDOW * mapWin);
     void redraw(WINDOW * win);
     void loadMap();
     void buy(int index);
+    void enteranceUp();
+    void enteranceDown();
  
 
 };
