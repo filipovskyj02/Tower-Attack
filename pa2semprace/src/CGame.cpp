@@ -21,7 +21,7 @@ CGame::CGame (int collum_height, int row_width){
     box(mapBoundary,0,0);
     box(Menu,0,0);
     
-    this->gameMap = CMap(collum_height,row_width,mapBoundary);
+    this->gameMap = CMap(this->collum_height,this->row_width,mapBoundary);
     
     wrefresh(Menu);
     wrefresh(InfoBar);
@@ -63,6 +63,7 @@ CGame::CGame (int collum_height, int row_width){
         if (choice == KEY_RIGHT) selected = (selected + 1) % eneme.size();
         else if (choice == KEY_LEFT) selected == 0 ? selected = eneme.size()-1 : selected--;
         else if (choice == 10){
+            this->gameMap.buy(selected);
             playerMoney -= stoi(cost[selected]);
             InfoRefresh(InfoBar);
 

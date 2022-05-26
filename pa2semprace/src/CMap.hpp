@@ -11,6 +11,8 @@
 #include "CNewLine.hpp"
 #include "CEnterance.hpp"
 #include "CExit.hpp"
+#include "CAttacker.hpp"
+#include "CHogRider.hpp"
 
 
 
@@ -20,12 +22,14 @@ class CMap
     int sizeY;
     WINDOW * mapWin;
     std::vector<std::unique_ptr<CCell>> mapVec;
+    std::vector<std::unique_ptr<CAttacker>> DynamicVec;
     int redrawCnt;
 public:
     CMap();
     CMap(int y, int x, WINDOW * mapWin);
     void redraw(WINDOW * win);
     void loadMap();
+    void buy(int index);
  
 
 };

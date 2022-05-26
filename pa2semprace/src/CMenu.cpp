@@ -2,7 +2,7 @@
 
 
 CMenu::CMenu(int p_width,int p_height){
-    curs_set(0);
+    
     this->continueToGame = false;
     initscr();
     refresh();
@@ -14,18 +14,19 @@ CMenu::CMenu(int p_width,int p_height){
     getmaxyx(stdscr,WinMaxY,WinMaxX);
 
     WINDOW * boardWin = newwin(maxH,maxW,(WinMaxY/2)-maxH/2,(WinMaxX/2)-maxW/2);
+    curs_set(0);
     box(boardWin,0,0);
     refresh();
     wrefresh(boardWin);
     
-    mvwprintw(boardWin,0,maxW/2.6,"Tower Attack");
+    mvwprintw(boardWin,0,maxW/2 - 6,"Tower Attack");
     std::pair <int,int> MenuItems;
     keypad(boardWin,true);
     int choice = 0;
     unsigned int selected = 0;
     while (choice != 10) {
         
-        MenuItems = {2,maxW/2.3 };
+        MenuItems = {maxH/4,(maxW/2) - 2 };
 
         for (unsigned int i = 0; i < MenuChoices.size(); i++){
             

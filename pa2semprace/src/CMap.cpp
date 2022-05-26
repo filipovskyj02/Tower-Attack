@@ -22,21 +22,45 @@ void CMap::redraw (WINDOW * mapWin){
    
     wclear(mapWin);
     box(mapWin,0,0);
+    std::pair<int,int> currCords;
+    currCords.first = currCords.second = 0;
       
     
-    for (unsigned int y = 0; y < mapVec.size(); y++)
+    for (unsigned int y = 0; y < mapVec.size(); y++){
+        bool found = false;
+        currCords.first++;
+        if (currCords.first == sizeX)
+        {
+            currCords.first = 0;
+            currCords.second++;
+        }
+        for (unsigned int i = 0; i < DynamicVec.size(); i++){
+            
+            if (currCords.first == DynamicVec[i].get()->x and currCords.second == DynamicVec[i].get()->y) {
+                DynamicVec[i].get()->draw(mapWin);
+                
+                found = true;
+                break;
+                }
+        }
+
+        if (!found)mapVec[y].get()->draw(mapWin);
     
-     mapVec[y].get()->draw(mapWin);
+        
+    }
+    for (unsigned int i = 0; i < DynamicVec.size(); i++){
+            DynamicVec[i].get()->move();
+            
+        }
     
     wrefresh(mapWin);
-    
     return;
     
     
 
 }
 void CMap::loadMap(){
-      std::ifstream fin("map1.txt");
+      std::ifstream fin("map.txt");
     
     char element;
     while (fin >> std::noskipws >> element)
@@ -54,4 +78,25 @@ void CMap::loadMap(){
             mapVec.push_back(std::make_unique<CNewLine>(element));
             }
     }
+}
+void CMap::buy (int index){
+    std::pair<int,int> currCords;
+    currCords.first = currCords.second = 0;
+    for (unsigned int i = 0;i < mapVec.size(); i++ ){
+        if (typeid(mapVec[i].get()) == typeid(CEnterance))break;
+    
+        
+        currCords.first++;
+        if (currCords.first == sizeX)
+        {
+            currCords.first = 0;
+            currCords.second++;
+        }
+    }
+
+    DynamicVec.push_back(std::make_unique<CHogRider>(10,10));
+
+
+
+
 }

@@ -1,5 +1,5 @@
-output: main.o CMenu.o CGame.o CMap.o CCell.o CAir.o CWall.o CNewLine.o CEnterance.o CExit.o
-	g++ -Wall -pedantic -g main.o CMenu.o CGame.o CMap.o CCell.o CAir.o CWall.o CNewLine.o CEnterance.o CExit.o -lncurses
+output: main.o CMenu.o CGame.o CMap.o CCell.o CAir.o CWall.o CNewLine.o CEnterance.o CExit.o CAttacker.o CHogRider.o
+	g++ -Wall -pedantic -g main.o CMenu.o CGame.o CMap.o CCell.o CAir.o CWall.o CNewLine.o CEnterance.o CExit.o CAttacker.o CHogRider.o -lncurses
 
 main.o: main.cpp
 	g++ -Wall -pedantic -g -c main.cpp -lncurses
@@ -30,5 +30,11 @@ CEnterance.o: CEnterance.cpp CEnterance.hpp
 
 CExit.o: CExit.cpp CExit.hpp
 	g++ -Wall -pedantic -g -c CExit.cpp CExit.hpp -lncurses
+
+CAttacker.o: CAttacker.cpp CAttacker.hpp
+	g++ -Wall -pedantic -g -c CAttacker.cpp CAttacker.hpp -lncurses
+
+CHogRider.o: CHogRider.cpp CHogRider.hpp
+	g++ -Wall -pedantic -g -c CHogRider.cpp CHogRider.hpp -lncurses	
 clean: 
 	rm *.o *.out *.hpp.gch
