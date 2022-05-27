@@ -16,6 +16,7 @@ class CAttacker{
     int runSpeed;
     std::vector<std::pair<int,int>> path;
     int pathIndex;
+    bool left;
     
     
      

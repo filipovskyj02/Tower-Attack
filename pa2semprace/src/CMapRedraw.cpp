@@ -32,11 +32,13 @@ void CMap::redraw (WINDOW * mapWin){
         
     }
     for (unsigned int i = 0; i < DynamicVec.size(); i++){
-            DynamicVec[i].get()->move();
-            if (DynamicVec[i].get()->pathIndex > 9900) {
+            if (DynamicVec[i].get()->left == false)
+                DynamicVec[i].get()->move();
+            else {
                 DynamicVec[i].reset();
                 DynamicVec.erase(DynamicVec.begin()+i);
                 }
+            
             
         }
     

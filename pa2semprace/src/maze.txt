@@ -5,11 +5,11 @@ x                 x  x  x  x  x
 x  xxxxxxx  xxxx  x  x  x  x  x
 x     x     x        x  x     x
 x  x  x  x  xxxxxxx  x  xxxx  x
-x  x  x  x     x     x     x  x
+   x  x  x     x     x     x  x
 xxxxxxxxxxxxx  x  x  xxxx  x  x
 x  x  x     x  x  x        x  x
 x  x  x  xxxxxxxxxx  x  xxxx  x
-x                 x  x        x
+                  x  x        x
 x  x  x  x  xxxxxxx  x  xxxxxxx
 x  x  x  x  x  x     x        x
 x  xxxx  x  x  x  xxxxxxx  xxxx

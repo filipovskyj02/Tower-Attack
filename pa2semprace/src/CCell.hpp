@@ -1,5 +1,6 @@
 #pragma once
 #include "ncurses.h"
+#include "utility"
 
 
 
@@ -12,5 +13,6 @@ class CCell{
     int xCord;
     int yCord;
     int Index;
+    std::pair<int,int> pathIndex;
 
 };
