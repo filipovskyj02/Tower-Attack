@@ -3,6 +3,10 @@
 
 CMenu::CMenu(int p_width,int p_height){
     
+    
+
+    
+    
     this->continueToGame = false;
     initscr();
     refresh();

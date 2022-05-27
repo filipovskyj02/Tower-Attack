@@ -8,7 +8,7 @@ make: *** No rule to make target 'all'.  Stop.
 # This is free software: you are free to change and redistribute it.
 # There is NO WARRANTY, to the extent permitted by law.
 
-# Make data base, printed on Thu May 26 21:27:11 2022
+# Make data base, printed on Fri May 27 22:30:39 2022
 
 # Variables
 
@@ -99,7 +99,7 @@ GDK_PIXBUF_MODULE_FILE = /home/kuba/snap/code/common/.cache/gdk-pixbuf-loaders.c
 # environment
 SNAP = /snap/code/97
 # environment
-WINDOWID = 58720263
+WINDOWID = 54525959
 # environment
 SNAP_VERSION = c3511e6c
 # environment
@@ -193,7 +193,7 @@ SNAP_USER_DATA = /home/kuba/snap/code/97
 # environment
 SHLVL = 1
 # environment
-VSCODE_IPC_HOOK_EXTHOST = /run/user/1000/vscode-ipc-4df372b5-5578-49e8-b59d-9009675245fe.sock
+VSCODE_IPC_HOOK_EXTHOST = /run/user/1000/vscode-ipc-5c5b7210-76b0-4a51-bcbd-4d487607d6a0.sock
 # environment
 XDG_SESSION_ID = 3
 # environment
@@ -233,7 +233,7 @@ MFLAGS = -pqrR
 # automatic
 *D = $(patsubst %/,%,$(dir $*))
 # environment
-SHELL_SESSION_ID = 25b0c15e60fa44fc9796afda85093067
+SHELL_SESSION_ID = 5933aea8928144b99fd86d0223f27de5
 # automatic
 +D = $(patsubst %/,%,$(dir $+))
 # environment
@@ -267,7 +267,7 @@ SNAP_REEXEC =
 # environment
 CHROME_DESKTOP = code-url-handler.desktop
 # environment
-KONSOLE_DBUS_SERVICE = :1.22366
+KONSOLE_DBUS_SERVICE = :1.29607
 # default
 .INCLUDE_DIRS = /usr/include /usr/local/include /usr/include
 # environment
@@ -281,7 +281,7 @@ LANG = C
 # environment
 TERM = xterm-256color
 # environment
-VSCODE_PID = 260603
+VSCODE_PID = 400518
 # environment
 KDE_SESSION_UID = 1000
 # variable set hash-table stats:
@@ -290,13 +290,13 @@ KDE_SESSION_UID = 1000
 # Pattern-specific Variable Values
 
 # No pattern-specific variable values.
+ 
 
 # Directories
 
-# . (device 66310, inode 4201052): 45 files, no impossibilities.
+# . (device 66310, inode 4201052): 28 files, no impossibilities.
 
-# 45 files, no impossibilities in 1 directories.
- 
+# 28 files, no impossibilities in 1 directories.
 
 # Implicit Rules
 
@@ -528,12 +528,12 @@ CMapPathFind.cpp:
 
 # No general ('VPATH' variable) search path.
 
-# strcache buffers: 1 (0) / strings = 52 / storage = 579 B / avg = 11 B
-# current buf: size = 8162 B / used = 579 B / count = 52 / avg = 11 B
+# strcache buffers: 1 (0) / strings = 46 / storage = 487 B / avg = 10 B
+# current buf: size = 8162 B / used = 487 B / count = 46 / avg = 10 B
 
-# strcache performance: lookups = 103 / hit rate = 49%
+# strcache performance: lookups = 86 / hit rate = 46%
 # hash-table stats:
-# Load=52/8192=1%, Rehash=0, Collisions=1/103=1%
-# Finished Make data base on Thu May 26 21:27:11 2022
+# Load=46/8192=1%, Rehash=0, Collisions=1/86=1%
+# Finished Make data base on Fri May 27 22:30:39 2022
 
  
