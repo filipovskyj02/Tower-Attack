@@ -6,11 +6,7 @@
 #include <fstream>
 #include "CCell.hpp"
 #include "memory"
-#include "CAir.hpp"
-#include "CWall.hpp"
-#include "CNewLine.hpp"
-#include "CEnterance.hpp"
-#include "CExit.hpp"
+#include "CCellBasic.hpp"
 #include "CAttacker.hpp"
 #include "CHogRider.hpp"
 
@@ -36,9 +32,8 @@ public:
     void buy(int index);
     void enteranceUp();
     void enteranceDown();
-    virtual void calculatePath( CAttacker * a);
+    void calculatePath( CAttacker * a);
  
-
 };
 
 

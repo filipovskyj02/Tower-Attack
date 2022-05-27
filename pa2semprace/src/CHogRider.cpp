@@ -26,10 +26,11 @@ void CHogRider::draw(WINDOW * map){
  }
  void CHogRider::move(){
        
-     if (this->path.at(pathIndex)== 1)
-        y--;
-    else 
-        x++;
+     
+    this->x = this->path.at(pathIndex).first;
+    this->y = this->path.at(pathIndex).second;
+        
+        
     pathIndex++;    
       
      

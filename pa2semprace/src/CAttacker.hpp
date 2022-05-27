@@ -14,7 +14,7 @@ class CAttacker{
     int y;
     int damage;
     int runSpeed;
-    std::vector<int> path;
+    std::vector<std::pair<int,int>> path;
     int pathIndex;
     
     
