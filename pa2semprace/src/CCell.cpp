@@ -7,4 +7,5 @@ CCell::CCell (char c, int total, int x, int y){
     this->yCord = y;
     this->pathIndex = std::make_pair(0,0);
     
+    
 }

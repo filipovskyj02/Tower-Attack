@@ -26,9 +26,9 @@ class CMap
 
 public:
     CMap();
-    CMap(int y, int x, WINDOW * mapWin);
+    
     void redraw(WINDOW * win);
-    void loadMap();
+    void loadMap(int & loadedX, int  & loadedY);
     void buy(int index);
     void enteranceUp();
     void enteranceDown();

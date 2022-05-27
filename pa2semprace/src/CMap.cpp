@@ -2,15 +2,13 @@
 #include "CMap.hpp"
 
 
-CMap::CMap (int y, int x,  WINDOW * mapWin){
+CMap::CMap (){
     curs_set(0);
-    this->sizeY = y;
-    this->sizeX = x;
-    this->mapWin = mapWin;
+    
     this->enteranceSel = 0;
     
 }
-CMap::CMap(){}
+
 
 
 void CMap::buy (int index){

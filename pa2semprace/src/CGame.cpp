@@ -6,23 +6,26 @@ CGame::CGame (int collum_height, int row_width){
 
     isOver = false;
     playerMoney = 20000;
-    this->collum_height = collum_height;
-    this->row_width = row_width * WIDTH_MULTI;
+    
     getmaxyx(stdscr,ScreenY,ScreenX);
     clear();
     initscr();
     refresh();
-    WINDOW * mapBoundary = newwin(this->collum_height,this->row_width,(ScreenY/2)-this->collum_height/2,(ScreenX/2)-this->row_width/2);
-    WINDOW * Menu = newwin(MENU_HEIGHT,this->row_width,(ScreenY/2)+this->collum_height/2,(ScreenX/2)-this->row_width/2);
-    WINDOW * InfoBar = newwin(INFO_HEIGHT,this->row_width,(ScreenY/2)-this->collum_height/2-INFO_HEIGHT,(ScreenX/2)-this->row_width/2);
+
     start_color();
     //init_pair(1,COLOR_BLUE, COLOR_RED);
    //wbkgd(Menu, COLOR_PAIR(1));
+    
+    
+    this->gameMap = CMap();
+    this->gameMap.loadMap(this->row_width,this->collum_height);
+   
+    WINDOW * mapBoundary = newwin(this->collum_height,this->row_width,(ScreenY/2)-this->collum_height/2,(ScreenX/2)-this->row_width/2);
+    WINDOW * Menu = newwin(MENU_HEIGHT,this->row_width,(ScreenY/2)+this->collum_height/2,(ScreenX/2)-this->row_width/2);
+    WINDOW * InfoBar = newwin(INFO_HEIGHT,this->row_width,(ScreenY/2)-this->collum_height/2-INFO_HEIGHT,(ScreenX/2)-this->row_width/2);
+    refresh();
     box(mapBoundary,0,0);
     box(Menu,0,0);
-    
-    this->gameMap = CMap(this->collum_height,this->row_width,mapBoundary);
-    
     wrefresh(Menu);
     wrefresh(InfoBar);
     
@@ -31,15 +34,15 @@ CGame::CGame (int collum_height, int row_width){
     nodelay(Menu, true);
    
     InfoRefresh(InfoBar);
-
+    
     std::vector<std::string> eneme = {"Hog Rider","Wizard","Frog","Pig"};
     std::vector<std::string> cost = {"100","500","300","10"};
     int spaceForOne = this->row_width/eneme.size();
-   
+    
     int enteranceChoice = 0;
     int choice = 0;
     unsigned int selected = 0;
-    this->gameMap.loadMap();
+    
 
      std::chrono::time_point<std::chrono::system_clock> t = std::chrono::system_clock::now();
 

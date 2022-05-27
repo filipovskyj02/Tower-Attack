@@ -5,9 +5,9 @@
 #include "CMap.hpp"
 #include "chrono"
 #include "thread"
-#define WIDTH_MULTI 2.5
+
 #define MENU_ITEM_DISTANCE 2
-#define SCREEN_POS 2.5
+
 #define MENU_HEIGHT 5
 #define INFO_HEIGHT 5
 

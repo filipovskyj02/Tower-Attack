@@ -15,6 +15,8 @@ void CAir::draw(WINDOW * map){
 
 void CEnterance::draw(WINDOW * map){
     
+
+
     start_color();
     init_pair(1, COLOR_BLACK, COLOR_BLUE);
     init_pair(3, COLOR_BLACK, COLOR_GREEN);

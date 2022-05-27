@@ -1,11 +1,12 @@
 #pragma once
 #include "CMap.hpp"
 
-void CMap::loadMap(){
-    std::ifstream fin("map3.txt");
+void CMap::loadMap(int & loadedX,  int & loadedY){
+    std::ifstream fin("maze.txt");
     
     
     char element;
+    
     int width = 1;
     int lineCtr = 0;
     while (fin >> std::noskipws >> element)
@@ -23,7 +24,7 @@ void CMap::loadMap(){
         }
         else if (element == 'x')mapVec.push_back(std::make_unique<CWall>(index,x,y));
         else if (element == '\n'){
-            if (lineCtr == 0) this->sizeX = width;
+            if (lineCtr == 0) this->sizeX = width ;
                 lineCtr++;
             if (mapVec.back().get()->C == ' ') mapVec.back()=(std::make_unique<CExit>(index,x,y));
             mapVec.push_back(std::make_unique<CNewLine>(index,x,y));
@@ -31,5 +32,7 @@ void CMap::loadMap(){
             }
         width++;
     }
+    loadedX = this->sizeX;
+    loadedY = (width -1) / this->sizeX;
     this->enteranceCnt = EnteranceCords.size();
 }
