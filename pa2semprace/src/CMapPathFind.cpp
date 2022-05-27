@@ -5,8 +5,11 @@
 
 void CMap::calculatePath( CAttacker * a){
     std::ofstream off("movesTaken.txt");
+
     int startX = a->x;
     int startY = a->y;
+    off << "start x : " << startX << " Start y : " << startY << '\n';
+    off << " size X :  "<< sizeX << " size Y : " << sizeY << '\n';
     int cnt = 0;
     int closestExit;
     for (int i = 0;i < mapVec.size(); i++){
@@ -22,6 +25,7 @@ void CMap::calculatePath( CAttacker * a){
         cellsToVisit.push((mapVec.at((startY*sizeX) + startX ).get()));
         while (!cellsToVisit.empty()){
             CCell * ptr = cellsToVisit.front();
+            CCell * ptrTmp = nullptr;
             if (VisitedCells.find(ptr->Index) == VisitedCells.end()) {
                 a->path.push_back(std::make_pair(ptr->xCord,ptr->yCord));
                 if (ptr->C == 'l') {
@@ -30,42 +34,39 @@ void CMap::calculatePath( CAttacker * a){
                     }
 
                 if (ptr->yCord > 0){
-                    if (mapVec.at(((ptr->Index) - sizeX)).get()->C == ' '){
+                     ptrTmp = mapVec.at(((ptr->Index) - sizeX)).get();
+                    if (ptrTmp->C == ' ' or ptrTmp->C == 'l'){
 
-                        if (VisitedCells.find(mapVec.at(((ptr->Index) - sizeX)).get()->Index) == VisitedCells.end()){
+                        if (VisitedCells.find(ptrTmp->Index) == VisitedCells.end()){
                             
-                            //a->path.push_back(0);
-                            cellsToVisit.push(mapVec.at(ptr->Index - sizeX).get());
+                            cellsToVisit.push(ptrTmp);
                         }
                     }
                 }
                 if (ptr->xCord < sizeX+1){
-                    if (mapVec.at((ptr->Index + 2)).get()->C == ' '){
-                        if (VisitedCells.find(mapVec.at(((ptr->Index) + 2)).get()->Index) == VisitedCells.end())
+                    ptrTmp = mapVec.at(((ptr->Index) + 1)).get();
+                    if (ptrTmp->C == ' ' or ptrTmp->C == 'l'){
+                        if (VisitedCells.find(ptrTmp->Index)== VisitedCells.end())
                         {
-                            
-                            //a->path.push_back(1);
-                            cellsToVisit.push(mapVec.at(ptr->Index + 1).get());
+                            cellsToVisit.push(ptrTmp);
                         }   
                     }
                 }
                 if (ptr->yCord < sizeY){
-                    if (mapVec.at((ptr->Index + sizeX)).get()->C == ' '){
-                       if (VisitedCells.find(mapVec.at(((ptr->Index) + sizeX)).get()->Index) == VisitedCells.end())
-                       {
-                           
-                            //a->path.push_back(2);
-                            cellsToVisit.push(mapVec.at(ptr->Index + sizeX).get());
+                    ptrTmp = mapVec.at((ptr->Index + sizeX)).get();
+                    if (ptrTmp->C == ' ' or ptrTmp->C == 'l'){
+                       if (VisitedCells.find(ptrTmp->Index) == VisitedCells.end())
+                        {
+                            cellsToVisit.push(ptrTmp);
                         }      
                     }
                 }
-                if (ptr->xCord > 0){
-                    if (mapVec.at((ptr->Index) - 1).get()->C == ' '){
-                        if (VisitedCells.find(mapVec.at(((ptr->Index) - 1)).get()->Index) == VisitedCells.end())
+                if (ptr->xCord > 1){
+                    ptrTmp = mapVec.at((ptr->Index) - 1).get();
+                    if (ptrTmp->C == ' ' or ptrTmp->C == 'l'){
+                        if (VisitedCells.find(ptrTmp->Index) == VisitedCells.end())
                         {
-                            
-                            //a->path.push_back(3);
-                            cellsToVisit.push(mapVec.at(ptr->Index - 1).get());
+                            cellsToVisit.push(ptrTmp);
                         }   
                     }
                 }

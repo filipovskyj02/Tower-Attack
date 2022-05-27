@@ -2,7 +2,7 @@
 #include "CMap.hpp"
 
 void CMap::loadMap(){
-    std::ifstream fin("map2.txt");
+    std::ifstream fin("maze.txt");
     
     char element;
     int width = 1;

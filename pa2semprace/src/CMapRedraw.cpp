@@ -11,7 +11,7 @@ void CMap::redraw (WINDOW * mapWin){
     
     for (unsigned int y = 0; y < mapVec.size(); y++){
         bool found = false;
-        currCords.first++;
+      
         if (currCords.first == sizeX)
         {
             currCords.first = 0;
@@ -28,7 +28,7 @@ void CMap::redraw (WINDOW * mapWin){
         }
 
         if (!found)mapVec[y].get()->draw(mapWin);
-    
+        currCords.first++;
         
     }
     for (unsigned int i = 0; i < DynamicVec.size(); i++){

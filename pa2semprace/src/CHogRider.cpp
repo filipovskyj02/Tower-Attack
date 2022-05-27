@@ -25,13 +25,19 @@ void CHogRider::draw(WINDOW * map){
      return this -> runSpeed;
  }
  void CHogRider::move(){
-       
+    if (pathIndex < path.size() - 1){
      
-    this->x = this->path.at(pathIndex).first;
-    this->y = this->path.at(pathIndex).second;
-        
-        
-    pathIndex++;    
-      
+        this->x = this->path.at(pathIndex).first;
+        this->y = this->path.at(pathIndex).second;
+   
+        pathIndex++;    
+    }
+    else if (pathIndex == path.size() - 1){
+     
+        this->x = this->path.at(pathIndex).first-1;
+        this->y = this->path.at(pathIndex).second;
+   
+        pathIndex++;    
+    }
      
  }
