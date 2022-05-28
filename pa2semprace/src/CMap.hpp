@@ -11,6 +11,7 @@
 #include "CTower.hpp"
 #include "CHogRider.hpp"
 #include "CLaserTurret.hpp"
+#include "CMapScout.hpp"
 
 
 
@@ -37,7 +38,7 @@ class CMap
     void enteranceUp();
     void enteranceDown();
     void calculatePath( CAttacker * a);
-    void placeTowers();
+    void placeTowers(int n);
  
 };
 

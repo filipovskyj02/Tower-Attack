@@ -36,5 +36,5 @@ void CMap::loadMap(int & loadedX,  int & loadedY){
     loadedY = (width -1) / this->sizeX;
     this->sizeY = loadedY;
     this->enteranceCnt = EnteranceCords.size();
-    placeTowers();
+    
 }

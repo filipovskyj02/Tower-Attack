@@ -8,7 +8,7 @@ make: *** No rule to make target 'all'.  Stop.
 # This is free software: you are free to change and redistribute it.
 # There is NO WARRANTY, to the extent permitted by law.
 
-# Make data base, printed on Sat May 28 21:07:48 2022
+# Make data base, printed on Sat May 28 23:58:02 2022
 
 # Variables
 
@@ -193,7 +193,7 @@ SNAP_USER_DATA = /home/kuba/snap/code/97
 # environment
 SHLVL = 1
 # environment
-VSCODE_IPC_HOOK_EXTHOST = /run/user/1000/vscode-ipc-8aed924c-e185-4783-a472-d8ade19a1d4d.sock
+VSCODE_IPC_HOOK_EXTHOST = /run/user/1000/vscode-ipc-0c02e54e-41e0-468d-a59c-d596766a1528.sock
 # environment
 XDG_SESSION_ID = 3
 # environment
@@ -281,7 +281,7 @@ LANG = C
 # environment
 TERM = xterm-256color
 # environment
-VSCODE_PID = 412986
+VSCODE_PID = 489282
 # environment
 KDE_SESSION_UID = 1000
 # variable set hash-table stats:
@@ -290,13 +290,12 @@ KDE_SESSION_UID = 1000
 # Pattern-specific Variable Values
 
 # No pattern-specific variable values.
- 
 
 # Directories
 
-# . (device 66310, inode 4201052): 58 files, no impossibilities.
+# . (device 66310, inode 4201052): 60 files, no impossibilities.
 
-# 58 files, no impossibilities in 1 directories.
+# 60 files, no impossibilities in 1 directories.
 
 # Implicit Rules
 
@@ -320,6 +319,7 @@ CGame.o: CGame.cpp CGame.hpp
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
+ 
 #  recipe to execute (from 'makefile', line 11):
 	g++ -Wall -pedantic -g -c CGame.cpp CGame.hpp -lncurses
 
@@ -355,6 +355,19 @@ CLaserTurret.hpp:
 #  Modification time never checked.
 #  File has not been updated.
 
+CMapScout.o: CMapScout.cpp CMapScout.hpp
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+#  recipe to execute (from 'makefile', line 34):
+	g++ -Wall -pedantic -g -c CMapScout.cpp CMapScout.hpp -lncurses	
+
+# Not a target:
+CMapScout.cpp:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
 # Not a target:
 CMapRedraw.cpp:
 #  Implicit rule search has not been done.
@@ -383,7 +396,7 @@ CMapLoadMap.o:
 # Not a target:
 makefile:
 #  Implicit rule search has been done.
-#  Last modified 2022-05-28 21:06:30.498643101
+#  Last modified 2022-05-28 23:57:47.642257598
 #  File has been updated.
 #  Successfully updated.
 
@@ -478,7 +491,7 @@ clean:
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
-#  recipe to execute (from 'makefile', line 34):
+#  recipe to execute (from 'makefile', line 36):
 	rm *.o *.out *.hpp.gch
 
 # Not a target:
@@ -514,12 +527,12 @@ main.o: main.cpp
 #  recipe to execute (from 'makefile', line 5):
 	g++ -Wall -pedantic -g -c main.cpp -lncurses
 
-output: main.o CMenu.o CGame.o CMap.o CCell.o CCellBasic.o CAttacker.o CHogRider.o CMapLoadMap.o CMapPathFind.o CMapRedraw.o CMapPlaceTowers.o CTower.o CLaserTurret.o
+output: main.o CMenu.o CGame.o CMap.o CCell.o CCellBasic.o CAttacker.o CHogRider.o CMapLoadMap.o CMapPathFind.o CMapRedraw.o CMapPlaceTowers.o CTower.o CLaserTurret.o CMapScout.o
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
 #  recipe to execute (from 'makefile', line 2):
-	g++ -Wall -pedantic -g main.o CMenu.o CGame.o CMap.o CCell.o CCellBasic.o CAttacker.o CHogRider.o CMapLoadMap.o CMapPathFind.o CMapRedraw.o CMapPlaceTowers.o CTower.o CLaserTurret.o -lncurses
+	g++ -Wall -pedantic -g main.o CMenu.o CGame.o CMap.o CCell.o CCellBasic.o CAttacker.o CHogRider.o CMapLoadMap.o CMapPathFind.o CMapRedraw.o CMapPlaceTowers.o CTower.o CLaserTurret.o CMapScout.o -lncurses
 
 # Not a target:
 CTower.hpp:
@@ -529,6 +542,12 @@ CTower.hpp:
 
 # Not a target:
 CHogRider.cpp:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+CMapScout.hpp:
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
@@ -571,19 +590,19 @@ CMapPathFind.cpp:
 #  File has not been updated.
 
 # files hash-table stats:
-# Load=43/1024=4%, Rehash=0, Collisions=4/100=4%
+# Load=46/1024=4%, Rehash=0, Collisions=6/107=6%
 # VPATH Search Paths
 
 # No 'vpath' search paths.
 
 # No general ('VPATH' variable) search path.
 
-# strcache buffers: 1 (0) / strings = 65 / storage = 767 B / avg = 11 B
-# current buf: size = 8162 B / used = 767 B / count = 65 / avg = 11 B
+# strcache buffers: 1 (0) / strings = 68 / storage = 807 B / avg = 11 B
+# current buf: size = 8162 B / used = 807 B / count = 68 / avg = 11 B
 
-# strcache performance: lookups = 128 / hit rate = 49%
+# strcache performance: lookups = 135 / hit rate = 49%
 # hash-table stats:
-# Load=65/8192=1%, Rehash=0, Collisions=1/128=1%
-# Finished Make data base on Sat May 28 21:07:48 2022
+# Load=68/8192=1%, Rehash=0, Collisions=3/135=2%
+# Finished Make data base on Sat May 28 23:58:02 2022
 
  

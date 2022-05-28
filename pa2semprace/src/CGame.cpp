@@ -45,6 +45,7 @@ CGame::CGame (int collum_height, int row_width){
     
 
      std::chrono::time_point<std::chrono::system_clock> t = std::chrono::system_clock::now();
+      this->gameMap.placeTowers(10);
 
 
     while (true) {
@@ -55,6 +56,7 @@ CGame::CGame (int collum_height, int row_width){
         
         this->gameMap.redraw(mapBoundary);
         InfoRefresh(InfoBar);
+       
         
         
         for (unsigned int i = 0; i < eneme.size(); i++){

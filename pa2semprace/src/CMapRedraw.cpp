@@ -16,7 +16,7 @@ void CMap::redraw (WINDOW * mapWin){
     }
 
     for (unsigned int i = 0; i < TowerVec.size(); i++){
-        mapVec[((TowerVec[i].get()->y) * sizeX) + TowerVec[i].get()->x].get()->towerIndex = i;     
+        mapVec.at(((TowerVec[i].get()->y) * sizeX) + TowerVec[i].get()->x).get()->towerIndex = i;     
     }
 
     for (unsigned int y = 0; y < mapVec.size(); y++){
