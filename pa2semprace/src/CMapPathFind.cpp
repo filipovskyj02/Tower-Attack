@@ -9,17 +9,7 @@ void CMap::calculatePath( CAttacker * a){
 
     int startX = a->x;
     int startY = a->y;
-    off << "start x : " << startX << " Start y : " << startY << '\n';
-    off << " size X :  "<< sizeX << " size Y : " << sizeY << '\n';
-    int cnt = 0;
-    int closestExit;
-    for (int i = 0;i < mapVec.size(); i++){
-        off << "x: " << mapVec[i].get()->xCord << " y: " << mapVec[i].get()->yCord << " total: " << mapVec[i].get()->Index << '\n';
 
-
-    }
-   
-    
         int movesTaken = 0;
         std::queue<CCell *> cellsToVisit;
         std::set<int> VisitedCells;
@@ -94,11 +84,7 @@ void CMap::calculatePath( CAttacker * a){
             mapVec[i].get()->pathIndex.first = 0;
             mapVec[i].get()->pathIndex.second = 0;
         }
-        off << movesTaken << '\n';
-        off <<"visited : " << VisitedCells.size() << '\n';
-        for (auto i : VisitedCells){
-            off << i << '\n' ;
-        }
+        
         
     
     

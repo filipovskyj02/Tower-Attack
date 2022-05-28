@@ -2,7 +2,7 @@
 #include "CMap.hpp"
 
 void CMap::loadMap(int & loadedX,  int & loadedY){
-    std::ifstream fin("maze.txt");
+    std::ifstream fin("map3.txt");
     
     
     char element;
@@ -34,5 +34,7 @@ void CMap::loadMap(int & loadedX,  int & loadedY){
     }
     loadedX = this->sizeX;
     loadedY = (width -1) / this->sizeX;
+    this->sizeY = loadedY;
     this->enteranceCnt = EnteranceCords.size();
+    placeTowers();
 }

@@ -54,6 +54,7 @@ CGame::CGame (int collum_height, int row_width){
 
         
         this->gameMap.redraw(mapBoundary);
+        InfoRefresh(InfoBar);
         
         
         for (unsigned int i = 0; i < eneme.size(); i++){
@@ -76,7 +77,7 @@ CGame::CGame (int collum_height, int row_width){
         else if (choice == 10){
             this->gameMap.buy(selected);
             playerMoney -= stoi(cost[selected]);
-            InfoRefresh(InfoBar);
+            
 
         }
         else if (choice == KEY_UP) {this->gameMap.enteranceUp();this->gameMap.redraw(mapBoundary);}
@@ -98,7 +99,7 @@ void CGame::InfoRefresh(WINDOW * InfoBar){
     wclear(InfoBar);
     box(InfoBar,0,0);
     mvwprintw(InfoBar,(MENU_HEIGHT/2),this->row_width/5 ,"Soldiers Alive: ");
-    wprintw(InfoBar,"10");
+    wprintw(InfoBar,std::to_string(this->gameMap.DynamicVec.size()).c_str());
     mvwprintw(InfoBar,(MENU_HEIGHT/2),(this->row_width/3) * 2 ,"Money: ");
     wprintw(InfoBar,std::to_string(playerMoney).c_str());
     wrefresh(InfoBar);

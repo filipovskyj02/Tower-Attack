@@ -8,23 +8,27 @@
 #include "memory"
 #include "CCellBasic.hpp"
 #include "CAttacker.hpp"
+#include "CTower.hpp"
 #include "CHogRider.hpp"
+#include "CLaserTurret.hpp"
 
 
 
 class CMap
 {
+    public:
     int sizeX;
     int sizeY;
     WINDOW * mapWin;
     std::vector<std::unique_ptr<CCell>> mapVec;
     std::vector<std::unique_ptr<CAttacker>> DynamicVec;
+    std::vector<std::unique_ptr<CTower>> TowerVec;
     std::vector<unsigned int> EnteranceCords;
     std::vector<unsigned int> ExitCords;
     int enteranceSel;
     int enteranceCnt;
 
-public:
+
     CMap();
     
     void redraw(WINDOW * win);
@@ -33,6 +37,7 @@ public:
     void enteranceUp();
     void enteranceDown();
     void calculatePath( CAttacker * a);
+    void placeTowers();
  
 };
 

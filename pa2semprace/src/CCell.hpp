@@ -13,6 +13,8 @@ class CCell{
     int xCord;
     int yCord;
     int Index;
+    int towerIndex;
+    int AttackerIndex;
     
     std::pair<int,int> pathIndex;
 
