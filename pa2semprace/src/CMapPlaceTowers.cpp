@@ -5,7 +5,7 @@ void CMap::placeTowers(int n){
     std::vector<std::unique_ptr<CAttacker>> ShortestPaths;
     for (unsigned int i = 0; i < enteranceCnt; i++){
          ShortestPaths.push_back(std::make_unique<CMapScout>(EnteranceCords[i]%this->sizeX,EnteranceCords[i] / this->sizeX));
-         calculatePath(ShortestPaths[i].get());
+         calculatePath(ShortestPaths[i].get(),'l');
          
     }
     int shortestPath = ShortestPaths.at(0).get()->path.size();

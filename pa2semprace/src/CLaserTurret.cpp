@@ -1,6 +1,6 @@
 #include "CLaserTurret.hpp"
 
-CLaserTurret::CLaserTurret(int x, int y) : CTower(x,y){};
+CLaserTurret::CLaserTurret(int x, int y) : CTower(x,y){this->damage = 50;};
 
 void CLaserTurret::draw(WINDOW * map){
     start_color();

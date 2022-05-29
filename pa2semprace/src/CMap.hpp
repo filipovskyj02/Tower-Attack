@@ -12,6 +12,7 @@
 #include "CHogRider.hpp"
 #include "CLaserTurret.hpp"
 #include "CMapScout.hpp"
+#include "CTank.hpp"
 
 
 
@@ -37,8 +38,10 @@ class CMap
     void buy(int index);
     void enteranceUp();
     void enteranceDown();
-    void calculatePath( CAttacker * a);
+    void calculatePath( CAttacker * a, char lookingFor);
     void placeTowers(int n);
+    void towerFire();
+    
  
 };
 

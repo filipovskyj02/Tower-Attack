@@ -1,6 +1,4 @@
 make all --print-data-base --no-builtin-variables --no-builtin-rules --question
-make: *** No rule to make target 'all'.  Stop.
-
 # GNU Make 4.2.1
 # Built for x86_64-pc-linux-gnu
 # Copyright (C) 1988-2016 Free Software Foundation, Inc.
@@ -8,7 +6,7 @@ make: *** No rule to make target 'all'.  Stop.
 # This is free software: you are free to change and redistribute it.
 # There is NO WARRANTY, to the extent permitted by law.
 
-# Make data base, printed on Sat May 28 23:58:02 2022
+# Make data base, printed on Sun May 29 01:15:53 2022
 
 # Variables
 
@@ -293,9 +291,9 @@ KDE_SESSION_UID = 1000
 
 # Directories
 
-# . (device 66310, inode 4201052): 60 files, no impossibilities.
+# . (device 66310, inode 4201052): 66 files, no impossibilities.
 
-# 60 files, no impossibilities in 1 directories.
+# 66 files, no impossibilities in 1 directories.
 
 # Implicit Rules
 
@@ -314,14 +312,22 @@ CLaserTurret.cpp:
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
+ 
+make: *** No rule to make target 'all'.  Stop.
+
 
 CGame.o: CGame.cpp CGame.hpp
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
- 
 #  recipe to execute (from 'makefile', line 11):
 	g++ -Wall -pedantic -g -c CGame.cpp CGame.hpp -lncurses
+
+# Not a target:
+CTank.hpp:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
 
 # Not a target:
 CMap.hpp:
@@ -387,6 +393,13 @@ CHogRider.o: CHogRider.cpp CHogRider.hpp
 #  recipe to execute (from 'makefile', line 26):
 	g++ -Wall -pedantic -g -c CHogRider.cpp CHogRider.hpp -lncurses	
 
+CTank.o: CTank.cpp CTank.hpp
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+#  recipe to execute (from 'makefile', line 36):
+	g++ -Wall -pedantic -g -c CTank.cpp CTank.hpp -lncurses	
+
 # Not a target:
 CMapLoadMap.o:
 #  Implicit rule search has not been done.
@@ -396,7 +409,7 @@ CMapLoadMap.o:
 # Not a target:
 makefile:
 #  Implicit rule search has been done.
-#  Last modified 2022-05-28 23:57:47.642257598
+#  Last modified 2022-05-29 01:15:22.269375735
 #  File has been updated.
 #  Successfully updated.
 
@@ -416,6 +429,12 @@ CCellBasic.o: CCellBasic.cpp CCellBasic.hpp
 
 # Not a target:
 CAttacker.cpp:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+CTank.cpp:
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
@@ -491,7 +510,7 @@ clean:
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
-#  recipe to execute (from 'makefile', line 36):
+#  recipe to execute (from 'makefile', line 38):
 	rm *.o *.out *.hpp.gch
 
 # Not a target:
@@ -527,12 +546,12 @@ main.o: main.cpp
 #  recipe to execute (from 'makefile', line 5):
 	g++ -Wall -pedantic -g -c main.cpp -lncurses
 
-output: main.o CMenu.o CGame.o CMap.o CCell.o CCellBasic.o CAttacker.o CHogRider.o CMapLoadMap.o CMapPathFind.o CMapRedraw.o CMapPlaceTowers.o CTower.o CLaserTurret.o CMapScout.o
+output: main.o CMenu.o CGame.o CMap.o CCell.o CCellBasic.o CAttacker.o CHogRider.o CMapLoadMap.o CMapPathFind.o CMapRedraw.o CMapPlaceTowers.o CTower.o CLaserTurret.o CMapScout.o CTank.o
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
 #  recipe to execute (from 'makefile', line 2):
-	g++ -Wall -pedantic -g main.o CMenu.o CGame.o CMap.o CCell.o CCellBasic.o CAttacker.o CHogRider.o CMapLoadMap.o CMapPathFind.o CMapRedraw.o CMapPlaceTowers.o CTower.o CLaserTurret.o CMapScout.o -lncurses
+	g++ -Wall -pedantic -g main.o CMenu.o CGame.o CMap.o CCell.o CCellBasic.o CAttacker.o CHogRider.o CMapLoadMap.o CMapPathFind.o CMapRedraw.o CMapPlaceTowers.o CTower.o CLaserTurret.o CMapScout.o CTank.o -lncurses
 
 # Not a target:
 CTower.hpp:
@@ -590,19 +609,20 @@ CMapPathFind.cpp:
 #  File has not been updated.
 
 # files hash-table stats:
-# Load=46/1024=4%, Rehash=0, Collisions=6/107=6%
+# Load=49/1024=5%, Rehash=0, Collisions=8/114=7%
 # VPATH Search Paths
 
 # No 'vpath' search paths.
 
 # No general ('VPATH' variable) search path.
 
-# strcache buffers: 1 (0) / strings = 68 / storage = 807 B / avg = 11 B
-# current buf: size = 8162 B / used = 807 B / count = 68 / avg = 11 B
+# strcache buffers: 1 (0) / strings = 73 / storage = 867 B / avg = 11 B
+# current buf: size = 8162 B / used = 867 B / count = 73 / avg = 11 B
 
-# strcache performance: lookups = 135 / hit rate = 49%
+ 
+# strcache performance: lookups = 146 / hit rate = 50%
 # hash-table stats:
-# Load=68/8192=1%, Rehash=0, Collisions=3/135=2%
-# Finished Make data base on Sat May 28 23:58:02 2022
+# Load=73/8192=1%, Rehash=0, Collisions=3/146=2%
+# Finished Make data base on Sun May 29 01:15:53 2022
 
  

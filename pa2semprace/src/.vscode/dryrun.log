@@ -1,8 +1,5 @@
 make --dry-run --keep-going --print-directory
 make: Entering directory '/home/kuba/filipj25/pa2semprace/src'
-g++    -c -o CMapPlaceTowers.o CMapPlaceTowers.cpp
- 
-g++ -Wall -pedantic -g -c CMapScout.cpp CMapScout.hpp -lncurses	
-g++ -Wall -pedantic -g main.o CMenu.o CGame.o CMap.o CCell.o CCellBasic.o CAttacker.o CHogRider.o CMapLoadMap.o CMapPathFind.o CMapRedraw.o CMapPlaceTowers.o CTower.o CLaserTurret.o CMapScout.o -lncurses
+g++ -Wall -pedantic -g main.o CMenu.o CGame.o CMap.o CCell.o CCellBasic.o CAttacker.o CHogRider.o CMapLoadMap.o CMapPathFind.o CMapRedraw.o CMapPlaceTowers.o CTower.o CLaserTurret.o CMapScout.o CTank.o -lncurses
 make: Leaving directory '/home/kuba/filipj25/pa2semprace/src'
  

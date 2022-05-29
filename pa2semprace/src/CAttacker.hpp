@@ -17,6 +17,8 @@ class CAttacker{
     std::vector<std::pair<int,int>> path;
     int pathIndex;
     bool left;
+    int moveCnt;
+    int health;
     
     
      

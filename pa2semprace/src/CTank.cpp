@@ -1,41 +1,45 @@
-#include "CHogRider.hpp"
+#include "CTank.hpp"
 
 
 
-CHogRider::CHogRider(int x,int y) : CAttacker('h') {
+CTank::CTank(int x,int y) : CAttacker('h') {
     this->x = x;
     this->y = y;
-    this->runSpeed = 2;
+    this->runSpeed = 1;
     this->damage = 100;
     this->pathIndex = 0;
-    this->health = 100;
+    this->health = 2000;
+    
    
 }
 
-void CHogRider::draw(WINDOW * map){
+void CTank::draw(WINDOW * map){
     start_color();
     init_pair(4, COLOR_BLACK, COLOR_GREEN);
     wattron(map,COLOR_PAIR(4));
-    waddch(map,'h');
+    waddch(map,'J');
     wattroff(map,COLOR_PAIR(4));
     
     
     
  }
- int CHogRider::speed(void){
+ int CTank::speed(void){
      return this -> runSpeed;
  }
- void CHogRider::move(){
+ void CTank::move(){
     if (this->health <= 0) {
         this->left = true;
         return;
     }
+    
     if (pathIndex < path.size()  ){
-     
+        if (this->moveCnt % 5 == 0){
         this->x = this->path.at(pathIndex).first;
         this->y = this->path.at(pathIndex).second;
    
-        pathIndex += this->runSpeed;    
+        pathIndex += this->runSpeed;  
+        }
+        this->moveCnt++;  
     }
     else this->left = true;
     

@@ -13,6 +13,7 @@ class CTower{
     int x;
     int y;
     int damage;
+    int range;
    
     virtual void draw(WINDOW * map) = 0;
     

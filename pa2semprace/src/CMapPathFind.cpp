@@ -4,7 +4,7 @@
 #include "set"
 #include "algorithm"
 
-void CMap::calculatePath( CAttacker * a){
+void CMap::calculatePath( CAttacker * a, char lookingFor){
     std::ofstream off("movesTaken.txt");
 
     int startX = a->x;
@@ -20,7 +20,7 @@ void CMap::calculatePath( CAttacker * a){
             if (VisitedCells.find(ptr->Index) == VisitedCells.end()) {
 
                 
-                if (ptr->C == 'l') {
+                if (ptr->C == lookingFor) {
                     off << "found exit" << '\n';
                     int cycleCnt = 0;
                     while (ptr->pathIndex.second != 0 and cycleCnt < VisitedCells.size()){
@@ -36,7 +36,7 @@ void CMap::calculatePath( CAttacker * a){
 
                 if (ptr->yCord > 0){
                      ptrTmp = mapVec.at(((ptr->Index) - sizeX)).get();
-                    if (ptrTmp->C == ' ' or ptrTmp->C == 'l'){
+                    if (ptrTmp->C == ' ' or ptrTmp->C == lookingFor){
 
                         if (VisitedCells.find(ptrTmp->Index) == VisitedCells.end()){
                             if(!ptrTmp->pathIndex.second) ptrTmp->pathIndex = std::make_pair(ptr->xCord,ptr->yCord);
@@ -46,7 +46,7 @@ void CMap::calculatePath( CAttacker * a){
                 }
                 if (ptr->xCord < sizeX){
                     ptrTmp = mapVec.at(((ptr->Index) + 1)).get();
-                    if (ptrTmp->C == ' ' or ptrTmp->C == 'l'){
+                    if (ptrTmp->C == ' ' or ptrTmp->C == lookingFor){
                         if (VisitedCells.find(ptrTmp->Index)== VisitedCells.end()){
                             if(!ptrTmp->pathIndex.second) ptrTmp->pathIndex = std::make_pair(ptr->xCord,ptr->yCord);
                             cellsToVisit.push(ptrTmp);
@@ -55,7 +55,7 @@ void CMap::calculatePath( CAttacker * a){
                 }
                 if (ptr->yCord < sizeY){
                     ptrTmp = mapVec.at((ptr->Index + sizeX)).get();
-                    if (ptrTmp->C == ' ' or ptrTmp->C == 'l'){
+                    if (ptrTmp->C == ' ' or ptrTmp->C == lookingFor){
                        if (VisitedCells.find(ptrTmp->Index) == VisitedCells.end()){
                             if(!ptrTmp->pathIndex.second) ptrTmp->pathIndex = std::make_pair(ptr->xCord,ptr->yCord);
                             cellsToVisit.push(ptrTmp);
@@ -64,7 +64,7 @@ void CMap::calculatePath( CAttacker * a){
                 }
                 if (ptr->xCord > 1){
                     ptrTmp = mapVec.at((ptr->Index) - 1).get();
-                    if (ptrTmp->C == ' ' or ptrTmp->C == 'l'){
+                    if (ptrTmp->C == ' ' or ptrTmp->C == lookingFor){
                         if (VisitedCells.find(ptrTmp->Index) == VisitedCells.end()){
                             if(!ptrTmp->pathIndex.second) ptrTmp->pathIndex = std::make_pair(ptr->xCord,ptr->yCord);
                             cellsToVisit.push(ptrTmp);

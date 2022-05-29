@@ -44,8 +44,8 @@ CGame::CGame (int collum_height, int row_width){
     unsigned int selected = 0;
     
 
-     std::chrono::time_point<std::chrono::system_clock> t = std::chrono::system_clock::now();
-      this->gameMap.placeTowers(10);
+    std::chrono::time_point<std::chrono::system_clock> t = std::chrono::system_clock::now();
+    this->gameMap.placeTowers(1);
 
 
     while (true) {
@@ -55,6 +55,7 @@ CGame::CGame (int collum_height, int row_width){
 
         
         this->gameMap.redraw(mapBoundary);
+        this->gameMap.towerFire();
         InfoRefresh(InfoBar);
        
         
@@ -74,16 +75,25 @@ CGame::CGame (int collum_height, int row_width){
         choice = wgetch(Menu);
         
         
-        if (choice == KEY_RIGHT) selected = (selected + 1) % eneme.size();
-        else if (choice == KEY_LEFT) selected == 0 ? selected = eneme.size()-1 : selected--;
-        else if (choice == 10){
-            this->gameMap.buy(selected);
-            playerMoney -= stoi(cost[selected]);
-            
+        switch(choice){
+            case KEY_UP: 
+                this->gameMap.enteranceUp();
+                break;
+            case KEY_DOWN: 
+                this->gameMap.enteranceDown();
+                break;
+            case KEY_RIGHT: 
+                selected = (selected + 1) % eneme.size();
+                break;
+            case KEY_LEFT: 
+                selected == 0 ? selected = eneme.size()-1 : selected--;
+                break;
+            case 10: 
+                this->gameMap.buy(selected);
+                playerMoney -= stoi(cost[selected]);
+                break;
 
         }
-        else if (choice == KEY_UP) {this->gameMap.enteranceUp();this->gameMap.redraw(mapBoundary);}
-        else if (choice == KEY_DOWN) {this->gameMap.enteranceDown();this->gameMap.redraw(mapBoundary);}
         
     }
         
