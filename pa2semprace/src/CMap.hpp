@@ -7,12 +7,13 @@
 #include "CCell.hpp"
 #include "memory"
 #include "CCellBasic.hpp"
-#include "CAttacker.hpp"
-#include "CTower.hpp"
+//#include "CAttacker.hpp"
+//#include "CTower.hpp"
 #include "CHogRider.hpp"
 #include "CLaserTurret.hpp"
 #include "CMapScout.hpp"
 #include "CTank.hpp"
+
 
 
 
@@ -29,6 +30,7 @@ class CMap
     std::vector<unsigned int> ExitCords;
     int enteranceSel;
     int enteranceCnt;
+    std::ofstream off;
 
 
     CMap();
@@ -40,7 +42,7 @@ class CMap
     void enteranceDown();
     void calculatePath( CAttacker * a, char lookingFor);
     void placeTowers(int n);
-    void towerFire();
+    void interact();
     
  
 };

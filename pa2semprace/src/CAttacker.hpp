@@ -1,9 +1,9 @@
 #pragma once
 #include "ncurses.h"
 #include "vector"
+#include "CTower.hpp"
 
-//#include "CWall.hpp"
-
+class CTower;
 
 class CAttacker{
     public:
@@ -19,11 +19,16 @@ class CAttacker{
     bool left;
     int moveCnt;
     int health;
+    int fullHealth;
+    int range;
+    int fireFrequency;
+    int shotsCnt;
+    bool dead;
     
     
      
     virtual void draw(WINDOW * map) = 0;
-    virtual int speed(void) = 0;
     virtual void move(void) = 0;
+    virtual void attack(CTower * enemy) = 0;
 
 };

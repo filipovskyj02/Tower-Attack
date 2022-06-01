@@ -4,7 +4,7 @@
 
 CMap::CMap (){
     curs_set(0);
-    
+    off.open("out.txt");
     this->enteranceSel = 0;
     
 }
@@ -38,21 +38,29 @@ void CMap::enteranceUp(){
     
 
 }
-void CMap::towerFire(){
+void CMap::interact(){
+    
+
     for (unsigned int i = 0; i < TowerVec.size(); i++){
         for (unsigned int j = 0; j < DynamicVec.size(); j++){
-            int distanceX = DynamicVec[j].get()->x - TowerVec[i].get()->x;
-            int distanceY = DynamicVec[j].get()->y - TowerVec[i].get()->y;
-            if ((distanceX < TowerVec[i].get()->range/2) and (distanceX > ((TowerVec[i].get()->range/2)*-1)))
-                if ((distanceY < TowerVec[i].get()->range/2) and (distanceY > ((TowerVec[i].get()->range/2)*-1)))
-                    DynamicVec[j].get()->health -=  TowerVec[i].get()->damage;
-        }
+            int attackerRange = DynamicVec[j].get()->range/2;
+            int towerRange = TowerVec[i].get()->range/2;
+
+            int distanceX = TowerVec[i].get()->x - DynamicVec[j].get()->x;
+            int distanceY = TowerVec[i].get()->y - DynamicVec[j].get()->y;
+            if (((distanceX < towerRange) and (distanceX > (towerRange*-1))) and ((distanceY < towerRange) and (distanceY > (towerRange*(-1))))){
+                
+                TowerVec[i].get()->attack(DynamicVec[j].get());
+                
+                }
+            if (((distanceX < attackerRange) and (distanceX > (attackerRange*-1))) and ((distanceY < attackerRange) and (distanceY > (attackerRange*(-1))))){
+                DynamicVec[j].get()->attack(TowerVec[i].get());
+                }
+        }   
 
 
 
     }
-    
-
 
 
 }

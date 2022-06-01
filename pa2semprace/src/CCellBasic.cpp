@@ -9,7 +9,9 @@ CNewLine::CNewLine(int total, int x, int y) : CCell('\n',total,x,y){}
 CWall::CWall(int total, int x, int y) : CCell('x',total,x,y){}
 
 void CAir::draw(WINDOW * map){
-    waddch(map,' ');
+    if (this->healthDraw >= 0) waddch(map,this->healthDraw+'0');
+    else waddch(map,' ');
+    
 }
 
 
@@ -51,6 +53,7 @@ void CNewLine::draw(WINDOW * map){
 
 
 void CWall::draw(WINDOW * map){
-    waddch(map,'x');
+     if (this->healthDraw >= 0) waddch(map,this->healthDraw+'0');
+    else waddch(map,'x');
     
 }

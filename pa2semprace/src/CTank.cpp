@@ -8,30 +8,48 @@ CTank::CTank(int x,int y) : CAttacker('h') {
     this->runSpeed = 1;
     this->damage = 100;
     this->pathIndex = 0;
-    this->health = 2000;
+    this->health = this->fullHealth = 5000;
+    this->moveCnt = 0;
+    this->range = 10;
+    this->fireFrequency = 5;
     
    
 }
 
 void CTank::draw(WINDOW * map){
+    
+    if (this->shotsCnt % this->fireFrequency != 0) this->shotsCnt++;
     start_color();
-    init_pair(4, COLOR_BLACK, COLOR_GREEN);
-    wattron(map,COLOR_PAIR(4));
-    waddch(map,'J');
-    wattroff(map,COLOR_PAIR(4));
+    if (this->shotsCnt % this->fireFrequency == 0) {
+        init_pair(9, COLOR_BLACK, COLOR_GREEN);
+        wattron(map,COLOR_PAIR(9));
+        waddch(map,'J');
+        wattroff(map,COLOR_PAIR(9));
+
+    }
+    else {
+        init_pair(8, COLOR_BLACK, COLOR_YELLOW);
+        wattron(map,COLOR_PAIR(8));
+        waddch(map,'J');
+        wattroff(map,COLOR_PAIR(8));
+        }
+    
+    
+    
+    
+   
+    
     
     
     
  }
- int CTank::speed(void){
-     return this -> runSpeed;
- }
+ 
  void CTank::move(){
     if (this->health <= 0) {
-        this->left = true;
+       
+        this->dead = true;
         return;
     }
-    
     if (pathIndex < path.size()  ){
         if (this->moveCnt % 5 == 0){
         this->x = this->path.at(pathIndex).first;
@@ -43,5 +61,12 @@ void CTank::draw(WINDOW * map){
     }
     else this->left = true;
     
+     
+ }
+ void CTank::attack(CTower * enemy){
+      if (this->shotsCnt % this->fireFrequency == 0) {
+        this->shotsCnt = 1;
+        enemy->health -= this->damage;
+        }
      
  }

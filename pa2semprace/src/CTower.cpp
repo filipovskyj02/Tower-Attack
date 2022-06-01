@@ -3,5 +3,6 @@
 CTower::CTower(int x, int y){
     this->x = x;
     this->y = y;
-    this->range = 6;
+    this->destroyed = false;
+    this->shotsCnt = 1;
 }

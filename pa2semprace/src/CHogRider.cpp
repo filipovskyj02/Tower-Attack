@@ -3,31 +3,47 @@
 
 
 CHogRider::CHogRider(int x,int y) : CAttacker('h') {
-    this->x = x;
+     this->x = x;
     this->y = y;
-    this->runSpeed = 2;
+    this->runSpeed = 1;
     this->damage = 100;
     this->pathIndex = 0;
-    this->health = 100;
+    this->health = this->fullHealth = 500;
+    this->moveCnt = 0;
+    this->range = 2;
+    this->fireFrequency = 1;
+    
    
 }
 
 void CHogRider::draw(WINDOW * map){
+    
+    
+    if (this->shotsCnt % this->fireFrequency != 0) this->shotsCnt++;
     start_color();
-    init_pair(4, COLOR_BLACK, COLOR_GREEN);
-    wattron(map,COLOR_PAIR(4));
-    waddch(map,'h');
-    wattroff(map,COLOR_PAIR(4));
+    if (this->shotsCnt % this->fireFrequency == 0) {
+        init_pair(9, COLOR_BLACK, COLOR_GREEN);
+        wattron(map,COLOR_PAIR(9));
+        waddch(map,'H');
+        wattroff(map,COLOR_PAIR(9));
+
+    }
+    else {
+        init_pair(8, COLOR_BLACK, COLOR_YELLOW);
+        wattron(map,COLOR_PAIR(8));
+        waddch(map,'H');
+        wattroff(map,COLOR_PAIR(8));
+        }
+    
     
     
     
  }
- int CHogRider::speed(void){
-     return this -> runSpeed;
- }
+
  void CHogRider::move(){
     if (this->health <= 0) {
-        this->left = true;
+       
+        this->dead = true;
         return;
     }
     if (pathIndex < path.size()  ){
@@ -39,5 +55,12 @@ void CHogRider::draw(WINDOW * map){
     }
     else this->left = true;
     
+     
+ }
+ void CHogRider::attack(CTower * enemy){
+     if (this->shotsCnt % this->fireFrequency == 0) {
+        this->shotsCnt = 1;
+        enemy->health -= this->damage;
+        }
      
  }

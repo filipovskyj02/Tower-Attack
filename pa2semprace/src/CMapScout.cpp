@@ -11,16 +11,8 @@ CMapScout::CMapScout(int x,int y) : CAttacker('s') {
    
 }
 
-void CMapScout::draw(WINDOW * map){
-    
-    
-    
-    
- }
- int CMapScout::speed(void){
-     return this -> runSpeed;
- }
- void CMapScout::move(){
-    
-     
- }
+void CMapScout::draw(WINDOW * map){}
+ 
+void CMapScout::move(){}
+
+void CMapScout::attack(CTower * enemy){}

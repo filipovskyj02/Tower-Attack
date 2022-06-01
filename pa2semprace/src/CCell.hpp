@@ -4,6 +4,7 @@
 
 
 
+
 class CCell{
     public:
     char C;
@@ -15,6 +16,7 @@ class CCell{
     int Index;
     int towerIndex;
     int AttackerIndex;
+    int healthDraw;
     
     std::pair<int,int> pathIndex;
 

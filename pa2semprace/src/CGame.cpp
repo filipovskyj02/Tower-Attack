@@ -35,7 +35,7 @@ CGame::CGame (int collum_height, int row_width){
    
     InfoRefresh(InfoBar);
     
-    std::vector<std::string> eneme = {"Hog Rider","Wizard","Frog","Pig"};
+    std::vector<std::string> eneme = {"Hog Rider","Tank","Frog","Pig"};
     std::vector<std::string> cost = {"100","500","300","10"};
     int spaceForOne = this->row_width/eneme.size();
     
@@ -45,7 +45,7 @@ CGame::CGame (int collum_height, int row_width){
     
 
     std::chrono::time_point<std::chrono::system_clock> t = std::chrono::system_clock::now();
-    this->gameMap.placeTowers(1);
+    this->gameMap.placeTowers(5);
 
 
     while (true) {
@@ -55,7 +55,7 @@ CGame::CGame (int collum_height, int row_width){
 
         
         this->gameMap.redraw(mapBoundary);
-        this->gameMap.towerFire();
+        this->gameMap.interact();
         InfoRefresh(InfoBar);
        
         
@@ -110,9 +110,9 @@ CGame::CGame (int collum_height, int row_width){
 void CGame::InfoRefresh(WINDOW * InfoBar){
     wclear(InfoBar);
     box(InfoBar,0,0);
-    mvwprintw(InfoBar,(MENU_HEIGHT/2),this->row_width/5 ,"Soldiers Alive: ");
+    mvwprintw(InfoBar,(MENU_HEIGHT/2),this->row_width/5 ,"Alive: ");
     wprintw(InfoBar,std::to_string(this->gameMap.DynamicVec.size()).c_str());
-    mvwprintw(InfoBar,(MENU_HEIGHT/2),(this->row_width/3) * 2 ,"Money: ");
+    mvwprintw(InfoBar,(MENU_HEIGHT/2),(this->row_width/5) * 3 ,"Money: ");
     wprintw(InfoBar,std::to_string(playerMoney).c_str());
     wrefresh(InfoBar);
 }

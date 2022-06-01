@@ -1,9 +1,12 @@
 #pragma once
 #include "ncurses.h"
 #include "vector"
+#include "CAttacker.hpp"
 
 
 
+//fixes circular dependency linker error
+class CAttacker;
 
 class CTower{
     public:
@@ -14,8 +17,14 @@ class CTower{
     int y;
     int damage;
     int range;
+    int fireFrequency;
+    int shotsCnt;
+    int health;
+    int fullHealth;
+    bool destroyed;
    
     virtual void draw(WINDOW * map) = 0;
+    virtual void attack(CAttacker * enemy) = 0;
     
 
 };

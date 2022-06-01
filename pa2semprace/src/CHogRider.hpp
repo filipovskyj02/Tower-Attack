@@ -9,6 +9,6 @@ class CHogRider : public CAttacker
     CHogRider(int x, int y);
     
     virtual void draw(WINDOW * map);
-    virtual int speed(void);
     virtual void move(void);
+    virtual void attack(CTower * enemy);
 };

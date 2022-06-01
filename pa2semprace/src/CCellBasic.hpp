@@ -1,6 +1,7 @@
 #pragma once
 #include "ncurses.h"
 #include "CCell.hpp"
+#include "iostream"
 
 
 class CAir : public CCell
