@@ -13,6 +13,11 @@
 #include "CLaserTurret.hpp"
 #include "CMapScout.hpp"
 #include "CTank.hpp"
+#define TOWER_LETTER 'T'
+#define EXIT_LETTER 'e'
+#define ENTERANCE_LETTER 'E'
+#define AIR_LETTER ' '
+#define WALL_LETTER 'x'
 
 
 

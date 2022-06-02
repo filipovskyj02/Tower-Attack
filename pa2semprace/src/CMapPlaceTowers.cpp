@@ -5,7 +5,7 @@ void CMap::placeTowers(int n){
     std::vector<std::unique_ptr<CAttacker>> ShortestPaths;
     for (unsigned int i = 0; i < enteranceCnt; i++){
          ShortestPaths.push_back(std::make_unique<CMapScout>(EnteranceCords[i]%this->sizeX,EnteranceCords[i] / this->sizeX));
-         calculatePath(ShortestPaths[i].get(),'l');
+         calculatePath(ShortestPaths[i].get(),EXIT_LETTER);
          
     }
     int shortestPath = ShortestPaths.at(0).get()->path.size();
@@ -16,7 +16,7 @@ void CMap::placeTowers(int n){
     for (int k = 0; k < n; k++){
         auto f = ShortestPaths[k%enteranceCnt].get()->path[shortestPath*k + shortestPath];
         TowerVec.push_back(std::make_unique<CLaserTurret>(f.first,f.second));
-        mapVec[(f.first) + (f.second)*sizeX].get()->C = 'T';
+        mapVec[(f.first) + (f.second)*sizeX].get()->C = TOWER_LETTER;
 
 
     }

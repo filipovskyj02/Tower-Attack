@@ -11,4 +11,5 @@ class CTank : public CAttacker
     virtual void draw(WINDOW * map);
     virtual void move(void);
     virtual void attack(CTower * enemy);
+    virtual char whatToFind();
 };

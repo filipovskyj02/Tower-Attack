@@ -30,5 +30,6 @@ class CAttacker{
     virtual void draw(WINDOW * map) = 0;
     virtual void move(void) = 0;
     virtual void attack(CTower * enemy) = 0;
+    virtual char whatToFind() = 0;
 
 };

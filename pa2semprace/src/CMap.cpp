@@ -20,7 +20,8 @@ void CMap::buy (int index){
             break;
     }
     
-    calculatePath(DynamicVec.back().get(),'l');
+    this->calculatePath(DynamicVec.back().get(),DynamicVec.back().get()->whatToFind());
+    if (DynamicVec.back().get()->path.empty())  this->calculatePath(DynamicVec.back().get(),TOWER_LETTER);
     
 
 }
@@ -55,6 +56,18 @@ void CMap::interact(){
                 }
             if (((distanceX < attackerRange) and (distanceX > (attackerRange*-1))) and ((distanceY < attackerRange) and (distanceY > (attackerRange*(-1))))){
                 DynamicVec[j].get()->attack(TowerVec[i].get());
+                if (TowerVec[i].get()->health <= 0) {
+                    TowerVec[i].get()->C = AIR_LETTER;
+                    mapVec[TowerVec[i].get()->x + (TowerVec[i].get()->y*sizeX)].get()->C = AIR_LETTER;
+                    TowerVec[i].get()->destroyed++;
+                    for (unsigned int p = 0; p < DynamicVec.size(); p++){
+                        if (DynamicVec[p].get()->whatToFind() == TOWER_LETTER)
+                        calculatePath(DynamicVec[p].get(),DynamicVec[p].get()->whatToFind());
+                    }
+                    }
+                        
+                    
+                    }
                 }
         }   
 
@@ -63,7 +76,7 @@ void CMap::interact(){
     }
 
 
-}
+
 
 
 

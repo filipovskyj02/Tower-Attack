@@ -34,13 +34,7 @@ void CTank::draw(WINDOW * map){
         wattroff(map,COLOR_PAIR(8));
         }
     
-    
-    
-    
-   
-    
-    
-    
+
     
  }
  
@@ -55,11 +49,11 @@ void CTank::draw(WINDOW * map){
         this->x = this->path.at(pathIndex).first;
         this->y = this->path.at(pathIndex).second;
    
-        pathIndex += this->runSpeed;  
+        this->pathIndex += this->runSpeed;  
         }
         this->moveCnt++;  
     }
-    else this->left = true;
+    
     
      
  }
@@ -70,3 +64,9 @@ void CTank::draw(WINDOW * map){
         }
      
  }
+
+ char CTank::whatToFind(){
+         return 'T';
+
+
+}

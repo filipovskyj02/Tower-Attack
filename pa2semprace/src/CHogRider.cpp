@@ -10,7 +10,7 @@ CHogRider::CHogRider(int x,int y) : CAttacker('h') {
     this->pathIndex = 0;
     this->health = this->fullHealth = 500;
     this->moveCnt = 0;
-    this->range = 2;
+    this->range = 4;
     this->fireFrequency = 1;
     
    
@@ -63,4 +63,11 @@ void CHogRider::draw(WINDOW * map){
         enemy->health -= this->damage;
         }
      
+     
  }
+
+ char CHogRider::whatToFind(){
+         return 'l';
+
+
+}

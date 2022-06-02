@@ -11,6 +11,7 @@ void CMap::redraw (WINDOW * mapWin){
         mapVec[j].get()->towerIndex = -10;
         mapVec[j].get()->AttackerIndex = -10;
         mapVec[j].get()->healthDraw = -10;
+       
     }
     for (unsigned int i = 0; i < DynamicVec.size(); i++){
         auto ptr = mapVec[((DynamicVec[i].get()->y) * sizeX) + DynamicVec[i].get()->x].get();
