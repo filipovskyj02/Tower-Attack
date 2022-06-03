@@ -3,8 +3,8 @@
 
 
 CAir::CAir(int total, int x, int y) : CCell(' ',total,x,y){}
-CEnterance::CEnterance(int total, int x, int y) : CCell('e',total,x,y){}
-CExit::CExit(int total, int x, int y) : CCell('l',total,x,y){}
+CEnterance::CEnterance(int total, int x, int y) : CCell('E',total,x,y){}
+CExit::CExit(int total, int x, int y) : CCell('e',total,x,y){}
 CNewLine::CNewLine(int total, int x, int y) : CCell('\n',total,x,y){}
 CWall::CWall(int total, int x, int y) : CCell('x',total,x,y){}
 

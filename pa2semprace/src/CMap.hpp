@@ -36,10 +36,12 @@ class CMap
     int enteranceSel;
     int enteranceCnt;
     std::ofstream off;
+    int mapChoice;
+    bool over;
 
-
-    CMap();
     
+    CMap(int mapChoice);
+    CMap(){};
     void redraw(WINDOW * win);
     void loadMap(int & loadedX, int  & loadedY);
     void buy(int index);
@@ -48,6 +50,8 @@ class CMap
     void calculatePath( CAttacker * a, char lookingFor);
     void placeTowers(int n);
     void interact();
+    void winScreen(WINDOW * win);
+    void LoseScreen(WINDOW * win);
     
  
 };

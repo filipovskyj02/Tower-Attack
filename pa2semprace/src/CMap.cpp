@@ -2,11 +2,34 @@
 #include "CMap.hpp"
 
 
-CMap::CMap (){
+CMap::CMap (int mapChoice){
     curs_set(0);
     off.open("out.txt");
     this->enteranceSel = 0;
+    this->mapChoice = mapChoice;
+    this->over = false;
     
+}
+void CMap::LoseScreen(WINDOW * win){
+    wclear(win);
+    wrefresh(win);
+    box(win,0,0);
+    mvwprintw(win,sizeY/2,sizeX/2 - 4,"You Lose !");
+    this->over++;
+    wgetch(win);
+
+
+}
+void CMap::winScreen(WINDOW * win){
+    wclear(win);
+    wrefresh(win);
+    box(win,0,0);
+    mvwprintw(win,sizeY/2,sizeX/2 - 4,"You Win !");
+    this->over++;
+    wgetch(win);
+
+
+
 }
 
 

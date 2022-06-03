@@ -10,7 +10,7 @@ class CMapScout : public CAttacker
     virtual void draw(WINDOW * map);
     virtual void move(void);
     virtual void attack(CTower * ememy);
-    virtual char CMapScout::whatToFind();
+    virtual char whatToFind();
          
 
 

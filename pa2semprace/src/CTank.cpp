@@ -6,11 +6,11 @@ CTank::CTank(int x,int y) : CAttacker('h') {
     this->x = x;
     this->y = y;
     this->runSpeed = 1;
-    this->damage = 100;
+    this->damage = 30;
     this->pathIndex = 0;
     this->health = this->fullHealth = 5000;
     this->moveCnt = 0;
-    this->range = 10;
+    this->range = 100;
     this->fireFrequency = 5;
     
    
@@ -23,14 +23,14 @@ void CTank::draw(WINDOW * map){
     if (this->shotsCnt % this->fireFrequency == 0) {
         init_pair(9, COLOR_BLACK, COLOR_GREEN);
         wattron(map,COLOR_PAIR(9));
-        waddch(map,'J');
+        waddch(map,'t');
         wattroff(map,COLOR_PAIR(9));
 
     }
     else {
         init_pair(8, COLOR_BLACK, COLOR_YELLOW);
         wattron(map,COLOR_PAIR(8));
-        waddch(map,'J');
+        waddch(map,'t');
         wattroff(map,COLOR_PAIR(8));
         }
     
@@ -53,6 +53,7 @@ void CTank::draw(WINDOW * map){
         }
         this->moveCnt++;  
     }
+    
     
     
      

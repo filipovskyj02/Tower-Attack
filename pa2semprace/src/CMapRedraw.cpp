@@ -18,7 +18,7 @@ void CMap::redraw (WINDOW * mapWin){
         ptr->AttackerIndex = i;
         auto ptr1 = mapVec[((DynamicVec[i].get()->y-1) * sizeX) + DynamicVec[i].get()->x].get();
         ptr1->healthDraw = (DynamicVec[i].get()->health*10)/(DynamicVec[i].get()->fullHealth+1);
-          
+        if (DynamicVec[i].get()->x == sizeX-1) DynamicVec[i].get()->left++;
 
     }
 

@@ -24,14 +24,14 @@ void CHogRider::draw(WINDOW * map){
     if (this->shotsCnt % this->fireFrequency == 0) {
         init_pair(9, COLOR_BLACK, COLOR_GREEN);
         wattron(map,COLOR_PAIR(9));
-        waddch(map,'H');
+        waddch(map,'h');
         wattroff(map,COLOR_PAIR(9));
 
     }
     else {
         init_pair(8, COLOR_BLACK, COLOR_YELLOW);
         wattron(map,COLOR_PAIR(8));
-        waddch(map,'H');
+        waddch(map,'h');
         wattroff(map,COLOR_PAIR(8));
         }
     

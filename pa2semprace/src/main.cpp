@@ -3,9 +3,12 @@
 
 int main () {
 
-CMenu test(30,30);
+CMenu test;
 
-if (test.contin() == 1)CGame Gem(22,30) ;
-else printf("Konec");
-return 0;
+while (test.exit != true) {
+    test.draw(30,30);
+    if (test.contin() == true)
+    CGame Gem(22,30,test.mapChoice);
+    
+}
 }

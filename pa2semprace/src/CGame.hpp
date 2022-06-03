@@ -22,8 +22,10 @@ class CGame
     int playerMoney;
     int ScreenX;
     int ScreenY;
+    int mapChoice;
 public:
-    CGame(int collum_height, int row_width);
+    CGame();
+    CGame(int collum_height, int row_width, int mapChoice);
     void InfoRefresh(WINDOW * InfoBar);
     void redraw(WINDOW * mapWin);
    

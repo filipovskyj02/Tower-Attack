@@ -1,11 +1,11 @@
 #include "CGame.hpp"
 
-CGame::CGame (int collum_height, int row_width){
+CGame::CGame (int collum_height, int row_width,int mapChoice){
     curs_set(0);
     
-
+    this->mapChoice = mapChoice;
     isOver = false;
-    playerMoney = 20000;
+    playerMoney = 2000;
     
     getmaxyx(stdscr,ScreenY,ScreenX);
     clear();
@@ -17,7 +17,7 @@ CGame::CGame (int collum_height, int row_width){
    //wbkgd(Menu, COLOR_PAIR(1));
     
     
-    this->gameMap = CMap();
+    this->gameMap = CMap(mapChoice);
     this->gameMap.loadMap(this->row_width,this->collum_height);
    
     WINDOW * mapBoundary = newwin(this->collum_height,this->row_width,(ScreenY/2)-this->collum_height/2,(ScreenX/2)-this->row_width/2);
@@ -48,12 +48,12 @@ CGame::CGame (int collum_height, int row_width){
     this->gameMap.placeTowers(5);
 
 
-    while (true) {
+    while (!this->gameMap.over) {
        
          t += std::chrono::milliseconds(80);
         std::this_thread::sleep_until(t);
 
-        
+        if(!this->gameMap.TowerVec.size())this->gameMap.winScreen(mapBoundary);
         this->gameMap.redraw(mapBoundary);
         this->gameMap.interact();
         InfoRefresh(InfoBar);
@@ -89,18 +89,26 @@ CGame::CGame (int collum_height, int row_width){
                 selected == 0 ? selected = eneme.size()-1 : selected--;
                 break;
             case 10: 
+                if (playerMoney >= stoi(cost[selected])){
                 this->gameMap.buy(selected);
                 playerMoney -= stoi(cost[selected]);
+                }
+                else this->gameMap.LoseScreen(mapBoundary);
                 break;
+            
 
         }
+        if (choice == 27)break;
         
     }
         
 
      
         
-    int l = wgetch(mapBoundary); 
+    wclear(mapBoundary);
+    wclear(InfoBar);
+    wclear(Menu);
+    wrefresh(mapBoundary);
     endwin();
     clear();
     
