@@ -53,7 +53,7 @@ void CHogRider::draw(WINDOW * map){
    
         pathIndex += this->runSpeed;    
     }
-    else this->left = true;
+    
     
      
  }

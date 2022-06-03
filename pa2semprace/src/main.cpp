@@ -11,4 +11,5 @@ while (test.exit != true) {
     CGame Gem(22,30,test.mapChoice);
     
 }
+return EXIT_SUCCESS;
 }

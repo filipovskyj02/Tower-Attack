@@ -2,7 +2,7 @@
 
 CGame::CGame (int collum_height, int row_width,int mapChoice){
     curs_set(0);
-    
+    this->waiting = false;
     this->mapChoice = mapChoice;
     isOver = false;
     playerMoney = 2000;
@@ -50,6 +50,7 @@ CGame::CGame (int collum_height, int row_width,int mapChoice){
 
     while (!this->gameMap.over) {
        
+        
          t += std::chrono::milliseconds(80);
         std::this_thread::sleep_until(t);
 
@@ -98,7 +99,12 @@ CGame::CGame (int collum_height, int row_width,int mapChoice){
             
 
         }
-        if (choice == 27)break;
+        if (choice == 27){
+            if (escOptions(mapBoundary)== false) break;
+            t = std::chrono::system_clock::now();
+            
+
+        }
         
     }
         
@@ -118,10 +124,59 @@ CGame::CGame (int collum_height, int row_width,int mapChoice){
 void CGame::InfoRefresh(WINDOW * InfoBar){
     wclear(InfoBar);
     box(InfoBar,0,0);
-    mvwprintw(InfoBar,(MENU_HEIGHT/2),this->row_width/5 ,"Alive: ");
+    mvwprintw(InfoBar,MENU_HEIGHT-2,this->row_width/5 ,"Alive: ");
     wprintw(InfoBar,std::to_string(this->gameMap.DynamicVec.size()).c_str());
-    mvwprintw(InfoBar,(MENU_HEIGHT/2),(this->row_width/5) * 3 ,"Money: ");
+    mvwprintw(InfoBar,MENU_HEIGHT-2,(this->row_width/5) * 3 ,"Money: ");
     wprintw(InfoBar,std::to_string(playerMoney).c_str());
+    mvwprintw(InfoBar,(MENU_HEIGHT/3),(this->row_width/2 -10)  ,"Attackers Exited: ");
+    wprintw(InfoBar,std::to_string(this->gameMap.attackersLeft).c_str());
     wrefresh(InfoBar);
 }
+
+bool CGame::escOptions(WINDOW * win){
+    this->waiting = true;
+    wclear(win);
+    wrefresh(win);
+    box(win,0,0);
+    
+    std::vector<std::string> MenuChoices = {"Continue","Save Game","Exit"};
+    keypad(win,true);
+    int choice = 0;
+    unsigned int selected = 0;
+    int spaceForOne = collum_height/MenuChoices.size();
+    while (choice != 10){
+    for (unsigned int i = 0; i < MenuChoices.size(); i++){
+            
+            int halfLen = MenuChoices[i].length()/2;
+
+            if (i == selected) wattron(win,A_REVERSE);
+            mvwprintw(win,(collum_height/spaceForOne) * (i+1),row_width/2 - 5,MenuChoices[i].c_str());
+            
+            wattroff(win,A_REVERSE);
+            
+           
+        }
+        
+    choice = wgetch(win);
+    switch (choice){
+         case KEY_DOWN: 
+                selected = (selected + 1) % MenuChoices.size();
+                break;
+            case KEY_UP: 
+                selected == 0 ? selected = MenuChoices.size()-1 : selected--;
+                break;
+            case 10: 
+                if (selected == 0)return true;
+                else if (selected == 1)return true; 
+                else if (selected == 2) return false;
+                
+
+    }
+
+    }
+        
+
+ }
+    
+
 

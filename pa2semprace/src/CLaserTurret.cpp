@@ -3,7 +3,7 @@
 CLaserTurret::CLaserTurret(int x, int y) : CTower(x,y){
     this->damage = 10;
     this->fireFrequency = 5;
-    this->health = this->fullHealth = 500;
+    this->health = this->fullHealth = 2000;
     this->range = 100;
     };
 

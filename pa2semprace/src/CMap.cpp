@@ -8,6 +8,7 @@ CMap::CMap (int mapChoice){
     this->enteranceSel = 0;
     this->mapChoice = mapChoice;
     this->over = false;
+    this->attackersLeft = 0;
     
 }
 void CMap::LoseScreen(WINDOW * win){
@@ -27,8 +28,6 @@ void CMap::winScreen(WINDOW * win){
     mvwprintw(win,sizeY/2,sizeX/2 - 4,"You Win !");
     this->over++;
     wgetch(win);
-
-
 
 }
 
@@ -75,6 +74,7 @@ void CMap::interact(){
             if (((distanceX < towerRange) and (distanceX > (towerRange*-1))) and ((distanceY < towerRange) and (distanceY > (towerRange*(-1))))){
                 
                 TowerVec[i].get()->attack(DynamicVec[j].get());
+                off << DynamicVec[j].get()->health << std::endl;
                 
                 }
             if (((distanceX < attackerRange) and (distanceX > (attackerRange*-1))) and ((distanceY < attackerRange) and (distanceY > (attackerRange*(-1))))){
@@ -84,7 +84,7 @@ void CMap::interact(){
                     mapVec[TowerVec[i].get()->x + (TowerVec[i].get()->y*sizeX)].get()->C = AIR_LETTER;
                     TowerVec[i].get()->destroyed++;
                     for (unsigned int p = 0; p < DynamicVec.size(); p++){
-                        if (DynamicVec[p].get()->whatToFind() == TOWER_LETTER)
+                        if (DynamicVec[p].get()->path.back().first != sizeX-1)
                         calculatePath(DynamicVec[p].get(),DynamicVec[p].get()->whatToFind());
                     }
                     }

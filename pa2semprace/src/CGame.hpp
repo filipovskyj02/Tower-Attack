@@ -23,11 +23,13 @@ class CGame
     int ScreenX;
     int ScreenY;
     int mapChoice;
+    bool waiting;
 public:
     CGame();
     CGame(int collum_height, int row_width, int mapChoice);
     void InfoRefresh(WINDOW * InfoBar);
     void redraw(WINDOW * mapWin);
+    bool escOptions(WINDOW * mapWin);
    
     
     

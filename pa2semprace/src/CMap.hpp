@@ -38,6 +38,7 @@ class CMap
     std::ofstream off;
     int mapChoice;
     bool over;
+    int attackersLeft;
 
     
     CMap(int mapChoice);
