@@ -8,5 +8,6 @@ CAttacker::CAttacker (char c){
     dead = false;
     this->shotsCnt = 1;
     
+    
 
 }

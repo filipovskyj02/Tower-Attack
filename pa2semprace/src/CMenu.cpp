@@ -15,7 +15,6 @@ void CMenu::draw(int p_width,int p_height){
     refresh();
     this->maxW = p_width * WIDTH_MULTI;
     this->maxH = p_height;
-    std::vector<std::string> MenuChoices = {"New  Game","Load Game","Help","Quit"};
     int WinMaxY,WinMaxX;
     
     getmaxyx(stdscr,WinMaxY,WinMaxX);

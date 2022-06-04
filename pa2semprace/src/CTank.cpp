@@ -12,6 +12,7 @@ CTank::CTank(int x,int y,AttackerConf & a ) : CAttacker('h') {
     this->moveCnt = 0;
     this->range = a.range;
     this->fireFrequency = a.freq;
+    this->attackerIndex = 1;
     
     
    

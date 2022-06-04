@@ -7,6 +7,7 @@ CLaserTurret::CLaserTurret(int x, int y, TowerConf & a) : CTower(x,y){
     this->health = this->fullHealth = a.hp;
     this->range = a.range;
     this->fireFrequency = a.freq;
+    this->towerIndex = 0;
     };
 
 void CLaserTurret::draw(WINDOW * map){

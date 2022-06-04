@@ -8,7 +8,7 @@ make: *** No rule to make target 'all'.  Stop.
 # This is free software: you are free to change and redistribute it.
 # There is NO WARRANTY, to the extent permitted by law.
 
-# Make data base, printed on Sat Jun  4 20:29:31 2022
+# Make data base, printed on Sat Jun  4 22:46:34 2022
 
 # Variables
 
@@ -293,10 +293,9 @@ KDE_SESSION_UID = 1000
 
 # Directories
 
- 
-# . (device 66309, inode 4201052): 38 files, no impossibilities.
+# . (device 66309, inode 4201052): 71 files, no impossibilities.
 
-# 38 files, no impossibilities in 1 directories.
+# 71 files, no impossibilities in 1 directories.
 
 # Implicit Rules
 
@@ -316,7 +315,7 @@ CLaserTurret.cpp:
 #  Modification time never checked.
 #  File has not been updated.
 
-CGame.o: CGame.cpp CGameConfParse.cpp CGame.hpp
+CGame.o: CGame.cpp CGameConfParse.cpp CGameSave.cpp CGame.hpp
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
@@ -415,7 +414,7 @@ CMapLoadMap.o:
 # Not a target:
 makefile:
 #  Implicit rule search has been done.
-#  Last modified 2022-06-03 20:50:11.332453571
+#  Last modified 2022-06-04 22:44:30.932368044
 #  File has been updated.
 #  Successfully updated.
 
@@ -449,6 +448,7 @@ CAttacker.cpp:
 CGameConfParse.cpp:
 #  Implicit rule search has not been done.
 #  Modification time never checked.
+ 
 #  File has not been updated.
 
 # Not a target:
@@ -502,7 +502,6 @@ CMapPlaceTowers.cpp:
 
 # Not a target:
 CGame.cpp:
- 
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
@@ -553,6 +552,12 @@ CCell.o: CCell.cpp CCell.hpp
 	g++ -Wall -pedantic -g -c CCell.cpp CCell.hpp -lncurses	
 
 # Not a target:
+CGameSave.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
 CGame.hpp:
 #  Implicit rule search has not been done.
 #  Modification time never checked.
@@ -578,12 +583,12 @@ main.o: main.cpp
 #  recipe to execute (from 'makefile', line 5):
 	g++ -Wall -pedantic -g -c main.cpp -lncurses
 
-output: main.o CMenu.o CGame.o CMap.o CCell.o CCellBasic.o CAttacker.o CHogRider.o CMapLoadMap.o CMapPathFind.o CMapRedraw.o CMapPlaceTowers.o CTower.o CLaserTurret.o CMapScout.o CTank.o CGameConfParse.o SConf.o
+output: main.o CMenu.o CGame.o CMap.o CCell.o CCellBasic.o CAttacker.o CHogRider.o CMapLoadMap.o CMapPathFind.o CMapRedraw.o CMapPlaceTowers.o CTower.o CLaserTurret.o CMapScout.o CTank.o CGameConfParse.o SConf.o CGameSave.o
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
 #  recipe to execute (from 'makefile', line 2):
-	g++ -Wall -pedantic -g main.o CMenu.o CGame.o CMap.o CCell.o CCellBasic.o CAttacker.o CHogRider.o CMapLoadMap.o CMapPathFind.o CMapRedraw.o CMapPlaceTowers.o CTower.o CLaserTurret.o CMapScout.o CTank.o CGameConfParse.o SConf.o -lncurses
+	g++ -Wall -pedantic -g main.o CMenu.o CGame.o CMap.o CCell.o CCellBasic.o CAttacker.o CHogRider.o CMapLoadMap.o CMapPathFind.o CMapRedraw.o CMapPlaceTowers.o CTower.o CLaserTurret.o CMapScout.o CTank.o CGameConfParse.o SConf.o CGameSave.o -lncurses
 
 # Not a target:
 CTower.hpp:
@@ -621,6 +626,12 @@ CCellBasic.cpp:
 #  Modification time never checked.
 #  File has not been updated.
 
+# Not a target:
+CGameSave.cpp:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
 CMenu.o: CMenu.cpp CMenu.hpp
 #  Implicit rule search has not been done.
 #  Modification time never checked.
@@ -641,19 +652,19 @@ CMapPathFind.cpp:
 #  File has not been updated.
 
 # files hash-table stats:
-# Load=54/1024=5%, Rehash=0, Collisions=8/125=6%
+# Load=56/1024=5%, Rehash=0, Collisions=10/129=8%
 # VPATH Search Paths
 
 # No 'vpath' search paths.
 
 # No general ('VPATH' variable) search path.
 
-# strcache buffers: 1 (0) / strings = 63 / storage = 723 B / avg = 11 B
-# current buf: size = 8162 B / used = 723 B / count = 63 / avg = 11 B
+# strcache buffers: 1 (0) / strings = 78 / storage = 947 B / avg = 12 B
+# current buf: size = 8162 B / used = 947 B / count = 78 / avg = 12 B
 
-# strcache performance: lookups = 125 / hit rate = 49%
+# strcache performance: lookups = 160 / hit rate = 51%
 # hash-table stats:
-# Load=63/8192=1%, Rehash=0, Collisions=3/125=2%
-# Finished Make data base on Sat Jun  4 20:29:31 2022
+# Load=78/8192=1%, Rehash=0, Collisions=3/160=2%
+# Finished Make data base on Sat Jun  4 22:46:34 2022
 
  

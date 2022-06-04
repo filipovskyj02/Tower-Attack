@@ -32,6 +32,8 @@ class CGame
     int cheapest;
     int minHealthToWin;
     int minDmgToWin;
+    int confChoice;
+    int saveChoice;
 
 
 public:
@@ -39,8 +41,9 @@ public:
     CGame(int mapChoice, int confChoice);
     void InfoRefresh(WINDOW * InfoBar);
     void redraw(WINDOW * mapWin);
-    bool escOptions(WINDOW * mapWin);
+    void Options(WINDOW * MenuWin, std::vector<std::string> & MenuChoices,std::string & Text, int & selected);
     bool parseFile(int confChoice);
+    void saveGame();
     std::string readTillSpace(std::string & in, int & index, std::ofstream & of);
     std::vector<std::pair<std::string,std::string>> NameCost;
     std::vector<AttackerConf> att;

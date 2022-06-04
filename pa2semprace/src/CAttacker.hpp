@@ -23,6 +23,7 @@ class CAttacker{
     int range;
     int fireFrequency;
     int shotsCnt;
+    int attackerIndex;
     bool dead;
     
     

@@ -22,6 +22,7 @@ class CTower{
     int health;
     int fullHealth;
     bool destroyed;
+    int towerIndex;
    
     virtual void draw(WINDOW * map) = 0;
     virtual void attack(CAttacker * enemy) = 0;
