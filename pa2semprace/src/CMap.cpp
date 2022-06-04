@@ -33,12 +33,12 @@ void CMap::winScreen(WINDOW * win){
 
 
 
-void CMap::buy (int index){
+void CMap::buy (int index, AttackerConf & a){
    
     switch (index){
-        case 0: DynamicVec.push_back(std::make_unique<CHogRider>(EnteranceCords[this->enteranceSel]%this->sizeX,EnteranceCords[this->enteranceSel] / this->sizeX));
+        case 0: DynamicVec.push_back(std::make_unique<CHogRider>(EnteranceCords[this->enteranceSel]%this->sizeX,EnteranceCords[this->enteranceSel] / this->sizeX, a));
             break;
-        case 1: DynamicVec.push_back(std::make_unique<CTank>(EnteranceCords[this->enteranceSel]%this->sizeX,EnteranceCords[this->enteranceSel] / this->sizeX));
+        case 1: DynamicVec.push_back(std::make_unique<CTank>(EnteranceCords[this->enteranceSel]%this->sizeX,EnteranceCords[this->enteranceSel] / this->sizeX, a));
             break;
     }
     

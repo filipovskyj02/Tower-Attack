@@ -5,6 +5,9 @@
 #include "CMap.hpp"
 #include "chrono"
 #include "thread"
+#include "sstream"
+#include "string"
+#include "SConf.hpp"
 
 #define MENU_ITEM_DISTANCE 2
 
@@ -30,6 +33,13 @@ public:
     void InfoRefresh(WINDOW * InfoBar);
     void redraw(WINDOW * mapWin);
     bool escOptions(WINDOW * mapWin);
+    void parseFile();
+    std::string readTillSpace(std::string & in, int & index, std::ofstream & of);
+    std::vector<std::pair<std::string,std::string>> NameCost;
+    std::vector<AttackerConf> att;
+    std::vector<TowerConf> tww;
+
+
    
     
     

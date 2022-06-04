@@ -13,6 +13,7 @@
 #include "CLaserTurret.hpp"
 #include "CMapScout.hpp"
 #include "CTank.hpp"
+
 #define TOWER_LETTER 'T'
 #define EXIT_LETTER 'e'
 #define ENTERANCE_LETTER 'E'
@@ -39,20 +40,22 @@ class CMap
     int mapChoice;
     bool over;
     int attackersLeft;
+    
 
     
     CMap(int mapChoice);
     CMap(){};
     void redraw(WINDOW * win);
     void loadMap(int & loadedX, int  & loadedY);
-    void buy(int index);
+    void buy(int index, AttackerConf & a);
     void enteranceUp();
     void enteranceDown();
     void calculatePath( CAttacker * a, char lookingFor);
-    void placeTowers(int n);
+    void placeTowers(int n, std::vector<TowerConf> & a);
     void interact();
     void winScreen(WINDOW * win);
     void LoseScreen(WINDOW * win);
+    
     
  
 };

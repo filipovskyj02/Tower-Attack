@@ -1,7 +1,7 @@
 #pragma once
 #include "CMap.hpp"
 
-void CMap::placeTowers(int n){
+void CMap::placeTowers(int n, std::vector<TowerConf>& a){
     std::vector<std::unique_ptr<CAttacker>> ShortestPaths;
     off << "Enterance cnt : " << enteranceCnt << std::endl;
     for (unsigned int i = 0; i < enteranceCnt; i++){
@@ -16,7 +16,7 @@ void CMap::placeTowers(int n){
     shortestPath = shortestPath/(n+1);
     for (int k = 0; k < n; k++){
         auto f = ShortestPaths[k%enteranceCnt].get()->path[shortestPath*k + shortestPath];
-        TowerVec.push_back(std::make_unique<CLaserTurret>(f.first,f.second));
+        TowerVec.push_back(std::make_unique<CLaserTurret>(f.first,f.second, a[0]));
         mapVec[(f.first) + (f.second)*sizeX].get()->C = TOWER_LETTER;
 
 

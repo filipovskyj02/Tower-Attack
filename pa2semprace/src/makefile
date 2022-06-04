@@ -1,5 +1,5 @@
-output: main.o CMenu.o CGame.o CMap.o CCell.o CCellBasic.o CAttacker.o CHogRider.o CMapLoadMap.o CMapPathFind.o CMapRedraw.o CMapPlaceTowers.o CTower.o CLaserTurret.o CMapScout.o CTank.o
-	g++ -Wall -pedantic -g main.o CMenu.o CGame.o CMap.o CCell.o CCellBasic.o CAttacker.o CHogRider.o CMapLoadMap.o CMapPathFind.o CMapRedraw.o CMapPlaceTowers.o CTower.o CLaserTurret.o CMapScout.o CTank.o -lncurses
+output: main.o CMenu.o CGame.o CMap.o CCell.o CCellBasic.o CAttacker.o CHogRider.o CMapLoadMap.o CMapPathFind.o CMapRedraw.o CMapPlaceTowers.o CTower.o CLaserTurret.o CMapScout.o CTank.o CGameConfParse.o SConf.o
+	g++ -Wall -pedantic -g main.o CMenu.o CGame.o CMap.o CCell.o CCellBasic.o CAttacker.o CHogRider.o CMapLoadMap.o CMapPathFind.o CMapRedraw.o CMapPlaceTowers.o CTower.o CLaserTurret.o CMapScout.o CTank.o CGameConfParse.o SConf.o -lncurses
 
 main.o: main.cpp
 	g++ -Wall -pedantic -g -c main.cpp -lncurses
@@ -7,7 +7,7 @@ main.o: main.cpp
 CMenu.o: CMenu.cpp CMenu.hpp
 	g++ -Wall -pedantic -g -c CMenu.cpp CMenu.hpp -lncurses
 
-CGame.o: CGame.cpp CGame.hpp
+CGame.o: CGame.cpp CGameConfParse.cpp CGame.hpp
 	g++ -Wall -pedantic -g -c CGame.cpp CGame.hpp -lncurses
 
 CMap.o: CMap.cpp CMapLoadMap.cpp CMapPathFind.cpp CMapRedraw.cpp CMapPlaceTowers.cpp CMap.hpp
@@ -34,5 +34,7 @@ CMapScout.o: CMapScout.cpp CMapScout.hpp
 	g++ -Wall -pedantic -g -c CMapScout.cpp CMapScout.hpp -lncurses	
 CTank.o: CTank.cpp CTank.hpp
 	g++ -Wall -pedantic -g -c CTank.cpp CTank.hpp -lncurses	
+SConf.o: SConf.cpp SConf.hpp
+	g++ -Wall -pedantic -g -c SConf.cpp SConf.hpp -lncurses	
 clean: 
 	rm *.o *.out *.hpp.gch

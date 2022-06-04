@@ -1,12 +1,14 @@
 #pragma once
 #include "ncurses.h"
 #include "CAttacker.hpp"
+#include "SConf.hpp"
 
+struct AttackerConf;
 
 class CHogRider : public CAttacker
 {
     public:
-    CHogRider(int x, int y);
+    CHogRider(int x, int y,AttackerConf & a);
     
     virtual void draw(WINDOW * map);
     virtual void move(void);

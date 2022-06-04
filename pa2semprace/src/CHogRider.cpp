@@ -2,16 +2,16 @@
 
 
 
-CHogRider::CHogRider(int x,int y) : CAttacker('h') {
-     this->x = x;
+CHogRider::CHogRider(int x,int y,AttackerConf & a) : CAttacker('h') {
+    this->x = x;
     this->y = y;
-    this->runSpeed = 1;
-    this->damage = 100;
+    this->runSpeed = a.runSpeed;
+    this->damage = a.damage;
     this->pathIndex = 0;
-    this->health = this->fullHealth = 500;
+    this->health = this->fullHealth = a.hp;
     this->moveCnt = 0;
-    this->range = 4;
-    this->fireFrequency = 1;
+    this->range = a.range;
+    this->fireFrequency = a.freq;
     
    
 }
@@ -47,11 +47,14 @@ void CHogRider::draw(WINDOW * map){
         return;
     }
     if (pathIndex < path.size()  ){
-     
-        this->x = this->path.at(pathIndex).first;
-        this->y = this->path.at(pathIndex).second;
-   
-        pathIndex += this->runSpeed;    
+         if (this->moveCnt % this->runSpeed == 0){
+            this->x = this->path.at(pathIndex).first;
+            this->y = this->path.at(pathIndex).second;
+            this->pathIndex += 1;
+        }
+
+        this->moveCnt++;  
+            
     }
     
     

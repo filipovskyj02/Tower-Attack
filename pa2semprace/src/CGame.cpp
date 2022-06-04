@@ -2,6 +2,7 @@
 
 CGame::CGame (int collum_height, int row_width,int mapChoice){
     curs_set(0);
+    this->parseFile();
     this->waiting = false;
     this->mapChoice = mapChoice;
     isOver = false;
@@ -35,9 +36,7 @@ CGame::CGame (int collum_height, int row_width,int mapChoice){
    
     InfoRefresh(InfoBar);
     
-    std::vector<std::string> eneme = {"Hog Rider","Tank","Frog","Pig"};
-    std::vector<std::string> cost = {"100","500","300","10"};
-    int spaceForOne = this->row_width/eneme.size();
+    int spaceForOne = this->row_width/NameCost.size();
     
     int enteranceChoice = 0;
     int choice = 0;
@@ -45,7 +44,7 @@ CGame::CGame (int collum_height, int row_width,int mapChoice){
     
 
     std::chrono::time_point<std::chrono::system_clock> t = std::chrono::system_clock::now();
-    this->gameMap.placeTowers(5);
+    this->gameMap.placeTowers(5,tww );
 
 
     while (!this->gameMap.over) {
@@ -61,13 +60,13 @@ CGame::CGame (int collum_height, int row_width,int mapChoice){
        
         
         
-        for (unsigned int i = 0; i < eneme.size(); i++){
+        for (unsigned int i = 0; i < NameCost.size(); i++){
             
-            int halfLen = eneme[i].length()/2;
-            int halfLenPrice = cost[i].length()/2; 
+            int halfLen = NameCost[i].first.length()/2;
+            int halfLenPrice = NameCost[i].first.length()/2; 
             if (i == selected) wattron(Menu,A_REVERSE);
-            mvwprintw(Menu,(MENU_HEIGHT/3),(spaceForOne/2)-halfLen + (i*spaceForOne),eneme[i].c_str());
-            mvwprintw(Menu,(MENU_HEIGHT/3)*2 + 1,(spaceForOne/2)-halfLenPrice + (i*spaceForOne),cost[i].c_str());
+            mvwprintw(Menu,(MENU_HEIGHT/3),(spaceForOne/2)-halfLen + (i*spaceForOne),NameCost[i].first.c_str());
+            mvwprintw(Menu,(MENU_HEIGHT/3)*2 + 1,(spaceForOne/2)-halfLenPrice + (i*spaceForOne),NameCost[i].second.c_str());
             wattroff(Menu,A_REVERSE);
             
            
@@ -84,15 +83,15 @@ CGame::CGame (int collum_height, int row_width,int mapChoice){
                 this->gameMap.enteranceDown();
                 break;
             case KEY_RIGHT: 
-                selected = (selected + 1) % eneme.size();
+                selected = (selected + 1) % NameCost.size();
                 break;
             case KEY_LEFT: 
-                selected == 0 ? selected = eneme.size()-1 : selected--;
+                selected == 0 ? selected = NameCost.size()-1 : selected--;
                 break;
             case 10: 
-                if (playerMoney >= stoi(cost[selected])){
-                this->gameMap.buy(selected);
-                playerMoney -= stoi(cost[selected]);
+                if (playerMoney >= stoi(NameCost[selected].second)){
+                this->gameMap.buy(selected,att[selected]);
+                playerMoney -= stoi(NameCost[selected].second);
                 }
                 else this->gameMap.LoseScreen(mapBoundary);
                 break;
@@ -107,10 +106,7 @@ CGame::CGame (int collum_height, int row_width,int mapChoice){
         }
         
     }
-        
-
-     
-        
+    
     wclear(mapBoundary);
     wclear(InfoBar);
     wclear(Menu);

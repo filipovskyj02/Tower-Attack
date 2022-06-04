@@ -1,10 +1,12 @@
 #include "CLaserTurret.hpp"
 
-CLaserTurret::CLaserTurret(int x, int y) : CTower(x,y){
-    this->damage = 10;
-    this->fireFrequency = 5;
-    this->health = this->fullHealth = 2000;
-    this->range = 100;
+
+CLaserTurret::CLaserTurret(int x, int y, TowerConf & a) : CTower(x,y){
+    
+    this->damage = a.damage;
+    this->health = this->fullHealth = a.hp;
+    this->range = a.range;
+    this->fireFrequency = a.freq;
     };
 
 void CLaserTurret::draw(WINDOW * map){

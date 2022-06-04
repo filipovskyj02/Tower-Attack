@@ -2,16 +2,17 @@
 
 
 
-CTank::CTank(int x,int y) : CAttacker('h') {
+CTank::CTank(int x,int y,AttackerConf & a ) : CAttacker('h') {
     this->x = x;
     this->y = y;
-    this->runSpeed = 1;
-    this->damage = 30;
+    this->runSpeed = a.runSpeed;
+    this->damage = a.damage;
     this->pathIndex = 0;
-    this->health = this->fullHealth = 5000;
+    this->health = this->fullHealth = a.hp;
     this->moveCnt = 0;
-    this->range = 100;
-    this->fireFrequency = 5;
+    this->range = a.range;
+    this->fireFrequency = a.freq;
+    
     
    
 }
@@ -45,11 +46,11 @@ void CTank::draw(WINDOW * map){
         return;
     }
     if (pathIndex < path.size()  ){
-        if (this->moveCnt % 5 == 0){
+        if (this->moveCnt % runSpeed == 0){
         this->x = this->path.at(pathIndex).first;
         this->y = this->path.at(pathIndex).second;
    
-        this->pathIndex += this->runSpeed;  
+        this->pathIndex += 1;  
         }
         this->moveCnt++;  
     }
