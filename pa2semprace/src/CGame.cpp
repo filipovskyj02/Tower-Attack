@@ -1,8 +1,9 @@
 #include "CGame.hpp"
 
-CGame::CGame (int collum_height, int row_width,int mapChoice){
+CGame::CGame (int mapChoice, int confChoice){
     curs_set(0);
-    this->parseFile();
+    noecho();
+    this->parseFile(confChoice);
     this->waiting = false;
     this->mapChoice = mapChoice;
     isOver = false;

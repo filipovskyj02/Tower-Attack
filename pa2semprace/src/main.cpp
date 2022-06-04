@@ -8,7 +8,7 @@ CMenu test;
 while (test.exit != true) {
     test.draw(30,30);
     if (test.contin() == true)
-    CGame Gem(22,30,test.mapChoice);
+    CGame Gem(test.mapChoice,test.confChoice);
     
 }
 return EXIT_SUCCESS;

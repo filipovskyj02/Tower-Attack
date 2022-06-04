@@ -9,8 +9,8 @@
 
 
 #define WIDTH_MULTI 2.5
-#define MENU_ITEM_DISTANCE 2
-#define SCREEN_POS 2.5
+
+
 
 class CMenu
 {
@@ -25,8 +25,9 @@ public:
     void help (WINDOW * MenuWin);
     bool contin();
     bool exit;
-    void NewGame(WINDOW * MenuWin);
+    void DrawMenu(WINDOW * MenuWin, std::vector<std::string> & MenuChoices,std::string & Text, int & selected);
     int mapChoice;
+    int confChoice;
     
     
 };

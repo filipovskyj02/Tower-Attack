@@ -8,7 +8,7 @@ void CMenu::draw(int p_width,int p_height){
     
     
 
-    
+    this->confChoice = 0;
     this->exit = false;
     this->continueToGame = false;
     initscr();
@@ -21,107 +21,84 @@ void CMenu::draw(int p_width,int p_height){
     getmaxyx(stdscr,WinMaxY,WinMaxX);
 
     WINDOW * boardWin = newwin(maxH,maxW,(WinMaxY/2)-maxH/2,(WinMaxX/2)-maxW/2);
-    curs_set(0);
-    box(boardWin,0,0);
-    refresh();
-    wrefresh(boardWin);
+    std::vector<std::string> menuText = {"New  Game","Load Game","Help","Quit"};
+    std::string text = {"Tower Attack !"};
+    int selection = 0;
+    DrawMenu(boardWin,menuText,text,selection);
     
-    mvwprintw(boardWin,0,maxW/2 - 6,"Tower Attack");
-    std::pair <int,int> MenuItems;
-    keypad(boardWin,true);
-    int choice = 0;
-    unsigned int selected = 0;
-    while (choice != 10) {
-        
-        MenuItems = {maxH/4,(maxW/2) - 2 };
-
-        for (unsigned int i = 0; i < MenuChoices.size(); i++){
-            
-            
-            if (i == selected) wattron(boardWin,A_REVERSE);
-            mvwprintw(boardWin,MenuItems.first,(maxW/2) - (MenuChoices[i].size()/2),MenuChoices[i].c_str());
-            wattroff(boardWin,A_REVERSE);
-            
-            MenuItems.first += 2;
-        }
-        
-        choice = wgetch(boardWin);
-        if (choice == KEY_DOWN) selected = (selected + 1) % 4;
-        else if (choice == KEY_UP) selected == 0 ? selected = 3 : selected--;
-       
-
-        
+    
+    int selection2 = 0;
+    switch (selection){
+        case 0:
+            menuText = {"Map 1","Map 2","Map 3","Maze 1", "Maze 2"};
+            text = {"Choose a map !"};
+            DrawMenu(boardWin,menuText,text,selection2);
+            this->mapChoice = selection2;
+            menuText = {"Hard","Medium","Easy","Free"};
+            text = {"Choose a configuration file !"};
+            DrawMenu(boardWin,menuText,text,selection2);
+            this->confChoice = selection2;
+            continueToGame = true;
+            break;
+        case 1: 
+            help(boardWin);
+            break;
+        default:
+            exit++;
+            break;
 
     }
-    
-    if (selected == 1) help(boardWin);
-    else if (selected == 0) NewGame(boardWin);
-    else exit++;
-
-    
-    
+     
     endwin();
-
-
-
 
 }
  void CMenu::help (WINDOW * MenuWin){
      
-     mvwprintw(MenuWin, maxH/2,maxW/2,"Test helpu");
-     
+    mvwprintw(MenuWin, maxH/2,maxW/2,"Test helpu");
      
 
-
-     
 
  }
  bool CMenu::contin (){
      return this->continueToGame;
  }
- void CMenu::NewGame(WINDOW * MenuWin){
+ void CMenu::DrawMenu(WINDOW * MenuWin, std::vector<std::string> & MenuChoices,std::string & Text, int & selected){
+    curs_set(0);
+    noecho();
     wclear(MenuWin);
     wrefresh(MenuWin);
     box(MenuWin,0,0);
-    mvwprintw(MenuWin,0,maxW/2 - 6,"Choose a map");
-    std::vector<std::string> MenuChoices = {"Map 1","Map 2","Map 3","Maze 1", "Maze 2"};
+    mvwprintw(MenuWin,0,maxW/2 - Text.length()/2,Text.c_str());
+    
     keypad(MenuWin,true);
     int choice = 0;
-    unsigned int selected = 0;
     int spaceForOne = maxH/MenuChoices.size();
     while (choice != 10){
-    for (unsigned int i = 0; i < MenuChoices.size(); i++){
-            
-            int halfLen = MenuChoices[i].length()/2;
+        for (unsigned int i = 0; i < MenuChoices.size(); i++){
 
-            if (i == selected) wattron(MenuWin,A_REVERSE);
-            mvwprintw(MenuWin,(spaceForOne)-halfLen + (i*spaceForOne),maxW/2-MenuChoices[i].size()/2,MenuChoices[i].c_str());
-            
-            wattroff(MenuWin,A_REVERSE);
-            
-           
-        }
-        
-    choice = wgetch(MenuWin);
-    switch (choice){
-         case KEY_DOWN: 
-                selected = (selected + 1) % MenuChoices.size();
-                break;
+                int halfLen = MenuChoices[i].length()/2;
+
+                if (i == selected) wattron(MenuWin,A_REVERSE);
+                mvwprintw(MenuWin,(spaceForOne)-halfLen + (i*spaceForOne),maxW/2-MenuChoices[i].size()/2,MenuChoices[i].c_str());
+
+                wattroff(MenuWin,A_REVERSE);
+
+
+            }
+
+        choice = wgetch(MenuWin);
+        switch (choice){
+             case KEY_DOWN: 
+                    selected = (selected + 1) % MenuChoices.size();
+                    break;
             case KEY_UP: 
-                selected == 0 ? selected = MenuChoices.size()-1 : selected--;
-                break;
+                    selected == 0 ? selected = MenuChoices.size()-1 : selected--;
+                    break;
             case 10: 
-                continueToGame++;
-                this->mapChoice = selected;
-                break;
+                    break;
 
-
-
-    }
+        }
 
     }
         
-    
-
-
  }

@@ -1,14 +1,17 @@
 #include "CGame.hpp"
 
-void CGame::parseFile(){
+void CGame::parseFile(int confChoice){
     
-    std::ofstream of("outsave.txt");
+    std::vector<std::string> Options = {"hard.txt", "medium.txt", "easy.txt","free.txt"};
+    std::string location ={"../examples/Configurations/"};
+    std::ifstream myfile;
+    myfile.open((location+Options[confChoice]).c_str());
     std::string name, cost;
     std::string a,b,c,d,e;
     
     std::string line;
-    std::ifstream myfile;
-    myfile.open("save2.txt");
+    
+   
 
    if(!myfile.is_open()) {
       

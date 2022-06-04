@@ -1,2 +1,0 @@
-2 # Hog Rider 1 100 500 4 1 # Tank 1 100 3000 10 8 ## 10 1000 100 1
-map name    run dmg hp rg f       

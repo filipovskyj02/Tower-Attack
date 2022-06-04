@@ -29,23 +29,15 @@ class CGame
     bool waiting;
 public:
     CGame();
-    CGame(int collum_height, int row_width, int mapChoice);
+    CGame(int mapChoice, int confChoice);
     void InfoRefresh(WINDOW * InfoBar);
     void redraw(WINDOW * mapWin);
     bool escOptions(WINDOW * mapWin);
-    void parseFile();
+    void parseFile(int confChoice);
     std::string readTillSpace(std::string & in, int & index, std::ofstream & of);
     std::vector<std::pair<std::string,std::string>> NameCost;
     std::vector<AttackerConf> att;
     std::vector<TowerConf> tww;
-
-
-   
-    
-    
-    
-
-
 
 };
 

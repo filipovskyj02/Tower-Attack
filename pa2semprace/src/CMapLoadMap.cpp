@@ -4,7 +4,8 @@
 void CMap::loadMap(int & loadedX,  int & loadedY){
     
     std::vector<std::string> mapOptions = {"map1.txt", "map2.txt", "map3.txt","maze.txt","maze2.txt"};
-    std::ifstream fin(mapOptions[this->mapChoice].c_str());
+    std::string location ={"../examples/Maps/"};
+    std::ifstream fin((location+mapOptions[this->mapChoice]).c_str());
    
     
     char element;
