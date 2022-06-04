@@ -12,7 +12,8 @@
 #define MENU_ITEM_DISTANCE 2
 
 #define MENU_HEIGHT 5
-#define INFO_HEIGHT 5
+#define INFO_HEIGHT 8
+
 
 
 
@@ -23,17 +24,23 @@ class CGame
     bool isOver;
     CMap gameMap;
     int playerMoney;
+    int towerAmount;
     int ScreenX;
     int ScreenY;
     int mapChoice;
     bool waiting;
+    int cheapest;
+    int minHealthToWin;
+    int minDmgToWin;
+
+
 public:
     CGame();
     CGame(int mapChoice, int confChoice);
     void InfoRefresh(WINDOW * InfoBar);
     void redraw(WINDOW * mapWin);
     bool escOptions(WINDOW * mapWin);
-    void parseFile(int confChoice);
+    bool parseFile(int confChoice);
     std::string readTillSpace(std::string & in, int & index, std::ofstream & of);
     std::vector<std::pair<std::string,std::string>> NameCost;
     std::vector<AttackerConf> att;

@@ -40,6 +40,8 @@ class CMap
     int mapChoice;
     bool over;
     int attackersLeft;
+    int alHP;
+    int alDMG;
     
 
     

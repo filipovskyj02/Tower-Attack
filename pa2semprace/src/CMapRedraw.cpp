@@ -20,6 +20,8 @@ void CMap::redraw (WINDOW * mapWin){
         ptr1->healthDraw = (DynamicVec[i].get()->health*10)/(DynamicVec[i].get()->fullHealth+1);
         if (DynamicVec[i].get()->x == sizeX-1) {
             this->attackersLeft++;
+            this->alDMG += DynamicVec[i].get()->damage;
+            this->alHP += DynamicVec[i].get()->health;
             DynamicVec[i].get()->left++;}
 
     }
@@ -44,7 +46,7 @@ void CMap::redraw (WINDOW * mapWin){
            
             
              if (DynamicVec[i].get()->left == true){
-                 off << "Dude left" << std::endl;
+                 
                 DynamicVec[i].reset();
                 DynamicVec.erase(DynamicVec.begin()+i);
                 }
@@ -56,7 +58,7 @@ void CMap::redraw (WINDOW * mapWin){
                 
                 DynamicVec[i].reset();
                 DynamicVec.erase(DynamicVec.begin()+i);
-                off << "Dude died" << std::endl;
+                
                 }
         }
     for (unsigned int i = 0; i < TowerVec.size(); i++){

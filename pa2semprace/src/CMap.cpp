@@ -9,6 +9,8 @@ CMap::CMap (int mapChoice){
     this->mapChoice = mapChoice;
     this->over = false;
     this->attackersLeft = 0;
+    this->alDMG = 0;
+    this->alHP = 0;
     
 }
 void CMap::LoseScreen(WINDOW * win){

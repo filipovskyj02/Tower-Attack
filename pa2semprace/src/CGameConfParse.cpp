@@ -1,6 +1,6 @@
 #include "CGame.hpp"
 
-void CGame::parseFile(int confChoice){
+bool CGame::parseFile(int confChoice){
     
     std::vector<std::string> Options = {"hard.txt", "medium.txt", "easy.txt","free.txt"};
     std::string location ={"../examples/Configurations/"};
@@ -15,8 +15,16 @@ void CGame::parseFile(int confChoice){
 
    if(!myfile.is_open()) {
       
-      exit(EXIT_FAILURE);
+      return false;
    }
+    getline(myfile, line);
+    std::stringstream str(line);
+    str >> a >> b >> c >> d;
+    this->playerMoney = stoi(a);
+    this->towerAmount = stoi(b);
+    this->minHealthToWin = stoi(c);
+    this->minDmgToWin = stoi(d);
+
     while(getline(myfile, line)) {
         if (line[0] == '#') break;
         std::stringstream str(line);
@@ -32,6 +40,7 @@ void CGame::parseFile(int confChoice){
         tww.emplace_back(TowerConf(stoi(a),stoi(b),stoi(c),stoi(d)));
     }
     myfile.close();
-    
+    if (NameCost.empty() or att.empty() or tww.empty()) return false;
+    return true;
 
 }

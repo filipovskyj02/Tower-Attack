@@ -3,20 +3,23 @@
 CGame::CGame (int mapChoice, int confChoice){
     curs_set(0);
     noecho();
-    this->parseFile(confChoice);
+    if (!this->parseFile(confChoice)) return;
+    int min = stoi(NameCost[0].second);
+    for (auto i : NameCost){
+        if (stoi(i.second) < min) min = stoi(i.second);
+    }
+    this->cheapest = min;
     this->waiting = false;
     this->mapChoice = mapChoice;
     isOver = false;
-    playerMoney = 2000;
+    
     
     getmaxyx(stdscr,ScreenY,ScreenX);
     clear();
     initscr();
     refresh();
 
-    start_color();
-    //init_pair(1,COLOR_BLUE, COLOR_RED);
-   //wbkgd(Menu, COLOR_PAIR(1));
+    
     
     
     this->gameMap = CMap(mapChoice);
@@ -45,7 +48,7 @@ CGame::CGame (int mapChoice, int confChoice){
     
 
     std::chrono::time_point<std::chrono::system_clock> t = std::chrono::system_clock::now();
-    this->gameMap.placeTowers(5,tww );
+    this->gameMap.placeTowers(towerAmount,tww);
 
 
     while (!this->gameMap.over) {
@@ -54,8 +57,11 @@ CGame::CGame (int mapChoice, int confChoice){
          t += std::chrono::milliseconds(80);
         std::this_thread::sleep_until(t);
 
-        if(!this->gameMap.TowerVec.size())this->gameMap.winScreen(mapBoundary);
+        if(this->gameMap.TowerVec.empty() and ((!this->gameMap.DynamicVec.empty()) or (playerMoney>this->cheapest) )) this->gameMap.winScreen(mapBoundary);
+        if(this->gameMap.DynamicVec.empty() and this->gameMap.TowerVec.size() and playerMoney < cheapest) this->gameMap.LoseScreen(mapBoundary);
+        
         this->gameMap.redraw(mapBoundary);
+        if (this->gameMap.alHP > minHealthToWin and this->gameMap.alDMG > minDmgToWin) this->gameMap.winScreen(mapBoundary);
         this->gameMap.interact();
         InfoRefresh(InfoBar);
        
@@ -87,18 +93,19 @@ CGame::CGame (int mapChoice, int confChoice){
                 selected = (selected + 1) % NameCost.size();
                 break;
             case KEY_LEFT: 
-                selected == 0 ? selected = NameCost.size()-1 : selected--;
+                selected == 0 ? selected = NameCost.size() - 1 : selected--;
                 break;
             case 10: 
                 if (playerMoney >= stoi(NameCost[selected].second)){
                 this->gameMap.buy(selected,att[selected]);
                 playerMoney -= stoi(NameCost[selected].second);
                 }
-                else this->gameMap.LoseScreen(mapBoundary);
+                
                 break;
             
 
         }
+        //Escape pressed
         if (choice == 27){
             if (escOptions(mapBoundary)== false) break;
             t = std::chrono::system_clock::now();
@@ -121,12 +128,16 @@ CGame::CGame (int mapChoice, int confChoice){
 void CGame::InfoRefresh(WINDOW * InfoBar){
     wclear(InfoBar);
     box(InfoBar,0,0);
-    mvwprintw(InfoBar,MENU_HEIGHT-2,this->row_width/5 ,"Alive: ");
+    mvwprintw(InfoBar,INFO_HEIGHT/4,this->row_width/7 ,"Alive: ");
     wprintw(InfoBar,std::to_string(this->gameMap.DynamicVec.size()).c_str());
-    mvwprintw(InfoBar,MENU_HEIGHT-2,(this->row_width/5) * 3 ,"Money: ");
+    mvwprintw(InfoBar,INFO_HEIGHT/4,(this->row_width/7) * 5 ,"Money: ");
     wprintw(InfoBar,std::to_string(playerMoney).c_str());
-    mvwprintw(InfoBar,(MENU_HEIGHT/3),(this->row_width/2 -10)  ,"Attackers Exited: ");
+    mvwprintw(InfoBar,INFO_HEIGHT/2,this->row_width/2 - 4,"Exited: ");
     wprintw(InfoBar,std::to_string(this->gameMap.attackersLeft).c_str());
+    std::string line1 = {"Dmg : " + std::to_string(this->gameMap.alDMG) + " / " + std::to_string(this->minDmgToWin) +'\n'};
+    std::string line2 = {"Hp : " + std::to_string(this->gameMap.alHP) + " / " + std::to_string(this->minHealthToWin)};
+    mvwprintw(InfoBar,((INFO_HEIGHT/6) *6) - 1,(this->row_width/2 - line1.size()/2),line1.c_str());
+    mvwprintw(InfoBar,((INFO_HEIGHT/6) * 6) ,(this->row_width/2 - line2.size()/2),line2.c_str());
     wrefresh(InfoBar);
 }
 

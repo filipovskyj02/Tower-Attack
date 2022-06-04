@@ -8,7 +8,7 @@ make: *** No rule to make target 'all'.  Stop.
 # This is free software: you are free to change and redistribute it.
 # There is NO WARRANTY, to the extent permitted by law.
 
-# Make data base, printed on Fri Jun  3 20:50:20 2022
+# Make data base, printed on Sat Jun  4 20:29:31 2022
 
 # Variables
 
@@ -193,7 +193,7 @@ SNAP_USER_DATA = /home/kuba/snap/code/97
 # environment
 SHLVL = 1
 # environment
-VSCODE_IPC_HOOK_EXTHOST = /run/user/1000/vscode-ipc-dfd171e0-6355-4e9b-994e-242d1de3ecf9.sock
+VSCODE_IPC_HOOK_EXTHOST = /run/user/1000/vscode-ipc-02a4a0d4-9eae-49e9-8440-4311c0cd843c.sock
 # environment
 XDG_SESSION_ID = 3
 # environment
@@ -281,7 +281,7 @@ LANG = C
 # environment
 TERM = xterm-256color
 # environment
-VSCODE_PID = 250833
+VSCODE_PID = 339949
 # environment
 KDE_SESSION_UID = 1000
 # variable set hash-table stats:
@@ -293,9 +293,10 @@ KDE_SESSION_UID = 1000
 
 # Directories
 
-# . (device 66309, inode 4201052): 77 files, no impossibilities.
+ 
+# . (device 66309, inode 4201052): 38 files, no impossibilities.
 
-# 77 files, no impossibilities in 1 directories.
+# 38 files, no impossibilities in 1 directories.
 
 # Implicit Rules
 
@@ -415,7 +416,6 @@ CMapLoadMap.o:
 makefile:
 #  Implicit rule search has been done.
 #  Last modified 2022-06-03 20:50:11.332453571
- 
 #  File has been updated.
 #  Successfully updated.
 
@@ -502,6 +502,7 @@ CMapPlaceTowers.cpp:
 
 # Not a target:
 CGame.cpp:
+ 
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
@@ -647,12 +648,12 @@ CMapPathFind.cpp:
 
 # No general ('VPATH' variable) search path.
 
-# strcache buffers: 1 (0) / strings = 84 / storage = 1000 B / avg = 11 B
-# current buf: size = 8162 B / used = 1000 B / count = 84 / avg = 11 B
+# strcache buffers: 1 (0) / strings = 63 / storage = 723 B / avg = 11 B
+# current buf: size = 8162 B / used = 723 B / count = 63 / avg = 11 B
 
-# strcache performance: lookups = 164 / hit rate = 48%
+# strcache performance: lookups = 125 / hit rate = 49%
 # hash-table stats:
-# Load=84/8192=1%, Rehash=0, Collisions=3/164=2%
-# Finished Make data base on Fri Jun  3 20:50:20 2022
+# Load=63/8192=1%, Rehash=0, Collisions=3/125=2%
+# Finished Make data base on Sat Jun  4 20:29:31 2022
 
  
