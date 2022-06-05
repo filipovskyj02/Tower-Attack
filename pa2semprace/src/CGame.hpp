@@ -38,12 +38,13 @@ class CGame
 
 public:
     CGame();
-    CGame(int mapChoice, int confChoice);
+    CGame(int mapChoice, int confChoice, int loadChoice);
     void InfoRefresh(WINDOW * InfoBar);
     void redraw(WINDOW * mapWin);
     void Options(WINDOW * MenuWin, std::vector<std::string> & MenuChoices,std::string & Text, int & selected);
     bool parseFile(int confChoice);
     void saveGame();
+    void loadSave(int loadChoice);
     std::string readTillSpace(std::string & in, int & index, std::ofstream & of);
     std::vector<std::pair<std::string,std::string>> NameCost;
     std::vector<AttackerConf> att;

@@ -86,7 +86,7 @@ void CMap::interact(){
                     mapVec[TowerVec[i].get()->x + (TowerVec[i].get()->y*sizeX)].get()->C = AIR_LETTER;
                     TowerVec[i].get()->destroyed++;
                     for (unsigned int p = 0; p < DynamicVec.size(); p++){
-                        if (DynamicVec[p].get()->path.back().first != sizeX-1)
+                        
                         calculatePath(DynamicVec[p].get(),DynamicVec[p].get()->whatToFind());
                     }
                     }

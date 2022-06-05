@@ -7,7 +7,7 @@ CMenu::CMenu(){
 void CMenu::draw(int p_width,int p_height){
     
     
-
+    this->loadedFile = -1;
     this->confChoice = 0;
     this->exit = false;
     this->continueToGame = false;
@@ -39,7 +39,15 @@ void CMenu::draw(int p_width,int p_height){
             this->confChoice = selection2;
             continueToGame = true;
             break;
-        case 1: 
+        case 1:
+            menuText = {"Save Slot 1","Save Slot 2","Save Slot 3", "Save Slot 4", "Save Slot 5"};
+            text = {"Select a file to load"};
+            DrawMenu(boardWin,menuText,text,selection2);
+            this->loadedFile = selection2;
+            continueToGame = true;
+            break;
+
+        case 2: 
             help(boardWin);
             break;
         default:

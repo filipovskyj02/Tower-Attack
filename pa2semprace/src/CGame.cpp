@@ -1,19 +1,29 @@
 #include "CGame.hpp"
 
-CGame::CGame (int mapChoice, int confChoice){
+CGame::CGame (int mapChoice, int confChoice, int loadChoice){
     curs_set(0);
     noecho();
-    if (!this->parseFile(confChoice)) return;
+    
+    if (loadChoice >= 0) loadSave(loadChoice);
+    else {
+        this->mapChoice = mapChoice;
+        this->confChoice = confChoice;
+        if (!this->parseFile(confChoice)) return;
+        this->gameMap = CMap(mapChoice);
+        this->gameMap.loadMap(this->row_width,this->collum_height);
+        this->gameMap.placeTowers(towerAmount,tww);
+    }
+    
     int min = stoi(NameCost[0].second);
     for (auto i : NameCost){
         if (stoi(i.second) < min) min = stoi(i.second);
     }
     this->cheapest = min;
-    this->waiting = false;
-    this->mapChoice = mapChoice;
+    
+   
     isOver = false;
     
-    this->confChoice = confChoice;
+    
     getmaxyx(stdscr,ScreenY,ScreenX);
     clear();
     initscr();
@@ -22,8 +32,6 @@ CGame::CGame (int mapChoice, int confChoice){
     
     
     
-    this->gameMap = CMap(mapChoice);
-    this->gameMap.loadMap(this->row_width,this->collum_height);
    
     WINDOW * mapBoundary = newwin(this->collum_height,this->row_width,(ScreenY/2)-this->collum_height/2,(ScreenX/2)-this->row_width/2);
     WINDOW * Menu = newwin(MENU_HEIGHT,this->row_width,(ScreenY/2)+this->collum_height/2,(ScreenX/2)-this->row_width/2);
@@ -48,7 +56,7 @@ CGame::CGame (int mapChoice, int confChoice){
     
 
     std::chrono::time_point<std::chrono::system_clock> t = std::chrono::system_clock::now();
-    this->gameMap.placeTowers(towerAmount,tww);
+   
 
 
     while (!this->gameMap.over) {

@@ -9,14 +9,23 @@ void CMap::loadMap(int & loadedX,  int & loadedY){
    
     
     char element;
-    
+    this->sizeX = this->sizeY = 0;
     int width = 1;
     int lineCtr = 0;
     while (fin >> std::noskipws >> element)
     {
         int index = width - 1;
-        int x = index % sizeX;
-        int y = index / sizeX;
+        int x;
+        int y;
+        if (sizeX != 0){
+             x = index % sizeX;
+             y = index / sizeX;
+        }
+        else {
+             x = width-1;
+             y = 0;
+
+        }
         
         switch (element){
             case AIR_LETTER:

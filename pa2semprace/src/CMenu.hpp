@@ -28,6 +28,7 @@ public:
     void DrawMenu(WINDOW * MenuWin, std::vector<std::string> & MenuChoices,std::string & Text, int & selected);
     int mapChoice;
     int confChoice;
+    int loadedFile;
     
     
 };

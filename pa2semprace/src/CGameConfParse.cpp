@@ -29,15 +29,15 @@ bool CGame::parseFile(int confChoice){
         if (line[0] == '#') break;
         std::stringstream str(line);
         str >> name >> cost >> a >> b >> c >> d >> e ;
-        NameCost.push_back(std::make_pair(name,cost));
-        att.emplace_back(AttackerConf(stoi(a),stoi(b),stoi(c),stoi(d),stoi(e)));
+        this->NameCost.push_back(std::make_pair(name,cost));
+        this->att.emplace_back(AttackerConf(stoi(a),stoi(b),stoi(c),stoi(d),stoi(e)));
     }
     while(getline(myfile, line)) {
         
         std::stringstream str(line);
         str >> a >> b >> c >> d >> e;
        
-        tww.emplace_back(TowerConf(stoi(a),stoi(b),stoi(c),stoi(d)));
+        this->tww.emplace_back(TowerConf(stoi(a),stoi(b),stoi(c),stoi(d)));
     }
     myfile.close();
     if (NameCost.empty() or att.empty() or tww.empty()) return false;
