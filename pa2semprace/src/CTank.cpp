@@ -70,6 +70,4 @@ void CTank::draw(WINDOW * map){
 
  char CTank::whatToFind(){
          return 'T';
-
-
 }

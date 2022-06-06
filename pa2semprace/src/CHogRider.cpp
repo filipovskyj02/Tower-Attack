@@ -71,7 +71,7 @@ void CHogRider::draw(WINDOW * map){
  }
 
  char CHogRider::whatToFind(){
-         return 'l';
+         return 'e';
 
 
 }

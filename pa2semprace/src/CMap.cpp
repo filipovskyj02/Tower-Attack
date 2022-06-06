@@ -82,12 +82,16 @@ void CMap::interact(){
             if (((distanceX < attackerRange) and (distanceX > (attackerRange*-1))) and ((distanceY < attackerRange) and (distanceY > (attackerRange*(-1))))){
                 DynamicVec[j].get()->attack(TowerVec[i].get());
                 if (TowerVec[i].get()->health <= 0) {
+                    bool noExitRoute = false;
                     TowerVec[i].get()->C = AIR_LETTER;
                     mapVec[TowerVec[i].get()->x + (TowerVec[i].get()->y*sizeX)].get()->C = AIR_LETTER;
                     TowerVec[i].get()->destroyed++;
+                    std::unique_ptr<CMapScout> ptr = std::make_unique<CMapScout>(EnteranceCords[0]%sizeX,EnteranceCords[0]%sizeX);
+                    calculatePath(ptr.get(),ptr.get()->whatToFind());
+                    if ( ptr.get()->path.size() < 1) noExitRoute = true;
                     for (unsigned int p = 0; p < DynamicVec.size(); p++){
-                        
-                        calculatePath(DynamicVec[p].get(),DynamicVec[p].get()->whatToFind());
+                        if (noExitRoute) calculatePath(DynamicVec[p].get(),TOWER_LETTER);
+                        else calculatePath(DynamicVec[p].get(),DynamicVec[p].get()->whatToFind());
                     }
                     }
                         

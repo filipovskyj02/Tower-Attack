@@ -5,4 +5,5 @@ CTower::CTower(int x, int y){
     this->y = y;
     this->destroyed = false;
     this->shotsCnt = 1;
+    this->C = 'T';
 }

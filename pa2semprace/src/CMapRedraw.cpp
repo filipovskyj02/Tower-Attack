@@ -65,7 +65,7 @@ void CMap::redraw (WINDOW * mapWin){
         if (TowerVec[i].get()->destroyed == true){
             TowerVec[i].reset();
             TowerVec.erase(TowerVec.begin()+i);
-
+            
         }
 
 

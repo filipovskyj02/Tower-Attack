@@ -56,7 +56,7 @@ void CGame::loadSave(int loadFile){
         auto ptr = this->gameMap.DynamicVec.back().get();
         ptr->health = b;
         ptr->shotsCnt = c;
-        this->gameMap.calculatePath(ptr,ptr->whatToFind());
+       
 
         
     }
@@ -68,6 +68,7 @@ void CGame::loadSave(int loadFile){
         switch (a){
             case 0:
                 this->gameMap.TowerVec.push_back(std::make_unique<CLaserTurret>(d,e,this->tww[0]));
+
             
         }
         auto ptr = this->gameMap.TowerVec.back().get();
@@ -76,6 +77,16 @@ void CGame::loadSave(int loadFile){
         
 
         
+    }
+    for (unsigned int i = 0; i < this->gameMap.TowerVec.size(); i++){
+        auto ptr = this->gameMap.TowerVec[i].get();
+        this->gameMap.mapVec[(ptr->y * this->gameMap.sizeX) + ptr->x].get()->C = TOWER_LETTER;
+
+    }
+
+    for (unsigned int i = 0; i < this->gameMap.DynamicVec.size(); i++){
+        this->gameMap.calculatePath( this->gameMap.DynamicVec[i].get(),  this->gameMap.DynamicVec[i].get()->whatToFind());
+       
     }
     return;
 
