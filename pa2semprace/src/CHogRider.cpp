@@ -13,6 +13,7 @@ CHogRider::CHogRider(int x,int y,AttackerConf & a) : CAttacker('h') {
     this->range = a.range;
     this->fireFrequency = a.freq;
     this->attackerIndex = 0;
+    if (this->fireFrequency == 0)this->fireFrequency = 1;
     
    
 }
@@ -47,7 +48,7 @@ void CHogRider::draw(WINDOW * map){
         this->dead = true;
         return;
     }
-    if (pathIndex < path.size()  ){
+    if ((unsigned)pathIndex < path.size()  ){
          if (this->moveCnt % this->runSpeed == 0){
             this->x = this->path.at(pathIndex).first;
             this->y = this->path.at(pathIndex).second;

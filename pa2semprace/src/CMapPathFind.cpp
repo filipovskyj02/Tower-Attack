@@ -1,4 +1,3 @@
-#pragma once
 #include "CMap.hpp"
 #include "queue"
 #include "set"
@@ -25,7 +24,7 @@ void CMap::calculatePath( CAttacker * a, char lookingFor){
                     a->path.clear();
                     a->pathIndex = 0;
                     int cycleCnt = 0;
-                    while (ptr->pathIndex.second != 0 and cycleCnt < VisitedCells.size()){
+                    while (ptr->pathIndex.second != 0 and (unsigned)cycleCnt < VisitedCells.size()){
                         a->path.push_back(std::make_pair(ptr->xCord,ptr->yCord));
                         ptr = mapVec.at((ptr->pathIndex.second *sizeX) + ptr->pathIndex.first).get();
                         cycleCnt++;

@@ -50,7 +50,6 @@ CGame::CGame (int mapChoice, int confChoice, int loadChoice){
     
     int spaceForOne = this->row_width/NameCost.size();
     
-    int enteranceChoice = 0;
     int choice = 0;
     unsigned int selected = 0;
     
@@ -182,9 +181,8 @@ void CGame::Options(WINDOW * MenuWin, std::vector<std::string> & MenuChoices,std
     while (choice != 10){
         for (unsigned int i = 0; i < MenuChoices.size(); i++){
 
-                int halfLen = MenuChoices[i].length()/2;
 
-                if (i == selected) wattron(MenuWin,A_REVERSE);
+                if (i == (unsigned)selected) wattron(MenuWin,A_REVERSE);
                 mvwprintw(MenuWin,(spaceForOne) - shift + (i*spaceForOne),row_width/2-MenuChoices[i].size()/2,MenuChoices[i].c_str());
 
                 wattroff(MenuWin,A_REVERSE);
@@ -209,5 +207,4 @@ void CGame::Options(WINDOW * MenuWin, std::vector<std::string> & MenuChoices,std
         
 }
     
-
 

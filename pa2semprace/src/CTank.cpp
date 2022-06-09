@@ -12,6 +12,7 @@ CTank::CTank(int x,int y,AttackerConf & a ) : CAttacker('h') {
     this->moveCnt = 0;
     this->range = a.range;
     this->fireFrequency = a.freq;
+    if (this->fireFrequency == 0)this->fireFrequency = 1;
     this->attackerIndex = 1;
     
     
@@ -46,7 +47,7 @@ void CTank::draw(WINDOW * map){
         this->dead = true;
         return;
     }
-    if (pathIndex < path.size()  ){
+    if ((unsigned)pathIndex < path.size()  ){
         if (this->moveCnt % runSpeed == 0){
         this->x = this->path.at(pathIndex).first;
         this->y = this->path.at(pathIndex).second;

@@ -8,7 +8,7 @@ make: *** No rule to make target 'all'.  Stop.
 # This is free software: you are free to change and redistribute it.
 # There is NO WARRANTY, to the extent permitted by law.
 
-# Make data base, printed on Thu Jun  9 06:03:48 2022
+# Make data base, printed on Thu Jun  9 07:08:02 2022
 
 # Variables
 
@@ -285,7 +285,6 @@ VSCODE_PID = 104594
 # environment
 KDE_SESSION_UID = 1000
 # variable set hash-table stats:
- 
 # Load=136/1024=13%, Rehash=0, Collisions=19/158=12%
 
 # Pattern-specific Variable Values
@@ -296,6 +295,7 @@ KDE_SESSION_UID = 1000
 
 # . (device 66310, inode 4201052): 73 files, no impossibilities.
 
+ 
 # 73 files, no impossibilities in 1 directories.
 
 # Implicit Rules
@@ -352,6 +352,6 @@ GNUmakefile:
 # strcache performance: lookups = 84 / hit rate = 3%
 # hash-table stats:
 # Load=81/8192=1%, Rehash=0, Collisions=2/84=2%
-# Finished Make data base on Thu Jun  9 06:03:48 2022
+# Finished Make data base on Thu Jun  9 07:08:02 2022
 
  

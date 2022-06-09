@@ -1,10 +1,8 @@
-#pragma once
 #include "CMap.hpp"
 
 
 CMap::CMap (int mapChoice){
     curs_set(0);
-    off.open("out.txt");
     this->enteranceSel = 0;
     this->mapChoice = mapChoice;
     this->over = false;
@@ -18,7 +16,7 @@ void CMap::LoseScreen(WINDOW * win){
     wrefresh(win);
     box(win,0,0);
     mvwprintw(win,sizeY/2,sizeX/2 - 4,"You Lose !");
-    this->over++;
+    this->over = true;
     wgetch(win);
 
 
@@ -28,7 +26,7 @@ void CMap::winScreen(WINDOW * win){
     wrefresh(win);
     box(win,0,0);
     mvwprintw(win,sizeY/2,sizeX/2 - 4,"You Win !");
-    this->over++;
+    this->over = true;
     wgetch(win);
 
 }
@@ -76,7 +74,7 @@ void CMap::interact(){
             if (((distanceX < towerRange) and (distanceX > (towerRange*-1))) and ((distanceY < towerRange) and (distanceY > (towerRange*(-1))))){
                 
                 TowerVec[i].get()->attack(DynamicVec[j].get());
-                off << DynamicVec[j].get()->health << std::endl;
+                
                 
                 }
             if (((distanceX < attackerRange) and (distanceX > (attackerRange*-1))) and ((distanceY < attackerRange) and (distanceY > (attackerRange*(-1))))){
@@ -85,7 +83,7 @@ void CMap::interact(){
                     bool noExitRoute = false;
                     TowerVec[i].get()->C = AIR_LETTER;
                     mapVec[TowerVec[i].get()->x + (TowerVec[i].get()->y*sizeX)].get()->C = AIR_LETTER;
-                    TowerVec[i].get()->destroyed++;
+                    TowerVec[i].get()->destroyed = true;
                     std::unique_ptr<CMapScout> ptr = std::make_unique<CMapScout>(EnteranceCords[0]%sizeX,EnteranceCords[0]%sizeX);
                     calculatePath(ptr.get(),ptr.get()->whatToFind());
                     if ( ptr.get()->path.size() < 1) noExitRoute = true;

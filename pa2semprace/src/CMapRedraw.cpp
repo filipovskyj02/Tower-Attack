@@ -1,4 +1,4 @@
-#pragma once
+
 #include "CMap.hpp"
 
 void CMap::redraw (WINDOW * mapWin){
@@ -22,7 +22,7 @@ void CMap::redraw (WINDOW * mapWin){
             this->attackersLeft++;
             this->alDMG += DynamicVec[i].get()->damage;
             this->alHP += DynamicVec[i].get()->health;
-            DynamicVec[i].get()->left++;}
+            DynamicVec[i].get()->left = true;}
 
     }
 

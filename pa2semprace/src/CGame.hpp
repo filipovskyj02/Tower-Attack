@@ -8,6 +8,7 @@
 #include "sstream"
 #include "string"
 #include "SConf.hpp"
+#include "CTower2.hpp"
 
 #define MENU_ITEM_DISTANCE 2
 
@@ -93,8 +94,11 @@ class CGame
      */
     int saveChoice;
 
+   
+
 
 public:
+
     CGame();
     CGame(int mapChoice, int confChoice, int loadChoice);
     /**

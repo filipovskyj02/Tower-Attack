@@ -1,4 +1,3 @@
-#pragma once
 #include "CMap.hpp"
 
 void CMap::loadMap(int & loadedX,  int & loadedY){

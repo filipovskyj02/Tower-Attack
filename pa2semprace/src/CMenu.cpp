@@ -51,7 +51,7 @@ void CMenu::draw(int p_width,int p_height){
             help(boardWin);
             break;
         default:
-            exit++;
+            exit = true;
             break;
 
     }
@@ -85,7 +85,7 @@ void CMenu::draw(int p_width,int p_height){
 
                 int halfLen = MenuChoices[i].length()/2;
 
-                if (i == selected) wattron(MenuWin,A_REVERSE);
+                if (i == (unsigned)selected) wattron(MenuWin,A_REVERSE);
                 mvwprintw(MenuWin,(spaceForOne)-halfLen + (i*spaceForOne),maxW/2-MenuChoices[i].size()/2,MenuChoices[i].c_str());
 
                 wattroff(MenuWin,A_REVERSE);

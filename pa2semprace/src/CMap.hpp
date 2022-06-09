@@ -7,13 +7,13 @@
 #include "CCell.hpp"
 #include "memory"
 #include "CCellBasic.hpp"
-//#include "CAttacker.hpp"
+#include "CAttacker.hpp"
 //#include "CTower.hpp"
 #include "CHogRider.hpp"
 #include "CLaserTurret.hpp"
 #include "CMapScout.hpp"
 #include "CTank.hpp"
-#include "CCannon.hpp"
+#include "CTower2.hpp"
 #include "algorithm"
 
 #define TOWER_LETTER 'T'
@@ -21,8 +21,6 @@
 #define ENTERANCE_LETTER 'E'
 #define AIR_LETTER ' '
 #define WALL_LETTER 'x'
-
-
 
 
 class CMap
@@ -79,11 +77,7 @@ class CMap
      * @brief stream to a file for debugging purposes
      * 
      */
-    std::ofstream off;
-    /**
-     * @brief selected map
-     * 
-     */
+   
     int mapChoice;
     /**
      * @brief is the game over yet

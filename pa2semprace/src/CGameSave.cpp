@@ -42,15 +42,20 @@ void CGame::loadSave(int loadFile){
     this->gameMap.alHP = d;
     this->gameMap.alDMG = e;
     this->gameMap.attackersLeft = f;
-   
+    int attackerConfLoaded = this->att.size();
+    int towerConfLoaded = this->tww.size();
+    if (!attackerConfLoaded or !towerConfLoaded) return;
+
     while(getline(in, line)) {
         if (line[0] == '#') break;
         std::stringstream str(line);
         str >> a >> b >> c >> d >> e;
+    
         switch (a){
             case 0:
                 this->gameMap.DynamicVec.push_back(std::make_unique<CHogRider>(d,e,this->att[0]));
             case 1:
+                if (attackerConfLoaded<2) break;
                 this->gameMap.DynamicVec.push_back(std::make_unique<CTank>(d,e,this->att[1]));
         }
         auto ptr = this->gameMap.DynamicVec.back().get();
@@ -68,9 +73,11 @@ void CGame::loadSave(int loadFile){
         switch (a){
             case 0:
                 this->gameMap.TowerVec.push_back(std::make_unique<CLaserTurret>(d,e,this->tww[0]));
-
+            case 1:
+                this->gameMap.TowerVec.push_back(std::make_unique<CTower2>(d,e,this->tww[1]));
             
         }
+        if (this->gameMap.TowerVec.empty()) break;
         auto ptr = this->gameMap.TowerVec.back().get();
         ptr->health = b;
         ptr->shotsCnt = c;

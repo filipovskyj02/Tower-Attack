@@ -1,6 +1,4 @@
 make all --print-data-base --no-builtin-variables --no-builtin-rules --question
-make: *** No rule to make target 'all'.  Stop.
-
 # GNU Make 4.2.1
 # Built for x86_64-pc-linux-gnu
 # Copyright (C) 1988-2016 Free Software Foundation, Inc.
@@ -8,7 +6,7 @@ make: *** No rule to make target 'all'.  Stop.
 # This is free software: you are free to change and redistribute it.
 # There is NO WARRANTY, to the extent permitted by law.
 
-# Make data base, printed on Tue May 24 23:35:00 2022
+# Make data base, printed on Thu Jun  9 10:11:19 2022
 
 # Variables
 
@@ -30,12 +28,16 @@ SNAP_COMMON = /var/snap/code/common
 XDG_SESSION_TYPE = x11
 # environment
 VSCODE_LOG_NATIVE = false
+# environment
+KCRASH_AUTO_RESTARTED = 1
 # automatic
 ?D = $(patsubst %/,%,$(dir $?))
+# environment
+GTK_RC_FILES = /etc/gtk/gtkrc:/home/kuba/.gtkrc:/home/kuba/.config/gtkrc
 # automatic
 @D = $(patsubst %/,%,$(dir $@))
 # environment
-XAUTHORITY = /home/kuba/.Xauthority
+XAUTHORITY = /run/user/1000/.Xauthority
 # automatic
 @F = $(notdir $@)
 # default
@@ -56,8 +58,8 @@ XDG_CONFIG_DIRS = /etc/xdg/xdg-plasma:/etc/xdg:/usr/share/kubuntu-default-settin
 SNAP_INSTANCE_NAME = code
 # environment
 SNAP_ARCH = amd64
-# makefile
-MAKEFILE_LIST := 
+# makefile (from 'makefile', line 1)
+MAKEFILE_LIST :=  makefile
 # 'override' directive
 GNUMAKEFLAGS := 
 # environment
@@ -70,6 +72,8 @@ DBUS_SESSION_BUS_ADDRESS = unix:path=/run/user/1000/bus
 VSCODE_VERBOSE_LOGGING = true
 # environment
 QT_SCREEN_SCALE_FACTORS = HDMI-0=1;eDP-1-1=1;DP-1-1=1;DP-1-2=1;
+# makefile (from 'makefile', line 8)
+OBJS := main.o CMenu.o CGame.o CMap.o CCell.o CTower2.o CCellBasic.o CAttacker.o CHogRider.o CMapLoadMap.o CMapPathFind.o CMapRedraw.o CMapPlaceTowers.o CTower.o CLaserTurret.o CMapScout.o CTank.o CGameConfParse.o SConf.o CGameSave.o 
 # environment
 LESSOPEN = | /usr/bin/lesspipe %s
 # environment
@@ -86,12 +90,12 @@ GSETTINGS_SCHEMA_DIR = /snap/code/97/usr/share/glib-2.0/schemas
 MAKE_HOST := x86_64-pc-linux-gnu
 # environment
 PATH = /home/kuba/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin
+# makefile (from 'makefile', line 1)
+PROG := filipj25
 # environment
 GPG_AGENT_INFO = /run/user/1000/gnupg/S.gpg-agent:0:1
 # environment
 QT_AUTO_SCREEN_SCALE_FACTOR = 0
-# environment
-SESSION_MANAGER = local/filipj25:@/tmp/.ICE-unix/2041,unix/filipj25:/tmp/.ICE-unix/2041
 # environment
 XDG_RUNTIME_DIR = /run/user/1000
 # environment
@@ -99,7 +103,7 @@ GDK_PIXBUF_MODULE_FILE = /home/kuba/snap/code/common/.cache/gdk-pixbuf-loaders.c
 # environment
 SNAP = /snap/code/97
 # environment
-WINDOWID = 58720263
+WINDOWID = 113246215
 # environment
 SNAP_VERSION = c3511e6c
 # environment
@@ -109,16 +113,17 @@ DISABLE_WAYLAND = 1
 # environment
 ELECTRON_RUN_AS_NODE = 1
 # environment
+GTK2_RC_FILES = /etc/gtk-2.0/gtkrc:/home/kuba/.gtkrc-2.0:/home/kuba/.config/gtkrc-2.0
+# environment
 PROFILEHOME = 
 # default
 .FEATURES := target-specific order-only second-expansion else-if shortest-stem undefine oneshell archives jobserver output-sync check-symlink load
 # environment
- 
 LS_COLORS = rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:
 # environment
 XDG_SESSION_DESKTOP = KDE
 # environment
-SSH_AUTH_SOCK = /tmp/ssh-X2hnFYhMZtgz/agent.1888
+SSH_AUTH_SOCK = /tmp/ssh-USNlx7ZBWZeg/agent.2014
 # automatic
 %F = $(notdir $%)
 # environment
@@ -140,7 +145,7 @@ KDE_SESSION_VERSION = 5
 # environment
 XDG_SEAT = seat0
 # environment
-SSH_AGENT_PID = 1964
+SSH_AGENT_PID = 2091
 # environment
 ORIGINAL_XDG_CURRENT_DESKTOP = KDE
 # environment
@@ -193,8 +198,10 @@ MAKECMDGOALS := all
 SNAP_USER_DATA = /home/kuba/snap/code/97
 # environment
 SHLVL = 1
+# makefile (from 'makefile', line 6)
+CXX_FLAGS := -Wall --pedantic -g -std=c++17 -O2 -c
 # environment
-VSCODE_IPC_HOOK_EXTHOST = /run/user/1000/vscode-ipc-2ac6e5c3-819a-4d50-96d0-0fd2fe40193c.sock
+VSCODE_IPC_HOOK_EXTHOST = /run/user/1000/vscode-ipc-019cb79a-4132-4069-8401-e274076c7831.sock
 # environment
 XDG_SESSION_ID = 3
 # environment
@@ -204,7 +211,7 @@ SNAP_REVISION = 97
 # environment
 LC_MONETARY = cs_CZ.UTF-8
 # makefile
-.DEFAULT_GOAL := 
+.DEFAULT_GOAL := output
 # environment
 XDG_CURRENT_DESKTOP = KDE
 # environment
@@ -213,10 +220,12 @@ LIBVIRT_DEFAULT_URI = qemu:///system
 %D = $(patsubst %/,%,$(dir $%))
 # environment
 LC_TELEPHONE = cs_CZ.UTF-8
+# makefile (from 'makefile', line 5)
+LD_FLAGS := -Wall --pedantic -g -std=c++17 -O2
 # default
 MAKE_COMMAND := make
 # environment
-OLDPWD = /home/kuba
+OLDPWD = /home/kuba/filipj25/pa2semprace/src
 # default
 .VARIABLES := 
 # automatic
@@ -234,16 +243,16 @@ MFLAGS = -pqrR
 # automatic
 *D = $(patsubst %/,%,$(dir $*))
 # environment
-SHELL_SESSION_ID = a8fba583bceb4ad288dde8e489c61e5d
+SHELL_SESSION_ID = 9a2ba70f277a4973b1136dc5097e5e52
 # automatic
 +D = $(patsubst %/,%,$(dir $+))
 # environment
- 
 GDK_BACKEND = x11
 # environment
 LC_PAPER = cs_CZ.UTF-8
 # environment
 QT_ACCESSIBILITY = 1
+ 
 # environment
 COLORFGBG = 0;15
 # default
@@ -254,6 +263,8 @@ SNAP_COOKIE = 82hP8SCuGDbSR-IM9JsHp6s4F-jW_AiWHab9yMoBTVoWQ1aQKUI2
 LC_NUMERIC = cs_CZ.UTF-8
 # automatic
 <F = $(notdir $<)
+# makefile (from 'makefile', line 3)
+CXX := g++
 # environment
 LC_MEASUREMENT = cs_CZ.UTF-8
 # environment
@@ -269,7 +280,7 @@ SNAP_REEXEC =
 # environment
 CHROME_DESKTOP = code-url-handler.desktop
 # environment
-KONSOLE_DBUS_SERVICE = :1.4078
+KONSOLE_DBUS_SERVICE = :1.4119
 # default
 .INCLUDE_DIRS = /usr/include /usr/local/include /usr/include
 # environment
@@ -283,11 +294,11 @@ LANG = C
 # environment
 TERM = xterm-256color
 # environment
-VSCODE_PID = 56347
+VSCODE_PID = 118261
 # environment
 KDE_SESSION_UID = 1000
 # variable set hash-table stats:
-# Load=136/1024=13%, Rehash=0, Collisions=19/158=12%
+# Load=143/1024=14%, Rehash=0, Collisions=23/174=13%
 
 # Pattern-specific Variable Values
 
@@ -295,36 +306,208 @@ KDE_SESSION_UID = 1000
 
 # Directories
 
-# . (device 66310, inode 4201048): 9 files, no impossibilities.
+# . (device 66310, inode 4201048): 16 files, no impossibilities.
+# src (device 66310, inode 4201052): 73 files, no impossibilities.
 
-# 9 files, no impossibilities in 1 directories.
+# 89 files, no impossibilities in 2 directories.
 
 # Implicit Rules
 
-# No implicit rules.
+%.o: src/%.cpp
+#  recipe to execute (from 'makefile', line 14):
+	$(CXX) $(CXX_FLAGS) $<
+
+# 1 implicit rules, 0 (0.0%) terminal.
 
 # Files
 
 # Not a target:
+src/CTower2.hpp:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+CGame.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+src/SConf.hpp:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
 all:
 #  Command line target.
-#  Implicit rule search has been done.
+#  Implicit rule search has not been done.
+#  Implicit/static pattern stem: ''
 #  File does not exist.
+#  File has been updated.
+#  Needs to be updated (-q is set).
+# automatic
+# @ := all
+# automatic
+# % := 
+# automatic
+# * := 
+# automatic
+# + := 
+# automatic
+# | := 
+# automatic
+# < := 
+# automatic
+# ^ := 
+# automatic
+# ? := 
+# variable set hash-table stats:
+# Load=8/32=25%, Rehash=0, Collisions=1/11=9%
+#  recipe to execute (from 'makefile', line 26):
+	make
+	make doc
+
+# Not a target:
+filipj25:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+CTower.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+src/CCell.hpp:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+CMapScout.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+src/CAttacker.hpp:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+zip: examples/ src/ Doxyfile Makefile prohlaseni.txt zadani.txt
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+#  recipe to execute (from 'makefile', line 20):
+	zip -r $(PROG).zip * 
+
+# Not a target:
+.SUFFIXES:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
 #  File has not been updated.
 
 # Not a target:
 Makefile:
-#  Implicit rule search has been done.
-#  File does not exist.
-#  File has been updated.
-#  Failed to be updated.
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+CHogRider.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+CTank.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+CMapLoadMap.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
 
 # Not a target:
 makefile:
 #  Implicit rule search has been done.
-#  File does not exist.
+#  Last modified 2022-06-09 10:10:47.825281585
 #  File has been updated.
-#  Failed to be updated.
+#  Successfully updated.
+
+# Not a target:
+CMap.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+CCellBasic.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+src/CMenu.hpp:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+src/:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+src/CGame.hpp:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+CLaserTurret.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+prohlaseni.txt:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+src/CTower.hpp:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+compile:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+#  recipe to execute (from 'makefile', line 30):
+	make
+
+# Not a target:
+CTower2.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+src/CMapScout.hpp:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
 
 # Not a target:
 .DEFAULT:
@@ -332,28 +515,158 @@ makefile:
 #  Modification time never checked.
 #  File has not been updated.
 
- 
 # Not a target:
-GNUmakefile:
-#  Implicit rule search has been done.
-#  File does not exist.
-#  File has been updated.
-#  Failed to be updated.
+CMapPathFind.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+SConf.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+run: filipj25
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+#  recipe to execute (from 'makefile', line 23):
+	./$(PROG)
+
+# Not a target:
+zadani.txt:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+CMapRedraw.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+clean:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+#  recipe to execute (from 'makefile', line 33):
+	rm *.o  $(PROG)
+	rm -r doc
+
+# Not a target:
+src/CHogRider.hpp:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+CCell.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+CGameSave.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+src/CTank.hpp:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+src/CMap.hpp:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+src/CCellBasic.hpp:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+Doxyfile:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+CAttacker.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+examples/:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+CGameConfParse.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+main.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+output: main.o CMenu.o CGame.o CMap.o CCell.o CTower2.o CCellBasic.o CAttacker.o CHogRider.o CMapLoadMap.o CMapPathFind.o CMapRedraw.o CMapPlaceTowers.o CTower.o CLaserTurret.o CMapScout.o CTank.o CGameConfParse.o SConf.o CGameSave.o
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+#  recipe to execute (from 'makefile', line 11):
+	$(CXX) $(LD_FLAGS) -o $(PROG) $(OBJS) -lncurses
+
+# Not a target:
+src/CLaserTurret.hpp:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+CMenu.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+doc: doc src/CGame.hpp src/SConf.hpp src/CMenu.hpp src/CCellBasic.hpp src/CMap.hpp src/CCell.hpp src/CTower2.hpp src/CLaserTurret.hpp src/CTower.hpp src/CTank.hpp src/CMapScout.hpp src/CHogRider.hpp src/CAttacker.hpp
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+#  recipe to execute (from 'makefile', line 17):
+	doxygen Doxyfile
+
+# Not a target:
+CMapPlaceTowers.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
 
 # files hash-table stats:
-# Load=6/1024=1%, Rehash=0, Collisions=0/15=0%
+# Load=50/1024=5%, Rehash=0, Collisions=3/104=3%
 # VPATH Search Paths
 
 # No 'vpath' search paths.
 
 # No general ('VPATH' variable) search path.
 
-# strcache buffers: 1 (0) / strings = 17 / storage = 172 B / avg = 10 B
-# current buf: size = 8162 B / used = 172 B / count = 17 / avg = 10 B
+# strcache buffers: 1 (0) / strings = 112 / storage = 1351 B / avg = 12 B
+# current buf: size = 8162 B / used = 1351 B / count = 112 / avg = 12 B
 
-# strcache performance: lookups = 20 / hit rate = 15%
+# strcache performance: lookups = 157 / hit rate = 28%
 # hash-table stats:
-# Load=17/8192=0%, Rehash=0, Collisions=1/20=5%
-# Finished Make data base on Tue May 24 23:35:00 2022
+ 
+# Load=112/8192=1%, Rehash=0, Collisions=4/157=3%
+# Finished Make data base on Thu Jun  9 10:11:19 2022
 
  

@@ -8,10 +8,10 @@ CLaserTurret::CLaserTurret(int x, int y, TowerConf & a) : CTower(x,y){
     this->range = a.range;
     this->fireFrequency = a.freq;
     this->towerIndex = 0;
-    };
+    }
 
 void CLaserTurret::draw(WINDOW * map){
-    if(this->health <= 0)this->destroyed++;
+    if(this->health <= 0)this->destroyed = true;
     if (this->shotsCnt % this->fireFrequency != 0) this->shotsCnt++;
     start_color();
     if (this->shotsCnt % this->fireFrequency == 0) {
