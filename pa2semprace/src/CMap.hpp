@@ -14,6 +14,8 @@
 #include "CMapScout.hpp"
 #include "CTank.hpp"
 #include "CTower2.hpp"
+#include "CJumper.hpp"
+#include "CLongRange.hpp"
 #include "algorithm"
 
 #define TOWER_LETTER 'T'

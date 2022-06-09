@@ -1,23 +1,5 @@
 make --dry-run --keep-going --print-directory
 make: Entering directory '/home/kuba/filipj25/pa2semprace'
-g++ -Wall --pedantic -g -std=c++17 -O2 -c src/CGame.cpp
-g++ -Wall --pedantic -g -std=c++17 -O2 -c src/CMap.cpp
-g++ -Wall --pedantic -g -std=c++17 -O2 -c src/CCell.cpp
-g++ -Wall --pedantic -g -std=c++17 -O2 -c src/CTower2.cpp
-g++ -Wall --pedantic -g -std=c++17 -O2 -c src/CCellBasic.cpp
-g++ -Wall --pedantic -g -std=c++17 -O2 -c src/CAttacker.cpp
-g++ -Wall --pedantic -g -std=c++17 -O2 -c src/CHogRider.cpp
-g++ -Wall --pedantic -g -std=c++17 -O2 -c src/CMapLoadMap.cpp
-g++ -Wall --pedantic -g -std=c++17 -O2 -c src/CMapPathFind.cpp
-g++ -Wall --pedantic -g -std=c++17 -O2 -c src/CMapRedraw.cpp
-g++ -Wall --pedantic -g -std=c++17 -O2 -c src/CMapPlaceTowers.cpp
-g++ -Wall --pedantic -g -std=c++17 -O2 -c src/CTower.cpp
-g++ -Wall --pedantic -g -std=c++17 -O2 -c src/CLaserTurret.cpp
-g++ -Wall --pedantic -g -std=c++17 -O2 -c src/CMapScout.cpp
-g++ -Wall --pedantic -g -std=c++17 -O2 -c src/CTank.cpp
-g++ -Wall --pedantic -g -std=c++17 -O2 -c src/CGameConfParse.cpp
-g++ -Wall --pedantic -g -std=c++17 -O2 -c src/SConf.cpp
-g++ -Wall --pedantic -g -std=c++17 -O2 -c src/CGameSave.cpp
-g++ -Wall --pedantic -g -std=c++17 -O2 -o filipj25 main.o CMenu.o CGame.o CMap.o CCell.o CTower2.o CCellBasic.o CAttacker.o CHogRider.o CMapLoadMap.o CMapPathFind.o CMapRedraw.o CMapPlaceTowers.o CTower.o CLaserTurret.o CMapScout.o CTank.o CGameConfParse.o SConf.o CGameSave.o  -lncurses
+g++ -Wall --pedantic -g -std=c++17 -O2 -o filipj25 main.o CMenu.o CGame.o CMap.o CCell.o CTower2.o CCellBasic.o CAttacker.o CHogRider.o CMapLoadMap.o CMapPathFind.o CMapRedraw.o CMapPlaceTowers.o CTower.o CLaserTurret.o CMapScout.o CTank.o CGameConfParse.o SConf.o CGameSave.o CJumper.o CLongRange.o -lncurses
 make: Leaving directory '/home/kuba/filipj25/pa2semprace'
  

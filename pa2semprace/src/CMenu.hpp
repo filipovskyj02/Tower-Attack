@@ -18,6 +18,7 @@ class CMenu
 private:
     int maxW,maxH;
     bool continueToGame;
+    int choosenX,choosenY;
     
 public:
     CMenu();

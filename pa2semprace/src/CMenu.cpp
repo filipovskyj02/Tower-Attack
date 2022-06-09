@@ -15,6 +15,8 @@ void CMenu::draw(int p_width,int p_height){
     refresh();
     this->maxW = p_width * WIDTH_MULTI;
     this->maxH = p_height;
+    this->choosenX = maxW;
+    this->choosenY = maxH;
     int WinMaxY,WinMaxX;
     
     getmaxyx(stdscr,WinMaxY,WinMaxX);
@@ -61,7 +63,10 @@ void CMenu::draw(int p_width,int p_height){
 }
  void CMenu::help (WINDOW * MenuWin){
      
-    mvwprintw(MenuWin, maxH/2,maxW/2,"Test helpu");
+    
+    mvwprintw(MenuWin,maxH/2,maxW/2 - 25,"Get enough attackers through the exit to win !");
+    wgetch(MenuWin);
+    
      
 
 

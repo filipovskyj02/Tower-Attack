@@ -40,6 +40,10 @@ void CMap::buy (int index, AttackerConf & a){
             break;
         case 1: DynamicVec.push_back(std::make_unique<CTank>(EnteranceCords[this->enteranceSel]%this->sizeX,EnteranceCords[this->enteranceSel] / this->sizeX, a));
             break;
+        case 2: DynamicVec.push_back(std::make_unique<CLongRange>(EnteranceCords[this->enteranceSel]%this->sizeX,EnteranceCords[this->enteranceSel] / this->sizeX, a));
+            break;
+        case 3: DynamicVec.push_back(std::make_unique<CJumper>(EnteranceCords[this->enteranceSel]%this->sizeX,EnteranceCords[this->enteranceSel] / this->sizeX, a));
+            break;
     }
     
     this->calculatePath(DynamicVec.back().get(),DynamicVec.back().get()->whatToFind());

@@ -54,9 +54,18 @@ void CGame::loadSave(int loadFile){
         switch (a){
             case 0:
                 this->gameMap.DynamicVec.push_back(std::make_unique<CHogRider>(d,e,this->att[0]));
+                break;
             case 1:
                 if (attackerConfLoaded<2) break;
                 this->gameMap.DynamicVec.push_back(std::make_unique<CTank>(d,e,this->att[1]));
+                break;
+            case 2:
+                if (attackerConfLoaded<3) break;
+                this->gameMap.DynamicVec.push_back(std::make_unique<CLongRange>(d,e,this->att[2]));
+                break;
+            case 3:
+                if (attackerConfLoaded<4) break;
+                this->gameMap.DynamicVec.push_back(std::make_unique<CJumper>(d,e,this->att[3]));   
         }
         auto ptr = this->gameMap.DynamicVec.back().get();
         ptr->health = b;
@@ -75,7 +84,7 @@ void CGame::loadSave(int loadFile){
                 this->gameMap.TowerVec.push_back(std::make_unique<CLaserTurret>(d,e,this->tww[0]));
             case 1:
                 this->gameMap.TowerVec.push_back(std::make_unique<CTower2>(d,e,this->tww[1]));
-            
+          
         }
         if (this->gameMap.TowerVec.empty()) break;
         auto ptr = this->gameMap.TowerVec.back().get();

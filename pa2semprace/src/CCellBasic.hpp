@@ -15,6 +15,10 @@ class CAir : public CCell
 class CEnterance : public CCell
 {
     public:
+    /**
+     * @brief is the enterance currenly selected as a place to spawn attackers
+     * 
+     */
     bool selected;
     CEnterance(int total, int x, int y);
     virtual void draw(WINDOW * map);
