@@ -1,0 +1,6 @@
+make --dry-run --keep-going --print-directory
+make: Entering directory '/home/kuba/filipj25/pa2semprace'
+make: Leaving directory '/home/kuba/filipj25/pa2semprace'
+ 
+make: *** No targets specified and no makefile found.  Stop.
+

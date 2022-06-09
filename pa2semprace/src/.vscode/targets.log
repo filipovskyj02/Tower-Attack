@@ -8,7 +8,7 @@ make: *** No rule to make target 'all'.  Stop.
 # This is free software: you are free to change and redistribute it.
 # There is NO WARRANTY, to the extent permitted by law.
 
-# Make data base, printed on Sat Jun  4 22:46:34 2022
+# Make data base, printed on Thu Jun  9 06:03:48 2022
 
 # Variables
 
@@ -56,8 +56,8 @@ XDG_CONFIG_DIRS = /etc/xdg/xdg-plasma:/etc/xdg:/usr/share/kubuntu-default-settin
 SNAP_INSTANCE_NAME = code
 # environment
 SNAP_ARCH = amd64
-# makefile (from 'makefile', line 1)
-MAKEFILE_LIST :=  makefile
+# makefile
+MAKEFILE_LIST := 
 # 'override' directive
 GNUMAKEFLAGS := 
 # environment
@@ -91,7 +91,7 @@ GPG_AGENT_INFO = /run/user/1000/gnupg/S.gpg-agent:0:1
 # environment
 QT_AUTO_SCREEN_SCALE_FACTOR = 0
 # environment
-SESSION_MANAGER = local/filipj25:@/tmp/.ICE-unix/2021,unix/filipj25:/tmp/.ICE-unix/2021
+SESSION_MANAGER = local/filipj25:@/tmp/.ICE-unix/2154,unix/filipj25:/tmp/.ICE-unix/2154
 # environment
 XDG_RUNTIME_DIR = /run/user/1000
 # environment
@@ -99,7 +99,7 @@ GDK_PIXBUF_MODULE_FILE = /home/kuba/snap/code/common/.cache/gdk-pixbuf-loaders.c
 # environment
 SNAP = /snap/code/97
 # environment
-WINDOWID = 58720263
+WINDOWID = 54525959
 # environment
 SNAP_VERSION = c3511e6c
 # environment
@@ -117,7 +117,7 @@ LS_COLORS = rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:
 # environment
 XDG_SESSION_DESKTOP = KDE
 # environment
-SSH_AUTH_SOCK = /tmp/ssh-yPdVFlGqISGN/agent.1870
+SSH_AUTH_SOCK = /tmp/ssh-USNlx7ZBWZeg/agent.2014
 # automatic
 %F = $(notdir $%)
 # environment
@@ -139,7 +139,7 @@ KDE_SESSION_VERSION = 5
 # environment
 XDG_SEAT = seat0
 # environment
-SSH_AGENT_PID = 1946
+SSH_AGENT_PID = 2091
 # environment
 ORIGINAL_XDG_CURRENT_DESKTOP = KDE
 # environment
@@ -193,7 +193,7 @@ SNAP_USER_DATA = /home/kuba/snap/code/97
 # environment
 SHLVL = 1
 # environment
-VSCODE_IPC_HOOK_EXTHOST = /run/user/1000/vscode-ipc-02a4a0d4-9eae-49e9-8440-4311c0cd843c.sock
+VSCODE_IPC_HOOK_EXTHOST = /run/user/1000/vscode-ipc-3d836cbb-2a35-4521-93e6-73ff50fcc198.sock
 # environment
 XDG_SESSION_ID = 3
 # environment
@@ -203,7 +203,7 @@ SNAP_REVISION = 97
 # environment
 LC_MONETARY = cs_CZ.UTF-8
 # makefile
-.DEFAULT_GOAL := output
+.DEFAULT_GOAL := 
 # environment
 XDG_CURRENT_DESKTOP = KDE
 # environment
@@ -233,7 +233,7 @@ MFLAGS = -pqrR
 # automatic
 *D = $(patsubst %/,%,$(dir $*))
 # environment
-SHELL_SESSION_ID = 0f892098cf204fe8afd80633c3874a8f
+SHELL_SESSION_ID = c48313ccdc634ea2b42eaf8deea4daf6
 # automatic
 +D = $(patsubst %/,%,$(dir $+))
 # environment
@@ -267,7 +267,7 @@ SNAP_REEXEC =
 # environment
 CHROME_DESKTOP = code-url-handler.desktop
 # environment
-KONSOLE_DBUS_SERVICE = :1.11573
+KONSOLE_DBUS_SERVICE = :1.1391
 # default
 .INCLUDE_DIRS = /usr/include /usr/local/include /usr/include
 # environment
@@ -281,11 +281,12 @@ LANG = C
 # environment
 TERM = xterm-256color
 # environment
-VSCODE_PID = 339949
+VSCODE_PID = 104594
 # environment
 KDE_SESSION_UID = 1000
 # variable set hash-table stats:
-# Load=136/1024=13%, Rehash=0, Collisions=19/161=12%
+ 
+# Load=136/1024=13%, Rehash=0, Collisions=19/158=12%
 
 # Pattern-specific Variable Values
 
@@ -293,9 +294,9 @@ KDE_SESSION_UID = 1000
 
 # Directories
 
-# . (device 66309, inode 4201052): 71 files, no impossibilities.
+# . (device 66310, inode 4201052): 73 files, no impossibilities.
 
-# 71 files, no impossibilities in 1 directories.
+# 73 files, no impossibilities in 1 directories.
 
 # Implicit Rules
 
@@ -304,195 +305,25 @@ KDE_SESSION_UID = 1000
 # Files
 
 # Not a target:
-CHogRider.hpp:
-#  Implicit rule search has not been done.
-#  Modification time never checked.
-#  File has not been updated.
-
-# Not a target:
-CLaserTurret.cpp:
-#  Implicit rule search has not been done.
-#  Modification time never checked.
-#  File has not been updated.
-
-CGame.o: CGame.cpp CGameConfParse.cpp CGameSave.cpp CGame.hpp
-#  Implicit rule search has not been done.
-#  Modification time never checked.
-#  File has not been updated.
-#  recipe to execute (from 'makefile', line 11):
-	g++ -Wall -pedantic -g -c CGame.cpp CGame.hpp -lncurses
-
-# Not a target:
-CTank.hpp:
-#  Implicit rule search has not been done.
-#  Modification time never checked.
-#  File has not been updated.
-
-# Not a target:
-CMap.hpp:
-#  Implicit rule search has not been done.
-#  Modification time never checked.
-#  File has not been updated.
-
-# Not a target:
-CCellBasic.hpp:
-#  Implicit rule search has not been done.
-#  Modification time never checked.
-#  File has not been updated.
-
-# Not a target:
 all:
 #  Command line target.
 #  Implicit rule search has been done.
 #  File does not exist.
 #  File has not been updated.
 
-CTower.o: CTower.cpp CTower.hpp
-#  Implicit rule search has not been done.
-#  Modification time never checked.
-#  File has not been updated.
-#  recipe to execute (from 'makefile', line 29):
-	g++ -Wall -pedantic -g -c CTower.cpp CTower.hpp -lncurses
-
 # Not a target:
-CLaserTurret.hpp:
-#  Implicit rule search has not been done.
-#  Modification time never checked.
-#  File has not been updated.
-
-CMapScout.o: CMapScout.cpp CMapScout.hpp
-#  Implicit rule search has not been done.
-#  Modification time never checked.
-#  File has not been updated.
-#  recipe to execute (from 'makefile', line 34):
-	g++ -Wall -pedantic -g -c CMapScout.cpp CMapScout.hpp -lncurses	
-
-# Not a target:
-SConf.cpp:
-#  Implicit rule search has not been done.
-#  Modification time never checked.
-#  File has not been updated.
-
-# Not a target:
-CMapScout.cpp:
-#  Implicit rule search has not been done.
-#  Modification time never checked.
-#  File has not been updated.
-
-# Not a target:
-CMapRedraw.cpp:
-#  Implicit rule search has not been done.
-#  Modification time never checked.
-#  File has not been updated.
-
-# Not a target:
-CCell.cpp:
-#  Implicit rule search has not been done.
-#  Modification time never checked.
-#  File has not been updated.
-
-CHogRider.o: CHogRider.cpp CHogRider.hpp
-#  Implicit rule search has not been done.
-#  Modification time never checked.
-#  File has not been updated.
-#  recipe to execute (from 'makefile', line 26):
-	g++ -Wall -pedantic -g -c CHogRider.cpp CHogRider.hpp -lncurses	
-
-CTank.o: CTank.cpp CTank.hpp
-#  Implicit rule search has not been done.
-#  Modification time never checked.
-#  File has not been updated.
-#  recipe to execute (from 'makefile', line 36):
-	g++ -Wall -pedantic -g -c CTank.cpp CTank.hpp -lncurses	
-
-# Not a target:
-CMapLoadMap.o:
-#  Implicit rule search has not been done.
-#  Modification time never checked.
-#  File has not been updated.
+Makefile:
+#  Implicit rule search has been done.
+#  File does not exist.
+#  File has been updated.
+#  Failed to be updated.
 
 # Not a target:
 makefile:
 #  Implicit rule search has been done.
-#  Last modified 2022-06-04 22:44:30.932368044
+#  File does not exist.
 #  File has been updated.
-#  Successfully updated.
-
-# Not a target:
-SConf.hpp:
-#  Implicit rule search has not been done.
-#  Modification time never checked.
-#  File has not been updated.
-
-CMap.o: CMap.cpp CMapLoadMap.cpp CMapPathFind.cpp CMapRedraw.cpp CMapPlaceTowers.cpp CMap.hpp
-#  Implicit rule search has not been done.
-#  Modification time never checked.
-#  File has not been updated.
-#  recipe to execute (from 'makefile', line 14):
-	g++ -Wall -pedantic -g -c CMap.cpp CMapLoadMap.cpp CMapPathFind.cpp CMapRedraw.cpp CMapPlaceTowers.cpp CMap.hpp -lncurses
-
-CCellBasic.o: CCellBasic.cpp CCellBasic.hpp
-#  Implicit rule search has not been done.
-#  Modification time never checked.
-#  File has not been updated.
-#  recipe to execute (from 'makefile', line 20):
-	g++ -Wall -pedantic -g -c CCellBasic.cpp CCellBasic.hpp -lncurses		
-
-# Not a target:
-CAttacker.cpp:
-#  Implicit rule search has not been done.
-#  Modification time never checked.
-#  File has not been updated.
-
-# Not a target:
-CGameConfParse.cpp:
-#  Implicit rule search has not been done.
-#  Modification time never checked.
- 
-#  File has not been updated.
-
-# Not a target:
-CTank.cpp:
-#  Implicit rule search has not been done.
-#  Modification time never checked.
-#  File has not been updated.
-
-# Not a target:
-main.cpp:
-#  Implicit rule search has not been done.
-#  Modification time never checked.
-#  File has not been updated.
-
-# Not a target:
-CCell.hpp:
-#  Implicit rule search has not been done.
-#  Modification time never checked.
-#  File has not been updated.
-
-CLaserTurret.o: CLaserTurret.cpp CLaserTurret.hpp
-#  Implicit rule search has not been done.
-#  Modification time never checked.
-#  File has not been updated.
-#  recipe to execute (from 'makefile', line 32):
-	g++ -Wall -pedantic -g -c CLaserTurret.cpp CLaserTurret.hpp -lncurses	
-
-# Not a target:
-CAttacker.hpp:
-#  Implicit rule search has not been done.
-#  Modification time never checked.
-#  File has not been updated.
-
-# Not a target:
-CMenu.cpp:
-#  Implicit rule search has not been done.
-#  Modification time never checked.
-#  File has not been updated.
-
-# Not a target:
-CMapPlaceTowers.cpp:
-#  Implicit rule search has not been done.
-#  Modification time never checked.
-#  File has not been updated.
+#  Failed to be updated.
 
 # Not a target:
 .DEFAULT:
@@ -501,170 +332,26 @@ CMapPlaceTowers.cpp:
 #  File has not been updated.
 
 # Not a target:
-CGame.cpp:
-#  Implicit rule search has not been done.
-#  Modification time never checked.
-#  File has not been updated.
-
-# Not a target:
-CMapPathFind.o:
-#  Implicit rule search has not been done.
-#  Modification time never checked.
-#  File has not been updated.
-
-SConf.o: SConf.cpp SConf.hpp
-#  Implicit rule search has not been done.
-#  Modification time never checked.
-#  File has not been updated.
-#  recipe to execute (from 'makefile', line 38):
-	g++ -Wall -pedantic -g -c SConf.cpp SConf.hpp -lncurses	
-
-# Not a target:
-CMenu.hpp:
-#  Implicit rule search has not been done.
-#  Modification time never checked.
-#  File has not been updated.
-
-# Not a target:
-CMapRedraw.o:
-#  Implicit rule search has not been done.
-#  Modification time never checked.
-#  File has not been updated.
-
-clean:
-#  Implicit rule search has not been done.
-#  Modification time never checked.
-#  File has not been updated.
-#  recipe to execute (from 'makefile', line 40):
-	rm *.o *.out *.hpp.gch
-
-# Not a target:
-CTower.cpp:
-#  Implicit rule search has not been done.
-#  Modification time never checked.
-#  File has not been updated.
-
-CCell.o: CCell.cpp CCell.hpp
-#  Implicit rule search has not been done.
-#  Modification time never checked.
-#  File has not been updated.
-#  recipe to execute (from 'makefile', line 17):
-	g++ -Wall -pedantic -g -c CCell.cpp CCell.hpp -lncurses	
-
-# Not a target:
-CGameSave.o:
-#  Implicit rule search has not been done.
-#  Modification time never checked.
-#  File has not been updated.
-
-# Not a target:
-CGame.hpp:
-#  Implicit rule search has not been done.
-#  Modification time never checked.
-#  File has not been updated.
-
-CAttacker.o: CAttacker.cpp CAttacker.hpp
-#  Implicit rule search has not been done.
-#  Modification time never checked.
-#  File has not been updated.
-#  recipe to execute (from 'makefile', line 23):
-	g++ -Wall -pedantic -g -c CAttacker.cpp CAttacker.hpp -lncurses
-
-# Not a target:
-CGameConfParse.o:
-#  Implicit rule search has not been done.
-#  Modification time never checked.
-#  File has not been updated.
-
-main.o: main.cpp
-#  Implicit rule search has not been done.
-#  Modification time never checked.
-#  File has not been updated.
-#  recipe to execute (from 'makefile', line 5):
-	g++ -Wall -pedantic -g -c main.cpp -lncurses
-
-output: main.o CMenu.o CGame.o CMap.o CCell.o CCellBasic.o CAttacker.o CHogRider.o CMapLoadMap.o CMapPathFind.o CMapRedraw.o CMapPlaceTowers.o CTower.o CLaserTurret.o CMapScout.o CTank.o CGameConfParse.o SConf.o CGameSave.o
-#  Implicit rule search has not been done.
-#  Modification time never checked.
-#  File has not been updated.
-#  recipe to execute (from 'makefile', line 2):
-	g++ -Wall -pedantic -g main.o CMenu.o CGame.o CMap.o CCell.o CCellBasic.o CAttacker.o CHogRider.o CMapLoadMap.o CMapPathFind.o CMapRedraw.o CMapPlaceTowers.o CTower.o CLaserTurret.o CMapScout.o CTank.o CGameConfParse.o SConf.o CGameSave.o -lncurses
-
-# Not a target:
-CTower.hpp:
-#  Implicit rule search has not been done.
-#  Modification time never checked.
-#  File has not been updated.
-
-# Not a target:
-CHogRider.cpp:
-#  Implicit rule search has not been done.
-#  Modification time never checked.
-#  File has not been updated.
-
-# Not a target:
-CMapScout.hpp:
-#  Implicit rule search has not been done.
-#  Modification time never checked.
-#  File has not been updated.
-
-# Not a target:
-CMapLoadMap.cpp:
-#  Implicit rule search has not been done.
-#  Modification time never checked.
-#  File has not been updated.
-
-# Not a target:
-CMap.cpp:
-#  Implicit rule search has not been done.
-#  Modification time never checked.
-#  File has not been updated.
-
-# Not a target:
-CCellBasic.cpp:
-#  Implicit rule search has not been done.
-#  Modification time never checked.
-#  File has not been updated.
-
-# Not a target:
-CGameSave.cpp:
-#  Implicit rule search has not been done.
-#  Modification time never checked.
-#  File has not been updated.
-
-CMenu.o: CMenu.cpp CMenu.hpp
-#  Implicit rule search has not been done.
-#  Modification time never checked.
-#  File has not been updated.
-#  recipe to execute (from 'makefile', line 8):
-	g++ -Wall -pedantic -g -c CMenu.cpp CMenu.hpp -lncurses
-
-# Not a target:
-CMapPlaceTowers.o:
-#  Implicit rule search has not been done.
-#  Modification time never checked.
-#  File has not been updated.
-
-# Not a target:
-CMapPathFind.cpp:
-#  Implicit rule search has not been done.
-#  Modification time never checked.
-#  File has not been updated.
+GNUmakefile:
+#  Implicit rule search has been done.
+#  File does not exist.
+#  File has been updated.
+#  Failed to be updated.
 
 # files hash-table stats:
-# Load=56/1024=5%, Rehash=0, Collisions=10/129=8%
+# Load=6/1024=1%, Rehash=0, Collisions=0/15=0%
 # VPATH Search Paths
 
 # No 'vpath' search paths.
 
 # No general ('VPATH' variable) search path.
 
-# strcache buffers: 1 (0) / strings = 78 / storage = 947 B / avg = 12 B
-# current buf: size = 8162 B / used = 947 B / count = 78 / avg = 12 B
+# strcache buffers: 1 (0) / strings = 81 / storage = 991 B / avg = 12 B
+# current buf: size = 8162 B / used = 991 B / count = 81 / avg = 12 B
 
-# strcache performance: lookups = 160 / hit rate = 51%
+# strcache performance: lookups = 84 / hit rate = 3%
 # hash-table stats:
-# Load=78/8192=1%, Rehash=0, Collisions=3/160=2%
-# Finished Make data base on Sat Jun  4 22:46:34 2022
+# Load=81/8192=1%, Rehash=0, Collisions=2/84=2%
+# Finished Make data base on Thu Jun  9 06:03:48 2022
 
  

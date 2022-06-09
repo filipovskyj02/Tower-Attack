@@ -90,15 +90,17 @@ void CMap::interact(){
                     calculatePath(ptr.get(),ptr.get()->whatToFind());
                     if ( ptr.get()->path.size() < 1) noExitRoute = true;
                     for (unsigned int p = 0; p < DynamicVec.size(); p++){
-                        if (noExitRoute) calculatePath(DynamicVec[p].get(),TOWER_LETTER);
-                        else calculatePath(DynamicVec[p].get(),DynamicVec[p].get()->whatToFind());
-                    }
-                    }
-                        
-                    
+                        if (1/*DynamicVec[p].get()->path.back().first < sizeX - 1*/){
+                            if (noExitRoute) calculatePath(DynamicVec[p].get(),TOWER_LETTER);
+                            else calculatePath(DynamicVec[p].get(),DynamicVec[p].get()->whatToFind());
+                        } 
                     }
                 }
-        }   
+                        
+                    
+            }
+        }
+    }   
 
 
 

@@ -4,7 +4,7 @@ void CGame::saveGame(){
     
 
     std::vector<std::string> mapOptions = {"Save1.txt", "Save2.txt", "Save3.txt","Save4.txt","Save5.txt"};
-    std::string location ={"../examples/Saves/"};
+    std::string location ={"examples/Saves/"};
     std::ofstream off;
     off.open((location+mapOptions[this->saveChoice]).c_str());
     off << this->mapChoice << " " << this->confChoice << " " << this->playerMoney << " "<< this->gameMap.alHP<< " " << this->gameMap.alDMG<< " " << this->gameMap.attackersLeft << std::endl;
@@ -24,7 +24,7 @@ void CGame::saveGame(){
 
 void CGame::loadSave(int loadFile){
     std::vector<std::string> mapOptions = {"Save1.txt", "Save2.txt", "Save3.txt","Save4.txt","Save5.txt"};
-    std::string location ={"../examples/Saves/"};
+    std::string location ={"examples/Saves/"};
     std::ifstream in;
     std::string line;
     int a,b,c,d,e,f;

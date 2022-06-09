@@ -3,7 +3,7 @@
 bool CGame::parseFile(int confChoice){
     
     std::vector<std::string> Options = {"hard.txt", "medium.txt", "easy.txt","free.txt"};
-    std::string location ={"../examples/Configurations/"};
+    std::string location ={"examples/Configurations/"};
     std::ifstream myfile;
     myfile.open((location+Options[confChoice]).c_str());
     std::string name, cost;

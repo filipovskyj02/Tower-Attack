@@ -64,8 +64,9 @@ CGame::CGame (int mapChoice, int confChoice, int loadChoice){
         
          t += std::chrono::milliseconds(80);
         std::this_thread::sleep_until(t);
-
-        if(this->gameMap.TowerVec.empty() and ((!this->gameMap.DynamicVec.empty()) or (playerMoney>this->cheapest) )) this->gameMap.winScreen(mapBoundary);
+        if (this->confChoice != 3){
+            if(this->gameMap.TowerVec.empty() and ((!this->gameMap.DynamicVec.empty()) or (playerMoney>this->cheapest) )) this->gameMap.winScreen(mapBoundary);
+        }
         if(this->gameMap.DynamicVec.empty() and this->gameMap.TowerVec.size() and playerMoney < cheapest) this->gameMap.LoseScreen(mapBoundary);
         
         this->gameMap.redraw(mapBoundary);

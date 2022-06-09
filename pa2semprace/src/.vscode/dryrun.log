@@ -1,5 +1,6 @@
 make --dry-run --keep-going --print-directory
 make: Entering directory '/home/kuba/filipj25/pa2semprace/src'
-g++ -Wall -pedantic -g main.o CMenu.o CGame.o CMap.o CCell.o CCellBasic.o CAttacker.o CHogRider.o CMapLoadMap.o CMapPathFind.o CMapRedraw.o CMapPlaceTowers.o CTower.o CLaserTurret.o CMapScout.o CTank.o CGameConfParse.o SConf.o CGameSave.o -lncurses
 make: Leaving directory '/home/kuba/filipj25/pa2semprace/src'
  
+make: *** No targets specified and no makefile found.  Stop.
+
