@@ -1,0 +1,17 @@
+#pragma once
+#include "ncurses.h"
+#include "CAttacker.hpp"
+#include "SConf.hpp"
+
+struct AttackerConf;
+
+class CJumper : public CAttacker
+{
+    public:
+    CJumper(int x, int y,AttackerConf & a);
+    
+    virtual void draw(WINDOW * map);
+    virtual void move(void);
+    virtual void attack(CTower * enemy);
+    virtual char whatToFind();
+};

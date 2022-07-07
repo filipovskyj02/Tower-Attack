@@ -1,0 +1,5 @@
+make --dry-run --keep-going --print-directory
+make: Entering directory '/home/kuba/filipj25/pa2semprace'
+g++ -Wall --pedantic -g -std=c++17 -O2 -o filipj25 main.o CMenu.o CGame.o CMap.o CCell.o CTower2.o CCellBasic.o CAttacker.o CHogRider.o CMapLoadMap.o CMapPathFind.o CMapRedraw.o CMapPlaceTowers.o CTower.o CLaserTurret.o CMapScout.o CTank.o CGameConfParse.o SConf.o CGameSave.o CJumper.o CLongRange.o -lncurses
+make: Leaving directory '/home/kuba/filipj25/pa2semprace'
+ 
