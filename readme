@@ -1,17 +1,23 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <title>Tower Attack - C++ hra implementovana pomoci ncurses</title>
-</head>
-<body>
-  <h1>Tower Attack</h1>
-  <h2>Popis hry:</h2>
-  <p>Tato hra je implementovana v jazyce C++ a pomoci knihovny ncurses. Hrac si vybira pomoci klavesnice, do ktereho polozi utocnika, ktery se snazi dostat co nejrychleji k vychodum na druhe strane mapy. Hrac zacina s urcitym pocetem penez a za kazdou znicenou vez dostane dalsi, ktere muze pouzit na nakup ruznych typu utocniku.</p>
-  <h2>Jak hrat:</h2>
-  <ul>
-    <li>Stisknete klavesu s cislem, ktere odpovida pozici, do ktere chcete umistit utocnika</li>
-    <li>Utocnik se presune co nejrychleji k vychodum na druhe strane mapy</li>
-    <li>Za kazdou znicenou vez dostanete penize, ktere muze pouzit na nakup novych utocniku</li>
-  </ul>
-</body>
-</html>
+##Tower Attack
+
+Tower Attack je hra, implementovana pomoci C++, ve ktere si hrac vybira vstup, do ktereho polozi utocnika,
+ktery se snazi dostat se co nejkratsi cestou k vychodum pres nepratelske uzemi na druhe strane mapy.
+Hrac zacne s urcitym poctem penez a za kazdou znicenou vez dostane podle typu dalsi, za ktere si muze
+nakoupit ruzne typy utocniku. Tato hra neni Tower Defence, ale Tower Attack.
+Jak zacit hrat
+```bash
+git clone https://github.com/filipovskyj02/Tower-Attack.git
+make play
+```
+   
+
+##Ovládání hry
+
+    Vybrat utocnika: Left and Right arrow key
+    Vybrat vchod: Up and Right arrow kew 
+    Nakoupit noveho utocnika: Enter
+
+
+Licence
+
+Tento projekt je licencovan pod licencí MIT 
