@@ -1,4 +1,4 @@
-###Tower Attack
+## Tower Attack
 
 Tower Attack je hra, implementovana pomoci C++, ve ktere si hrac vybira vstup, do ktereho polozi utocnika,
 ktery se snazi dostat se co nejkratsi cestou k vychodum pres nepratelske uzemi na druhe strane mapy.
@@ -11,13 +11,13 @@ make play
 ```
    
 
-###Ovládání hry
+## Ovládání hry
 
     Vybrat utocnika: Left and Right arrow key
     Vybrat vchod: Up and Right arrow kew 
     Nakoupit noveho utocnika: Enter
 
 
-Licence
+## Licence
 
 Tento projekt je licencovan pod licencí MIT 
