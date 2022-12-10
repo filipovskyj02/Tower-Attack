@@ -1,1 +1,17 @@
-PA2 repo
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Tower Attack - C++ hra implementovana pomoci ncurses</title>
+</head>
+<body>
+  <h1>Tower Attack</h1>
+  <h2>Popis hry:</h2>
+  <p>Tato hra je implementovana v jazyce C++ a pomoci knihovny ncurses. Hrac si vybira pomoci klavesnice, do ktereho polozi utocnika, ktery se snazi dostat co nejrychleji k vychodum na druhe strane mapy. Hrac zacina s urcitym pocetem penez a za kazdou znicenou vez dostane dalsi, ktere muze pouzit na nakup ruznych typu utocniku.</p>
+  <h2>Jak hrat:</h2>
+  <ul>
+    <li>Stisknete klavesu s cislem, ktere odpovida pozici, do ktere chcete umistit utocnika</li>
+    <li>Utocnik se presune co nejrychleji k vychodum na druhe strane mapy</li>
+    <li>Za kazdou znicenou vez dostanete penize, ktere muze pouzit na nakup novych utocniku</li>
+  </ul>
+</body>
+</html>
