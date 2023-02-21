@@ -1,23 +1,23 @@
-## Tower Attack
 
-Tower Attack je hra, implementovana pomoci C++, ve ktere si hrac vybira vstup, do ktereho polozi utocnika,
-ktery se snazi dostat se co nejkratsi cestou k vychodum pres nepratelske uzemi na druhe strane mapy.
-Hrac zacne s urcitym poctem penez a za kazdou znicenou vez dostane podle typu dalsi, za ktere si muze
-nakoupit ruzne typy utocniku. Tato hra neni Tower Defence, ale Tower Attack.
-Jak zacit hrat
+# Tower Attack
+A console C++ game utilizing ncurses. Inverse of Tower Defense, here you are the one that sends soldiers into the battlefield and the AI places the towers.
+Incudes 4 maps, 4 difficulity configurations and save/load capability.
+The soldiers pathfind the shortest path to the nearest exit and the tower enemy ai tries to place towers in a way that makes is as difficult as possible.
+
+
+## How to play
+1) clone the repository and compile
 ```bash
-git clone https://github.com/filipovskyj02/Tower-Attack.git
-make play
+$ git clone https://github.com/filipovskyj02/Tower-Attack.git; 
+$ cd Tower-Attack;
+$ make play;
 ```
    
 
-## Ovládání hry
-
-    Vybrat utocnika: Left and Right arrow key
-    Vybrat vchod: Up and Right arrow kew 
-    Nakoupit noveho utocnika: Enter
-
-
-## Licence
-
-Tento projekt je licencovan pod licencí MIT 
+2) Navigate the menu with up and down arrow keys
+<image size=800% src="Images/menu.png">
+3) Choose the enterance to spawn your soldiers at with up/down and which type of soldier to spawn with left/right arrow keys
+<image size=800% src="Images/game.png">
+Chosen soldiers and enterance will be highligted.
+<image size=800% src="Images/game2.png">
+4) Win by getting enough of your soldiers through the enemy gates.
